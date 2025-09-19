@@ -2,10 +2,32 @@
 //
 
 #include <iostream>
+using namespace std;
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    setlocale(LC_ALL, "russian");
+    const int P = 3.14;
+    int a;
+    float f;
+    double d;
+    char s;
+    short min;
+    //long long long long max;
+
+    //s = 's';
+    //cout << s;
+    cout << "Привет мир\\!\n";
+    //cin >> a;
+    //cout << a;
+
+    int x = 5;
+    int y = x<<1;
+    int z = x>>1;
+    cout << y << "\n";
+    cout << z << "\n";
+    bool b1 = true;
+    cout << !b1;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

@@ -5,8 +5,9 @@
 
 int main()
 {
-    std::cout << "Hello World!\n";
-    int a = 150;
+    setlocale(LC_ALL, "RU");
+    std::cout << "ѕривет \\\"мир\"!\n";
+    int a = 150;//инициализаци€ переменной а
     short c = 250;
     std::cout << c << '\n';
 }
