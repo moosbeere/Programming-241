@@ -1,5 +1,10 @@
 #include <iostream> // Подключаем поток вывода в консоль
 #include <string>
+<<<<<<< HEAD
+=======
+#include <cstdint>
+
+>>>>>>> suleymanov
 
 int main() { // Точка входа в программу
     
