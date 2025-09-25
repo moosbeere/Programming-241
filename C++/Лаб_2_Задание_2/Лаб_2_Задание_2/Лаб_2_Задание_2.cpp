@@ -11,7 +11,7 @@ int main() {
 	while (true) {
 		cout << "Введите целое положительное число: ";
 		cin >> var1;
-		if (var1 > 0) break;
+		if (var1 >= 0) break;
 	}
 	for (int i = 0; i <= var1 ; i++) {
 		sumVar += i;
