@@ -6,6 +6,7 @@ using namespace std;
 int n = 150;
 float n1 = 15.933;
 short n2 = 250;
+uint8_t n1 = 250;
 
 int main()
 {
