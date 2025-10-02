@@ -1,14 +1,15 @@
-﻿#include <iostream>
-using namespace std;
-int main()
-{
-    int a = 150;
-    float b = 15.933;
-    short  c = 250;
+﻿#include <iostream> //подключаю библиотеку
+using namespace std; //урощаю код
+int main() //функция мэйн
+{//начало тела функции
+
     setlocale(LC_ALL, "RU");
     cout << "First string\n";
     cout << "Первая строка\nВторая строка\n";
     cout << "Спецсимволы \"\\\"\n";
+    int a = 150;
+    float b = 15.933;
+    short  c = 250;
     std::cout << "a = " << a << "\n";
     std::cout << "b = " << b << "\n";
     std::cout << "c = " << c << "\n";
