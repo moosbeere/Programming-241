@@ -4,10 +4,12 @@
 #include <iostream>
 #include "Windows.h"
 #include "MyMath.h"//подключение нашего заголовочного файла
-using namespace MySpace;
+#include "Header.h"
 
+using namespace MySpace;
 using namespace std;
 
+double MySpace::x = 25.0;
 //объ€вление макросов
 #define PI 3.14f;
 #define CIRCLE_AREA(r) (r)*(r)*PI;
@@ -23,16 +25,29 @@ int mult2(const int x);
 //задание глобальной переменной
 int x = 20;
 int mult(int y);
-void test() {
-    static int x = 0;
-    x++;
-    cout << x << endl;
+//void test() {
+//    static int x = 0;
+//    x++;
+//    cout << x << endl;
+//}
+
+void func(float x, float y, float &z, float &v) {
+    z = x + y;
+    v = x * y;
 }
 
 int main()
 {
+    //работа с внешней переменной
+    cout << MySpace::x << endl;
+
+    MySpace::x = 14.4;
+    test();
+
     // работа с заголовочными файлами
     cout << MySpace::div(4.3f, 2.3f);
+
+    cin.get();
 
     //работа с макросами
     /*cout << CIRCLE_AREA(10);*/
