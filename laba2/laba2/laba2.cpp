@@ -5,6 +5,38 @@
 
 using namespace ::std;
 
+int f1(int n)
+{
+    if (n == 0 || n < 0) {
+        return 0;
+    }
+    int suma = 0;
+    for (int i = 0; i <= n; i++)
+    {
+        suma += i;
+    }
+    return suma;
+}
+
+int f2(int n = 1)
+{
+    if (n == 0 || n < 0) {
+        return 0;
+    }
+    int suma = 0;
+    for (int i = 0; i <= n; i++)
+    {
+        suma += i;
+    }
+    return suma;
+}
+
+void f3(int q, int w, int& e, int& r)
+{
+    e = q + w;
+    r = q * w;
+}
+
 int main()
 {
     setlocale(LC_ALL, "Rus");
@@ -83,6 +115,60 @@ int main()
     }
 
     cout << "\n Задание 3\n";
+    int array[2][3] =
+    {
+        1, 2, 3,
+        4, 5, 6
+    };
+    int suma = 0;
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 3; j++) {
+            suma += array[i][j];
+        }
+    }
+    cout << suma << "\n";
+    int massiv[3] = { array[0][0] + array[1][0], array[0][1] + array[1][1], array[0][2] + array[1][2] };
+    for (int i = 0; i < 3; i++)
+    {
+        cout << massiv[i] << " ";
+    }
+    cout << "\n";
+    
+    float per = 20.84;
+    float* perp = &per;
+    float* perpp = &per;
+    *perpp = 3;
+    cout << per << " " << *perp << " " << *perpp << "\n";
+
+    int n;
+    cout << "Введите число \n";
+    cin >> n;
+    cout << "C параметром " << f1(n) << "\n";
+    cout << "Без параметра " << f2() << "\n";
+
+    
+   
+    int q = 12;
+    int w = 45;
+    int e = 6;
+    int r = 7;
+
+    f3(q, w, e, r);
+    cout << e << " " << r << "\n";
+
+    int t;
+    cout << "Переменная типа int: ";
+    cin >> t;
+    for (int i = 0; i < 3; i++)
+    {
+        int y = 4;
+        cout << "Объявленная вне цикла переменная " << t << "\n";
+        cout << "Объявленная внутри цикла переменная " << y << "\n";
+    }   
+    //cout << "Объявленная вне цикла переменная, вне цикла " << y; ОШИБКА
+
+
+    
 
 
 
