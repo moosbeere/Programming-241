@@ -50,11 +50,10 @@ void pushQueue(vector<string> arr, queue<string>& queue)
 
 bool personIsSailer(string person)
 {
-    //if (person[person.size() - 1] == 'm') {
-    //    return false;
-    //}
+    if (person[person.size() - 1] == 'm') {
+        return true;
+    }
     return false;
-
 }
 
 bool checkPerson(string person, vector<string>& arr)
