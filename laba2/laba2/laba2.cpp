@@ -1,8 +1,9 @@
 ﻿
-
+#include "Header.h"
 #include <iostream>
 #include <string>
 
+#define SUM(a, b) ((a) + (b))
 using namespace ::std;
 
 int f1(int n)
@@ -36,6 +37,7 @@ void f3(int q, int w, int& e, int& r)
     e = q + w;
     r = q * w;
 }
+
 
 int main()
 {
@@ -166,13 +168,19 @@ int main()
         cout << "Объявленная внутри цикла переменная " << y << "\n";
     }   
     //cout << "Объявленная вне цикла переменная, вне цикла " << y; ОШИБКА
+    cout << "\n Задание 4\n";
 
-
+    int l = 4;
+    zad4(l);
+    l = 100;
+    zad4(l);
+    l = 300;
+    zad4(l);
+    cout << "Можем видеть,что статическая переменная изменяет свое значение и сохраняет его вне функции\n";
     
-
-
-
-   
+    int z = 3;
+    int x = 5;
+    cout << SUM(3, 5);
 
    
 }
