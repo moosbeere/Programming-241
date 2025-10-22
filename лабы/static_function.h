@@ -7,4 +7,4 @@ namespace StaticUtils {
     void staticFunction(int number);
 }
 
-#endif // STATIC_FUNCTION_H
+#endif
