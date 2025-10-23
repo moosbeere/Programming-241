@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36603.0 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "laba2task2", "laba2task2\laba2task2.vcxproj", "{C48CEAD4-FE66-4311-A99B-DCDBACEE4319}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C48CEAD4-FE66-4311-A99B-DCDBACEE4319}.Debug|x64.ActiveCfg = Debug|x64
+		{C48CEAD4-FE66-4311-A99B-DCDBACEE4319}.Debug|x64.Build.0 = Debug|x64
+		{C48CEAD4-FE66-4311-A99B-DCDBACEE4319}.Debug|x86.ActiveCfg = Debug|Win32
+		{C48CEAD4-FE66-4311-A99B-DCDBACEE4319}.Debug|x86.Build.0 = Debug|Win32
+		{C48CEAD4-FE66-4311-A99B-DCDBACEE4319}.Release|x64.ActiveCfg = Release|x64
+		{C48CEAD4-FE66-4311-A99B-DCDBACEE4319}.Release|x64.Build.0 = Release|x64
+		{C48CEAD4-FE66-4311-A99B-DCDBACEE4319}.Release|x86.ActiveCfg = Release|Win32
+		{C48CEAD4-FE66-4311-A99B-DCDBACEE4319}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6A668C8F-67B5-4B21-9E90-2EFDBDE35F5B}
+	EndGlobalSection
+EndGlobal
