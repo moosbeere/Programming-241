@@ -85,9 +85,27 @@ void (*function(int x))() {
     else return numberPositive;
 }
 
+int* test() {
+    return new int(6);
+}
+
 int main()
 {
     //динамические объекты
+    int* pc1 = new int(5);
+    cout << pc1 << "=" << *pc1 << endl;
+    delete pc1;
+    int* pc2 = test();
+    cout << pc2 << "=" << *pc2 << endl;
+    delete pc2;
+
+    int* array = new int[]{3, 7, 2};
+
+    for (int* i = array; i < array + 4; i++) {
+        cout << *i << ", ";
+    }
+    delete[] array;
+
 
 
     //указатели на функции
