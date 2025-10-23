@@ -128,6 +128,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="laba4.cpp" />
+    <ClCompile Include="weapon.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="weapon.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
