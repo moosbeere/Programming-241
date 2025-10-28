@@ -1,0 +1,3 @@
+﻿  grokaem1task3.cpp
+C:\Users\ericb\source\repos\grokaem1task3\grokaem1task3\grokaem1task3.cpp(59,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  grokaem1task3.vcxproj -> C:\Users\ericb\source\repos\grokaem1task3\x64\Debug\grokaem1task3.exe
