@@ -1,0 +1,5 @@
+﻿  grokaem3task2.cpp
+C:\Users\ericb\source\repos\grokaem3task2\grokaem3task2\grokaem3task2.cpp(71,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\ericb\source\repos\grokaem3task2\grokaem3task2\grokaem3task2.cpp(89,17): warning C4566: символ, представленный универсальным именем символа "\u2713", невозможно представить в текущей кодовой странице (1251)
+C:\Users\ericb\source\repos\grokaem3task2\grokaem3task2\grokaem3task2.cpp(92,17): warning C4566: символ, представленный универсальным именем символа "\u2717", невозможно представить в текущей кодовой странице (1251)
+  grokaem3task2.vcxproj -> C:\Users\ericb\source\repos\grokaem3task2\x64\Debug\grokaem3task2.exe
