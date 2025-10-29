@@ -4,16 +4,16 @@
 using namespace std;
 
 void printNumbers(int n) {
-    if (n < 1) return;
-    printNumbers(n - 1);
-    cout << n << " ";
+    if (n < 1) return; // Если n меньше 1, завершаем рекурсию
+    printNumbers(n - 1); // Рекурсивный вызов для вывода чисел от 1 до n-1
+    cout << n << " "; // Выводим текущее число n
 }
 
 int main() {
     int n;
     cout << "Введите число n: ";
     cin >> n;
-    printNumbers(n);
+    printNumbers(n); // Вызываем функцию для вывода чисел от 1 до n
     return 0;
 }
 ЗАДАНИЕ 2
@@ -22,9 +22,9 @@ int main() {
 using namespace std;
 
 void printRange(int a, int b) {
-    if (a > b) return;
-    cout << a << " ";
-    printRange(a + 1, b);
+    if (a > b) return; // Базовый случай: если a больше b, завершаем рекурсию
+    cout << a << " "; // Выводим текущее число a
+    printRange(a + 1, b); // Рекурсивный вызов для вывода чисел от a+1 до b
 }
 
 int main() {
@@ -32,41 +32,39 @@ int main() {
     cout << "Введите числа A и B: ";
     cin >> a >> b;
     if (a > b) {
-        printRange(b, a);
+        printRange(b, a); // Если a > b, вызываем функцию с параметрами b и a
     } else {
-        printRange(a, b);
+        printRange(a, b); // Если a <= b, вызываем функцию с параметрами a и b
     }
     return 0;
 }
-
 ЗАДАЧА 3
 #include <iostream>
 using namespace std;
 
 int sumOfDigits(int n) {
-    if (n == 0) return 0;
-    return n % 10 + sumOfDigits(n / 10);
+    if (n == 0) return 0; // Базовый случай: если n равно 0, возвращаем 0
+    return n % 10 + sumOfDigits(n / 10); // Рекурсивный вызов для вычисления суммы цифр
 }
 
 int main() {
     int n;
     cout << "Введите число N: ";
     cin >> n;
-    cout << "Сумма цифр числа " << n << " равна " << sumOfDigits(n) << endl;
+    cout << "Сумма цифр числа " << n << " равна " << sumOfDigits(n) << endl; // Выводим результат
     return 0;
 }
-
 ЗАДАЧА 4
 #include <iostream>
 using namespace std;
 
 void printPrimeFactors(int n, int divisor = 2) {
-    if (n <= 1) return;
+    if (n <= 1) return; // Базовый случай: если n меньше или равно 1, завершаем рекурсию
     if (n % divisor == 0) {
-        cout << divisor << " ";
-        printPrimeFactors(n / divisor, divisor);
+        cout << divisor << " "; // Выводим текущий простой делитель
+        printPrimeFactors(n / divisor, divisor); // Рекурсивный вызов для деления n на текущий делитель
     } else {
-        printPrimeFactors(n, divisor + 1);
+        printPrimeFactors(n, divisor + 1); // Рекурсивный вызов для проверки следующего возможного делителя
     }
 }
 
@@ -75,7 +73,7 @@ int main() {
     cout << "Введите число N: ";
     cin >> n;
     cout << "Простые делители числа " << n << ": ";
-    printPrimeFactors(n);
+    printPrimeFactors(n); // Вызываем функцию для вывода простых делителей
     return 0;
 }
 
