@@ -1,0 +1,82 @@
+ЗАДАНИЕ 1
+
+#include <iostream>
+using namespace std;
+
+void printNumbers(int n) {
+    if (n < 1) return;
+    printNumbers(n - 1);
+    cout << n << " ";
+}
+
+int main() {
+    int n;
+    cout << "Введите число n: ";
+    cin >> n;
+    printNumbers(n);
+    return 0;
+}
+ЗАДАНИЕ 2
+
+#include <iostream>
+using namespace std;
+
+void printRange(int a, int b) {
+    if (a > b) return;
+    cout << a << " ";
+    printRange(a + 1, b);
+}
+
+int main() {
+    int a, b;
+    cout << "Введите числа A и B: ";
+    cin >> a >> b;
+    if (a > b) {
+        printRange(b, a);
+    } else {
+        printRange(a, b);
+    }
+    return 0;
+}
+
+ЗАДАЧА 3
+#include <iostream>
+using namespace std;
+
+int sumOfDigits(int n) {
+    if (n == 0) return 0;
+    return n % 10 + sumOfDigits(n / 10);
+}
+
+int main() {
+    int n;
+    cout << "Введите число N: ";
+    cin >> n;
+    cout << "Сумма цифр числа " << n << " равна " << sumOfDigits(n) << endl;
+    return 0;
+}
+
+ЗАДАЧА 4
+#include <iostream>
+using namespace std;
+
+void printPrimeFactors(int n, int divisor = 2) {
+    if (n <= 1) return;
+    if (n % divisor == 0) {
+        cout << divisor << " ";
+        printPrimeFactors(n / divisor, divisor);
+    } else {
+        printPrimeFactors(n, divisor + 1);
+    }
+}
+
+int main() {
+    int n;
+    cout << "Введите число N: ";
+    cin >> n;
+    cout << "Простые делители числа " << n << ": ";
+    printPrimeFactors(n);
+    return 0;
+}
+
+
