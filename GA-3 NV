@@ -1,0 +1,169 @@
+ЗАДАНИЕ 1
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <random>
+
+
+void quickSort(std::vector<int>& arr, int low, int high) {    // Функция для быстрой сортировки
+    if (low < high) {
+        int pivot = arr[high]; // Выбираем опорный элемент
+        int i = low - 1; // Индекс для меньших элементов
+        for (int j = low; j < high; j++) {
+            if (arr[j] < pivot) { // Если текущий элемент меньше опорного
+                i++; // Увеличиваем индекс для меньших элементов
+                std::swap(arr[i], arr[j]); // Меняем местами элементы
+            }
+        }
+        std::swap(arr[i + 1], arr[high]); // Помещаем опорный элемент на его место
+        int pi = i + 1; // Индекс опорного элемента
+        quickSort(arr, low, pi - 1); // Рекурсивно сортируем левую часть
+        quickSort(arr, pi + 1, high); // Рекурсивно сортируем правую часть
+    }
+}
+
+int main() {
+    std::vector<int> arr(1000); // Создаем вектор из 1000 элементов
+    std::random_device rd; // Инициализируем генератор случайных чисел
+    std::mt19937 gen(rd()); // Создаем генератор случайных чисел
+    std::uniform_int_distribution<> dis(1, 1000); // Диапазон случайных чисел от 1 до 1000
+    for (int i = 0; i < 1000; i++) {
+        arr[i] = dis(gen); // Заполняем вектор случайными числами
+    }
+    quickSort(arr, 0, arr.size() - 1); // Сортируем вектор
+    for (int i = 0; i < 1000; i++) {
+        std::cout << arr[i] << " "; // Выводим отсортированный вектор
+    }
+    return 0;
+}
+
+Задание 2
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <random>
+
+// Функция для быстрой сортировки
+void quickSort(std::vector<int>& arr, int low, int high) {
+    if (low < high) {
+        int pivot = arr[high]; // Выбираем опорный элемент
+        int i = low - 1; // Индекс для меньших элементов
+        for (int j = low; j < high; j++) {
+            if (arr[j] < pivot) { // Если текущий элемент меньше опорного
+                i++; // Увеличиваем индекс для меньших элементов
+                std::swap(arr[i], arr[j]); // Меняем местами элементы
+            }
+        }
+        std::swap(arr[i + 1], arr[high]); // Помещаем опорный элемент на его место
+        int pi = i + 1; // Индекс опорного элемента
+        quickSort(arr, low, pi - 1); // Рекурсивно сортируем левую часть
+        quickSort(arr, pi + 1, high); // Рекурсивно сортируем правую часть
+    }
+}
+
+int main() {
+    std::vector<int> arr(50); // Создаем вектор из 50 элементов
+    std::random_device rd; // Инициализируем генератор случайных чисел
+    std::mt19937 gen(rd()); // Создаем генератор случайных чисел
+    std::uniform_int_distribution<> dis(50, 100); // Диапазон случайных чисел от 50 до 100
+    for (int i = 0; i < 50; i++) {
+        arr[i] = dis(gen); // Заполняем вектор случайными числами
+    }
+    quickSort(arr, 0, arr.size() - 1); // Сортируем вектор
+    for (int i = 0; i < 50; i++) {
+        std::cout << arr[i] << " "; // Выводим отсортированный вектор
+    }
+    return 0;
+}
+
+Задание 3
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <random>
+
+// Функция для быстрой сортировки
+void quickSort(std::vector<int>& arr, int low, int high) {
+    if (low < high) {
+        int pivot = arr[high]; // Выбираем опорный элемент
+        int i = low - 1; // Индекс для меньших элементов
+        for (int j = low; j < high; j++) {
+            if (arr[j] < pivot) { // Если текущий элемент меньше опорного
+                i++; // Увеличиваем индекс для меньших элементов
+                std::swap(arr[i], arr[j]); // Меняем местами элементы
+            }
+        }
+        std::swap(arr[i + 1], arr[high]); // Помещаем опорный элемент на его место
+        int pi = i + 1; // Индекс опорного элемента
+        quickSort(arr, low, pi - 1); // Рекурсивно сортируем левую часть
+        quickSort(arr, pi + 1, high); // Рекурсивно сортируем правую часть
+    }
+}
+
+int main() {
+    std::vector<std::vector<int>> matrix(5, std::vector<int>(6)); // Создаем двумерный массив 5x6
+    std::random_device rd; // Инициализируем генератор случайных чисел
+    std::mt19937 gen(rd()); // Создаем генератор случайных чисел
+    std::uniform_int_distribution<> dis(1, 100); // Диапазон случайных чисел от 1 до 100
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 6; j++) {
+            matrix[i][j] = dis(gen); // Заполняем массив случайными числами
+        }
+    }
+    for (int i = 0; i < 5; i++) {
+        quickSort(matrix[i], 0, matrix[i].size() - 1); // Сортируем каждый столбец
+    }
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 6; j++) {
+            std::cout << matrix[i][j] << " "; // Выводим отсортированный массив
+        }
+        std::cout << std::endl;
+    }
+    return 0;
+}
+
+ЗАДАНИЕ 4
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <string>
+
+struct Student {
+    std::string name; // Имя студента
+    int grade; // Оценка студента
+};
+
+// Функция для быстрой сортировки
+void quickSort(std::vector<Student>& arr, int low, int high) {
+    if (low < high) {
+        Student pivot = arr[high]; // Выбираем опорный элемент
+        int i = low - 1; // Индекс для меньших элементов
+        for (int j = low; j < high; j++) {
+            if (arr[j].name < pivot.name) { // Если имя текущего студента меньше опорного
+                i++; // Увеличиваем индекс для меньших элементов
+                std::swap(arr[i], arr[j]); // Меняем местами элементы
+            }
+        }
+        std::swap(arr[i + 1], arr[high]); // Помещаем опорный элемент на его место
+        int pi = i + 1; // Индекс опорного элемента
+        quickSort(arr, low, pi - 1); // Рекурсивно сортируем левую часть
+        quickSort(arr, pi + 1, high); // Рекурсивно сортируем правую часть
+    }
+}
+
+int main() {
+    std::vector<Student> students = {
+        {"Alice", 85},
+        {"Bob", 92},
+        {"Charlie", 78},
+        {"David", 88},
+        {"Eve", 95}
+    };
+    quickSort(students, 0, students.size() - 1); // Сортируем список студентов
+    for (const auto& student : students) {
+        std::cout << student.name << " " << student.grade << std::endl; // Выводим отсортированный список
+    }
+    return 0;
+}
