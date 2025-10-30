@@ -1,0 +1,5 @@
+﻿  homework_1.cpp
+C:\Users\student\source\repos\lab_1\homework_1\homework_1.cpp(90,21): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\student\source\repos\lab_1\homework_1\homework_1.cpp(24,21): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\student\source\repos\lab_1\homework_1\homework_1.cpp(125): message : выполняется компиляция ссылки на экземпляр шаблон функции "void selection_sort<SortAlgorithm::Max>(std::vector<int,std::allocator<int>> &)"
+  homework_1.vcxproj -> C:\Users\student\source\repos\lab_1\Debug\homework_1.exe
