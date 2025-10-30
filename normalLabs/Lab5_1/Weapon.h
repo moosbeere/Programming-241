@@ -1,24 +1,9 @@
 #pragma once
-
+#include "WeaponType.h"
 #include <iostream>
 
 
 using namespace std;
-
-enum WeaponType {
-    ONEHANDED,
-    TWOHANDED,
-    BOW,
-    CROSSBOW
-};
-
-struct Player {
-    int id;
-    string login;
-    string password;
-
-    void printAll();
-};
 
 class Weapon
 {

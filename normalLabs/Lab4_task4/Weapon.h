@@ -35,24 +35,3 @@ public:
     int newWeapon(int newWeight);
     friend class Characteristic;
 };
-class Characteristic
-{
-private:
-    float strength;
-
-public:
-    Characteristic(float inputStrength);
-
-    float GetDamage(const Weapon& weapon);
-};
-class MyMath
-{
-private:
-    static int staticMethodCount;
-public:
-    static int Add(int a, int b);
-    static int Sub(int a, int b);
-    static int Mult(int a, int b);
-    static int Div(int a, int b);
-    static int getStaticCount();
-};
