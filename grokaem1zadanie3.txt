@@ -1,0 +1,44 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+void selectionSortPhones(vector<string>& phones) {
+    int n = phones.size();
+    for (int i = 0; i < n - 1; i++) {
+        int minIdx = i;
+        for (int j = i + 1; j < n; j++) {
+            if (phones[j] < phones[minIdx]) {
+                minIdx = j;
+            }
+        }
+        swap(phones[i], phones[minIdx]);
+    }
+}
+
+void printPhones(const vector<string>& phones) {
+    for (const auto& phone : phones) {
+        cout << phone << endl;
+    }
+}
+
+int main() {
+    vector<string> phones = {
+        "23-45-67",
+        "12-34-56",
+        "98-76-54",
+        "11-22-33",
+        "55-44-33"
+    };
+    
+    cout << "Исходный список телефонов:" << endl;
+    printPhones(phones);
+    
+    selectionSortPhones(phones);
+    
+    cout << "\nОтсортированный список телефонов:" << endl;
+    printPhones(phones);
+    
+    return 0;
+}
