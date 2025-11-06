@@ -1,0 +1,45 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+void selectionSortAsc(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        int minIdx = i;
+        for (int j = i + 1; j < n; j++) {
+            if (arr[j] < arr[minIdx]) {
+                minIdx = j;
+            }
+        }
+        swap(arr[i], arr[minIdx]);
+    }
+}
+
+void printArray(int arr[], int n) {
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+}
+
+int main() {
+    srand(time(0));
+    const int SIZE = 10;
+    int arr[SIZE];
+    
+    // Заполняем массив случайными числами от 2 до 103
+    for (int i = 0; i < SIZE; i++) {
+        arr[i] = rand() % 102 + 2; // 2..103
+    }
+    
+    cout << "Исходный массив: ";
+    printArray(arr, SIZE);
+    
+    selectionSortAsc(arr, SIZE);
+    
+    cout << "Отсортированный по возрастанию: ";
+    printArray(arr, SIZE);
+    
+    return 0;
+}
