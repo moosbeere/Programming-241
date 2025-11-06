@@ -57,9 +57,9 @@ int main()
     //cout << def(2) << "\n" << def();
 
 
-    int n1 = 2;
+    /*int n1 = 2;
     int n2 = 3;
-    def2(4, 5, n1, n2);
+    def2(4, 5, n1, n2);*/
     //cout << n1 << "\n" << n2;
 
 
