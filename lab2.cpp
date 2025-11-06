@@ -46,9 +46,6 @@ int main() {
     // ✅ Включаем русскую локализацию
     setlocale(LC_ALL, "Ru");
 
-    // ✅ Переключаем консоль Windows в UTF-8
-    system("chcp 65001 > nul");
-
     srand(time(0));
 
     ll n = rand() % 15 + 1;
@@ -80,3 +77,4 @@ int main() {
 
     return 0;
 }
+
