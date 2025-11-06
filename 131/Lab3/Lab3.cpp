@@ -85,6 +85,11 @@ void (*function(int x))() {
     else return numberPositive;
 }
 
+void (*function(char c))(int, int) {
+    if (c == '-') return 'sub';
+    if (c == '+') return 'add';
+}
+
 int* test() {
     return new int(6);
 }
@@ -110,8 +115,8 @@ int main()
 
     //указатели на функции
 
-    /*void (*test)() = function(-5);
-    test();
+    /*void (*test)() = function(-);
+    test(4,5);
     test = function(6);
     test();
 

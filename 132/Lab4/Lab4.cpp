@@ -6,101 +6,70 @@ using namespace std;
 
 class Monster {
 public:
-	//Monster() {
-	//	name = "Goblin";
-	//	health = 4;
-	//	damage = 7;
-	//};
-	//Monster(string name, float health, float damage) {
-	//	this->name = name;
-	//	this->damage = damage;
-	//	this->health = health;
-	//}
-	// 
-	//сокращенная запись конструктора выше
-	Monster(string name, float maxHealth, float health, float damage) :name(name), maxHealth(maxHealth), health(health), damage(damage) {};
-	//вызов коснтруктора со значениями по умолчанию из конструктора более общего
-	Monster() :Monster("Goblin", 6, 4, 8) {};
-
-	int* i = new int(5);
-	~Monster() {
-		cout << "Object for name: " << this->name << " destroy" << endl;
-		delete i;
-	}
-
-	string name;
-	float health;
-	float damage;
-	float maxHealth;
-
-	float getMaxHealth() {
-		return this->maxHealth;
-	}
-
-	void applyDamage(float damage) {
-		this->health -= damage;
-	}
-
-	void applyDamage() {
-		applyDamage(1);
-	}
-
-	void recovery() {
-		this->health = maxHealth;
-	}
-
-	//void attack(Monster* m) {
-	//	m->applyDamage(damage);
-	//}
-
-	void attack(const Monster &m) {
-		m.applyDamage(damage);
-	}
+    string name;
+    float health;
+    float damage;
+    int* i = new int(5);
+    //конструктор первый способ задания
+    //Monster() {
+    //    name = "Monster";
+    //    health = 4;
+    //    damage = 7;
+    //}
+    //конструктор второй способ задания
+    //Monster(string name, float health, float damage) {
+    //    this->name = name;
+    //    this->health = health;
+    //    this->damage = damage;
+    //}
+    Monster(string name, float health, float damage) :name(name), health(health), damage(damage) {};
+    Monster():Monster("default", 1, 1) {};
+    ~Monster() {
+        cout << name << " destroy" << endl;
+        delete i;
+    }
 };
 
 int main()
 {
-	//Методы и их перегрузка
-	Monster m1("Goblin", 6, 6, 4);
-	Monster m2("Monster", 10, 6, 4);
+    //второй способ инициализации объекта
+    Monster M = Monster("Goblin", 5, 6);
+    cout << M.name << " " << M.health << " " << M.damage << endl;
 
-	cout << m1.name << " " << m1.getMaxHealth() << endl;
-	cout << m2.name << " " << m2.getMaxHealth() << endl;
+    if (true) {
+        Monster m7;
+        //Monster* nemM2 = new Monster();
+    }
 
-	m2.applyDamage(4);
-	cout << m2.name << " " << m2.health << endl;
+    Monster copyM = M;
+    cout << copyM.name << " " << copyM.health << " " << copyM.damage << endl;
+    copyM.name = "CopyMonster";
+    cout << M.name << " " << M.health << " " << M.damage << endl;
 
-	m2.applyDamage();
-	cout << m2.name << " " << m2.health << endl;
-
-	m2.recovery();
-	cout << m2.name << " " << m2.health << endl;
-	//m2.attack(&m1); передаем через ссылку, так как в функции входной параметр указатель
-	m2.attack(m1);
-	cout << m1.name << " " << m1.health << endl;
-
+    Monster& hM = M;
+    hM.name = "href";
+    cout << M.name << " " << M.health << " " << M.damage << endl;
 
 
+    Monster* pM = &M;
+    cout << pM->name << " " << pM->health << " " << pM->damage << endl;
 
-	//Monster m;
-	//m.name = "Monster";
-	//m.health = 10;
-	//m.damage = 4;
-	//Monster m = Monster("Goblin", 9, 3);
-	//Monster* pm = &m; //создание указателя на объект
-	//cout << m.name << ": health = " << m.health << ", damage = " << m.damage << endl;
-	//cout << pm->name << ": P health = " << pm->health << ", P damage = " << pm->damage << endl;//используется стрелочная нотация
-	////Создание объекта с помощью ключевого слова new
-	//Monster* nMonster = new Monster("new", 8, 9);
+    Monster* newM = new Monster("newMonster", 8, 9);
+    cout << newM->name << " " << newM->health << " " << newM->damage << endl;
+    delete newM;
 
-	//if (true) {
-	//	Monster m3("mDelete", 5, 3);
-	//}
+    Monster d;
+    cout << d.name << " " << d.health << " " << d.damage << endl;
 
-	//cout << nMonster->name << ": N health = " << nMonster->health << ", N damage = " << nMonster->damage << endl;
-	//delete nMonster; //удаление динамического объекта
-	//Monster dMonster;
-	//cout << dMonster.name << ": D health = " << dMonster.health << ", D damage = " << dMonster.damage << endl;
+    //первые способыинициализации объекта
+   /* Monster m;
+    m.damage = 7;
+    m.health = 8;
+    m.name = "Goblin";
+    cout << m.name << " " << m.health << " " << m.damage << endl;
+    Monster m1;
+    cout << m1.name << " " << m1.health << " " << m1.damage << endl;*/
+
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
