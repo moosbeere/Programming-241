@@ -1,0 +1,62 @@
+#include <iostream>
+#include <cstdlib>
+#include <cstring>
+#include <algorithm>
+using namespace std;
+
+struct Student {
+    string name;
+    int group;
+};
+
+// Функция для быстрой сортировки студентов по алфавиту
+void quickSortStudents(Student students[], int left, int right) {
+    if (left >= right) return;
+    
+    string pivot = students[(left + right) / 2].name;
+    int i = left, j = right;
+    
+    while (i <= j) {
+        while (students[i].name < pivot) i++;
+        while (students[j].name > pivot) j--;
+        if (i <= j) {
+            swap(students[i], students[j]);
+            i++;
+            j--;
+        }
+    }
+    
+    quickSortStudents(students, left, j);
+    quickSortStudents(students, i, right);
+}
+
+int main() {
+    const int NUM_STUDENTS = 8;
+    Student students[NUM_STUDENTS] = {
+        {"Тошбоева", 101},
+        {"Черная", 101},
+        {"Александров", 102},
+        {"Кузнецов", 101},
+        {"Яковлев", 103},
+        {"Николаев", 102},
+        {"Колупаева", 101},
+        {"Михайлов", 103}
+    };
+    
+    cout << "Список студентов до сортировки:" << endl;
+    for (int i = 0; i < NUM_STUDENTS; i++) {
+        cout << i + 1 << ". " << students[i].name << " (группа " << students[i].group << ")" << endl;
+    }
+    
+    // Сортируем с помощью быстрой сортировки
+    quickSortStudents(students, 0, NUM_STUDENTS - 1);
+    
+    cout << "\nСписок студентов после сортировки по алфавиту:" << endl;
+    for (int i = 0; i < NUM_STUDENTS; i++) {
+        cout << i + 1 << ". " << students[i].name << " (группа " << students[i].group << ")" << endl;
+    }
+    
+    return 0;
+}
+   
+   

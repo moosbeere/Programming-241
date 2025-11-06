@@ -1,0 +1,52 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+
+void quickSort(int arr[], int left, int right) {
+    if (left >= right) return;
+    
+    int pivot = arr[(left + right) / 2];
+    int i = left, j = right;
+    
+    while (i <= j) {
+        while (arr[i] < pivot) i++;
+        while (arr[j] > pivot) j--;
+        if (i <= j) {
+            swap(arr[i], arr[j]);
+            i++;
+            j--;
+        }
+    }
+    
+    quickSort(arr, left, j);
+    quickSort(arr, i, right);
+}
+
+int main() {
+    const int SIZE = 1000;
+    int arr[SIZE];
+    
+    srand(time(0));
+    
+    // Заполняем массив случайными числами
+    for (int i = 0; i < SIZE; i++) {
+        arr[i] = rand() % 10000; // числа от 0 до 9999
+    }
+    
+    cout << "Первые 10 элементов до сортировки: ";
+    for (int i = 0; i < 10; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+    
+    quickSort(arr, 0, SIZE - 1);
+    
+    cout << "Первые 10 элементов после сортировки: ";
+    for (int i = 0; i < 10; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+    
+    return 0;
+}
