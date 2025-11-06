@@ -1,0 +1,39 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+// Функция для проверки простоты числа
+bool isPrime(int n, int divisor = 2) {
+    if (n <= 1) return false;
+    if (divisor > sqrt(n)) return true;
+    if (n % divisor == 0) return false;
+    return isPrime(n, divisor + 1);
+}
+
+// Функция для поиска простых делителей
+void findPrimeDivisors(int n, int divisor = 2) {
+    if (n <= 1) return;
+    
+    if (n % divisor == 0) {
+        if (isPrime(divisor)) {
+            cout << divisor << " ";
+        }
+        findPrimeDivisors(n / divisor, divisor);
+    } else {
+        findPrimeDivisors(n, divisor + 1);
+    }
+}
+
+int main() {
+    int n;
+    cout << "Введите натуральное число n+1: ";
+    cin >> n;
+    
+    // По условию дано число n+1, поэтому работаем с n+1
+    int number = n + 1;
+    cout << "Простые делители числа " << number << ": ";
+    findPrimeDivisors(number);
+    cout << endl;
+    
+    return 0;
+}

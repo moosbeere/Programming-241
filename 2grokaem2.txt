@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+
+void printRange(int a, int b) {
+    if (a == b) {
+        cout << a << " ";
+        return;
+    }
+    
+    cout << a << " ";
+    
+    if (a < b) {
+        printRange(a + 1, b);
+    } else {
+        printRange(a - 1, b);
+    }
+}
+
+int main() {
+    int a, b;
+    cout << "Введите число A: ";
+    cin >> a;
+    cout << "Введите число B: ";
+    cin >> b;
+    
+    cout << "Числа от " << a << " до " << b << ": ";
+    printRange(a, b);
+    cout << endl;
+    
+    return 0;
+}
