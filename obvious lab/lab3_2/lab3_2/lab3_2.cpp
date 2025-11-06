@@ -28,6 +28,20 @@ int (*dlya_togo(char m))(int, int) {
     }
 }
 
+char operation_plus = '+';
+char operation_minus = '-';
+
+int (*func_plus)(int, int) = dlya_togo(operation_plus);
+int (*func_minus)(int, int) = dlya_togo(operation_minus);
+
+void test_functions() {
+    int result_plus = func_plus(10, 5);
+    cout << "10 + 5 = " << result_plus << "\n";
+
+    int result_minus = func_minus(10, 5);
+    cout << "10 - 5 = " << result_minus << "\n\n";
+}
+
 int main() {
     int arr[] = { 1, 2, 3, 4, 5 };
     int size = 5;
@@ -35,21 +49,10 @@ int main() {
     int sum_result = second_part(arr, arr + size);
     cout << "Sum with pointers: " << sum_result << "\n\n";
 
-    char plus = '+';
-    char minus = '-';
-
-    int (*func_plus)(int, int) = dlya_togo(plus);
-    int result_plus = func_plus(10, 5);
-    cout << "10 + 5 = " << result_plus << "\n";
-
-    int (*func_minus)(int, int) = dlya_togo(minus);
-    int result_minus = func_minus(10, 5);
-    cout << "10 - 5 = " << result_minus << "\n\n";
+    test_functions();
 
     float* dynamic_float = new float(3.14f);
-
     cout << "Dynamic float value: " << *dynamic_float << "\n";
-
     delete dynamic_float;
 
     return 0;
