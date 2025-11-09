@@ -1,0 +1,27 @@
+#include <iostream>
+#include <vector>
+#include <cmath>
+using namespace std;
+
+void func(int a, int b) {
+    if (b < sqrt(a)) {
+        if (a % b == 0) {
+            cout << b << " ";
+        }
+        func(a, b + 1);
+        if (a % b == 0) {
+            cout << a/b << " ";
+        }
+    }
+    else if (sqrt(a) == b) {
+        cout << b << " ";
+    }
+}
+
+int main()
+{
+    setlocale(LC_ALL, "rus");
+    int n;
+    cin >> n;
+    func(n, 1);
+}
