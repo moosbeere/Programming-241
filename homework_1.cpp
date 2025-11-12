@@ -112,7 +112,7 @@ void print_vector(const std::vector<int>& v)
 	std::cout << std::endl;
 }
 
-int main()
+int main2()
 {
 	std::vector<int> numbers {};
 
@@ -142,4 +142,6 @@ int main()
 	};
 
 	selection_sort_phone_numbers(phone_numbers);
+
+	return 0;
 }
