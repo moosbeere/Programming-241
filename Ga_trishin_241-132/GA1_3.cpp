@@ -1,0 +1,21 @@
+﻿#include <iostream>
+#include <vector>
+using namespace std;
+
+void func(int n) {
+    if (n > 1) {
+        func(n - 1);
+        cout << n << " ";
+    }
+    else {
+        cout << 1 << " ";
+    }
+}
+
+int main()
+{
+    setlocale(LC_ALL, "rus");
+    int b;
+    cin >> b;
+    func(b);
+}

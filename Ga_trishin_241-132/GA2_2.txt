@@ -1,0 +1,25 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void func(int a, int b) {
+    if (a > b) {
+        func(a - 1, b);
+        cout << a << " ";
+    }
+    else if (b > a) {
+        func(a, b - 1);
+        cout << b << " ";
+    }
+    else {
+        cout << a << " ";
+    }
+}
+
+int main()
+{
+    setlocale(LC_ALL, "rus");
+    int a, b;
+    cin >> a >> b;
+    func(a, b);
+}
