@@ -9,6 +9,7 @@ public:
     string name;
     float health;
     float damage;
+    float maxHealth;
     int* i = new int(5);
     //конструктор первый способ задания
     //Monster() {
@@ -22,26 +23,46 @@ public:
     //    this->health = health;
     //    this->damage = damage;
     //}
-    Monster(string name, float health, float damage) :name(name), health(health), damage(damage) {};
-    Monster():Monster("default", 1, 1) {};
+    Monster(string name, float health, float maxHealth, float damage) :name(name), health(health), maxHealth(maxHealth), damage(damage) {};
+    Monster():Monster("default", 1, 3, 1) {};
     ~Monster() {
         cout << name << " destroy" << endl;
         delete i;
+    }
+    float getLevel() {
+        return maxHealth / 5;
+    }
+    void applyDamage(float damage) {
+        health -= damage;
+    }
+    void applyDamage() {
+        applyDamage(1);
+    }
+    void recovery() {
+        health = maxHealth;
+    }
+    void attack(Monster& m) {
+        m.applyDamage(damage);
     }
 };
 
 int main()
 {
     //второй способ инициализации объекта
-    Monster M = Monster("Goblin", 5, 6);
+    Monster M = Monster("Goblin", 5, 7, 3);
+    Monster M2 = Monster("attackM", 4, 6, 2);
+    M.attack(M2);
+    cout << M2.name << " " << M2.health << " " << M2.damage << endl;
+
+    M.applyDamage(3);
+    M.applyDamage();
+    M.recovery();
     cout << M.name << " " << M.health << " " << M.damage << endl;
+    cout << M.getLevel() << endl;
+    //M.attack(M2);
 
-    if (true) {
-        Monster m7;
-        //Monster* nemM2 = new Monster();
-    }
 
-    Monster copyM = M;
+    /*Monster copyM = M;
     cout << copyM.name << " " << copyM.health << " " << copyM.damage << endl;
     copyM.name = "CopyMonster";
     cout << M.name << " " << M.health << " " << M.damage << endl;
@@ -54,12 +75,12 @@ int main()
     Monster* pM = &M;
     cout << pM->name << " " << pM->health << " " << pM->damage << endl;
 
-    Monster* newM = new Monster("newMonster", 8, 9);
+    Monster* newM = new Monster("newMonster", 8, 10, 9);
     cout << newM->name << " " << newM->health << " " << newM->damage << endl;
     delete newM;
 
     Monster d;
-    cout << d.name << " " << d.health << " " << d.damage << endl;
+    cout << d.name << " " << d.health << " " << d.damage << endl;*/
 
     //первые способыинициализации объекта
    /* Monster m;
