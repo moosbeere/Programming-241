@@ -1,0 +1,4 @@
+﻿  Laba2_2_3.cpp
+C:\Users\kiryu\OneDrive\Рабочий стол\C++\2 Kurs\Laba2_2_3\Laba2_2_3.cpp(87,10): warning C4305: инициализация: усечение из "double" в "float"
+C:\Users\kiryu\OneDrive\Рабочий стол\C++\2 Kurs\Laba2_2_3\Laba2_2_3.cpp(92,12): warning C4305: =: усечение из "double" в "float"
+  Laba2_2_3.vcxproj -> C:\Users\kiryu\OneDrive\Рабочий стол\C++\2 Kurs\Laba2_2\x64\Debug\Laba2_2_3.exe
