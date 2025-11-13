@@ -10,13 +10,17 @@ int main()
     Monster M = Monster("Goblin", 5, 7, 3);
     Monster M2 = Monster("attackM", 4, 6, 2);
     M.attack(M2);
-    cout << M2.name << " " << M2.health << " " << M2.damage << endl;
+    cout << M2.getName() << " " << M2.getHealth() << " " << M2.getDamage() << endl;
 
     M.applyDamage(3);
     M.applyDamage();
     M.recovery();
-    cout << M.name << " " << M.health << " " << M.damage << endl;
+    cout << M.getName() << " " << M.getHealth() << " " << M.getDamage() << endl;
     cout << M.getLevel() << endl;
+
+    Monster Mset = Monster("Setter", 4, 8, 9);
+    Mset.setHealth(-2);
+    cout << Mset.getName() << " " << Mset.getHealth() << " " << Mset.getDamage() << endl;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

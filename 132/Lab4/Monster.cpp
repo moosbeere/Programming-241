@@ -1,5 +1,10 @@
 #include "Monster.h"
 
+void Monster::printWarning(string msg)
+{
+	std::cout << "Warning: " << msg << std::endl;
+}
+
 Monster::Monster(string name, float health, float maxHealth, float damage):name(name), health(health),maxHealth(maxHealth),damage(damage){}
 
 Monster::Monster():Monster("Default",6,8,3){}
@@ -7,6 +12,33 @@ Monster::Monster():Monster("Default",6,8,3){}
 Monster::~Monster()
 {
 	std::cout << name << "destroyed" << std::endl;
+}
+
+string Monster::getName()
+{
+	return name;
+}
+
+float Monster::getHealth()
+{
+	return health;
+}
+
+float Monster::getDamage()
+{
+	return damage;
+}
+
+float Monster::getMaxHealth()
+{
+	return maxHealth;
+}
+
+void Monster::setHealth(float health)
+{
+	if (health > this->maxHealth) this->health = maxHealth;
+	else if (health >= 0) this->health = health;
+	else printWarning("health < 0");
 }
 
 float Monster::getLevel()
