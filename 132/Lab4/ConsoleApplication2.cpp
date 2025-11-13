@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "Monster.h"
+#include "AIMonster.h"
 using namespace std;
 
 int main()
@@ -21,6 +22,18 @@ int main()
     Monster Mset = Monster("Setter", 4, 8, 9);
     Mset.setHealth(-2);
     cout << Mset.getName() << " " << Mset.getHealth() << " " << Mset.getDamage() << endl;
+    test(Mset);
+
+    AIMonster ai;
+    ai.move(&Mset);
+    Mset.applyDamage(50);
+    ai.move(&Mset);
+}
+
+//реализация дружественного метода
+void test(const Monster& m) {
+    cout << m.name << endl;
+    cout << m.health << endl;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

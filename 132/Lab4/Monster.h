@@ -4,6 +4,7 @@ using std::string;
 
 class Monster
 {
+    friend class AIMonster;
 protected:
     void printWarning(string msg);
 private:
@@ -26,5 +27,6 @@ public:
     void applyDamage();
     void recovery();
     void attack(Monster& m);
+    friend void test(const Monster& m);
 };
 
