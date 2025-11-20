@@ -4,12 +4,20 @@
 #include <iostream>
 #include "Monster.h"
 #include "AIMonster.h"
+#include "Move.h"
 using namespace std;
 
 int Monster::counter = 0;
 
 int main()
 {
+    setlocale(LC_ALL, "RU");
+    Move::move(Direction::NORTH);
+    Move::move(Direction::EAST);
+    Move::move(Direction::WEST);
+    Move::move(Direction::SOUTH);
+    //Move::move(5); ошибка на уровне компиляции
+
     Monster M = Monster("Goblin", 5, 7, 3);
     Monster M2 = Monster("attackM", 4, 6, 2);
     M.attack(M2);
