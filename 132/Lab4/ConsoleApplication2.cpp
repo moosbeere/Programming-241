@@ -5,6 +5,7 @@
 #include "Monster.h"
 #include "AIMonster.h"
 #include "Move.h"
+#include "FlyMonster.h"
 using namespace std;
 
 int Monster::counter = 0;
@@ -19,6 +20,13 @@ void printItem(Item& item);
 
 int main()
 {
+    //extends
+    FlyMonster fly;
+    //fly.setHealth(6); ошибка после изменения модификатора доступа на protected
+    FlyMonster dragon("Dragon", 60, 100, 20, 5);
+    dragon.fly();
+    cout << dragon.getHealth() << endl;
+
     setlocale(LC_ALL, "RU");
     //structure
     Item item1;
@@ -48,7 +56,7 @@ int main()
     cout << M.getLevel() << endl;
 
     Monster Mset = Monster("Setter", 4, 8, 9);
-    Mset.setHealth(-2);
+    //Mset.setHealth(-2);
     cout << Mset.getName() << " " << Mset.getHealth() << " " << Mset.getDamage() << endl;
     test(Mset);
 

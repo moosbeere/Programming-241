@@ -7,8 +7,11 @@ class Monster
     friend class AIMonster;
 protected:
     void printWarning(string msg);
-private:
     string name;
+    void setHealth(float health);
+
+private:
+    
     float health;
     float damage;
     float maxHealth;
@@ -22,7 +25,6 @@ public:
     float getHealth();
     float getDamage();
     float getMaxHealth();
-    void setHealth(float health);
 
     float getLevel();
     void applyDamage(float damage);
