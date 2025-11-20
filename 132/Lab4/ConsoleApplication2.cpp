@@ -9,9 +9,27 @@ using namespace std;
 
 int Monster::counter = 0;
 
+struct Item {
+    string name;
+    string description;
+    float price = 0;
+};
+
+void printItem(Item& item);
+
 int main()
 {
     setlocale(LC_ALL, "RU");
+    //structure
+    Item item1;
+    item1.name = "Зелье здоровья";
+    item1.description = "Восстанавливает 50 единиц здоровья";
+    item1.price = 20;
+    printItem(item1);
+
+    Item item2 = { "Зелье маны","Восстанавливает 50 единиц маны", 15 };
+    printItem(item2);   
+    //enum
     Move::move(Direction::NORTH);
     Move::move(Direction::EAST);
     Move::move(Direction::WEST);
@@ -38,6 +56,8 @@ int main()
     ai.move(&Mset);
     Mset.applyDamage(50);
     ai.move(&Mset);
+
+    //static property and method
     cout << "\nMonster counter = " << Monster::counter << endl;
     Monster::resetCounter();
     cout << "Monster counter = " << Monster::counter << endl;
@@ -48,6 +68,12 @@ int main()
 void test(const Monster& m) {
     cout << m.name << endl;
     cout << m.health << endl;
+}
+
+void printItem(Item& item) {
+    cout << "Name: " << item.name << endl;
+    cout << "Description: " << item.description << endl;
+    cout << "Price: " << item.price << endl;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
