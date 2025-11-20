@@ -5,13 +5,20 @@ void Monster::printWarning(string msg)
 	std::cout << "Warning: " << msg << std::endl;
 }
 
-Monster::Monster(string name, float health, float maxHealth, float damage):name(name), health(health),maxHealth(maxHealth),damage(damage){}
+Monster::Monster(string name, float health, float maxHealth, float damage):name(name), health(health),maxHealth(maxHealth),damage(damage){
+	counter++;
+}
 
 Monster::Monster():Monster("Default",6,8,3){}
 
 Monster::~Monster()
 {
 	std::cout << name << "destroyed" << std::endl;
+}
+
+void Monster::resetCounter()
+{
+	counter = 0;
 }
 
 string Monster::getName()

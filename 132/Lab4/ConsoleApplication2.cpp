@@ -6,6 +6,8 @@
 #include "AIMonster.h"
 using namespace std;
 
+int Monster::counter = 0;
+
 int main()
 {
     Monster M = Monster("Goblin", 5, 7, 3);
@@ -28,6 +30,10 @@ int main()
     ai.move(&Mset);
     Mset.applyDamage(50);
     ai.move(&Mset);
+    cout << "\nMonster counter = " << Monster::counter << endl;
+    Monster::resetCounter();
+    cout << "Monster counter = " << Monster::counter << endl;
+
 }
 
 //реализация дружественного метода

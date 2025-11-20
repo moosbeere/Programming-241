@@ -13,9 +13,11 @@ private:
     float damage;
     float maxHealth;
 public:
+    int static counter;
     Monster(string name, float health, float maxHealth, float damage);
     Monster();
     ~Monster();
+    void static resetCounter();
     string getName();
     float getHealth();
     float getDamage();
