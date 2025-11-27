@@ -1,11 +1,14 @@
 #include "Monster.h"
+#include <iostream>
+#include <string>
+#include <sstream>
 
 void Monster::printWarning(string msg)
 {
 	std::cout << "Warning: " << msg << std::endl;
 }
 
-Monster::Monster(string name, float health, float maxHealth, float damage):name(name), health(health),maxHealth(maxHealth),damage(damage){
+Monster::Monster(string name, double health, float maxHealth, float damage):name(name), health(health),maxHealth(maxHealth),damage(damage){
 	counter++;
 }
 
@@ -26,7 +29,7 @@ string Monster::getName()
 	return name;
 }
 
-float Monster::getHealth()
+double Monster::getHealth()
 {
 	return health;
 }
@@ -41,7 +44,7 @@ float Monster::getMaxHealth()
 	return maxHealth;
 }
 
-void Monster::setHealth(float health)
+void Monster::setHealth(double health)
 {
 	if (health > this->maxHealth) this->health = maxHealth;
 	else if (health >= 0) this->health = health;
@@ -71,6 +74,22 @@ void Monster::recovery()
 void Monster::attack(Monster& m)
 {
 	m.applyDamage(damage);
+}
+
+void Monster::print()
+{
+	cout << "Name: " << name << endl;
+	cout << "Max health: " << maxHealth << endl;
+	cout << "Health: " << health << endl;
+	cout << "Damage: " << damage << endl;
+}
+
+Monster::operator string() const
+{
+	//this->name = "New name"; ошибка изменения объекта
+	std::stringstream result;
+	result << name << " " << health;
+	return result.str();
 }
 
 

@@ -18,8 +18,35 @@ struct Item {
 
 void printItem(Item& item);
 
+bool operator > (FlyMonster m1, FlyMonster m2) {
+    return m1.getHealth() > m2.getHealth();
+}
+
+bool operator < (FlyMonster m1, FlyMonster m2) {
+    return m1.getHealth() < m2.getHealth();
+}
+
 int main()
 {
+    //operator
+    FlyMonster m1("Fly1", 6, 4, 4, 4);
+    FlyMonster m2("Fly1", 8, 4, 4, 4);
+    //cout << (m1 > m2) << endl;
+    FlyMonster m3 = m1 + m2;
+    //m3.print();
+    //string s = m3; ошибка неявного преобразования к типу данных string в результате добавления ключевого слова explicit в заголовочном файле класса Monster
+    //cout << s << endl;
+    //cout << string(m1) << endl;
+    cout << (m1 == m2) << endl;
+
+    //virtual
+    FlyMonster virtualFly("Virtual", 3, 6, 8, 6);
+    //virtualFly.print();
+    Monster* pmonsters[] = { new Monster(), new FlyMonster(), new FlyMonster() };
+    for(Monster* m : pmonsters) {
+        m->print();
+    }
+
     //extends
     FlyMonster fly;
     //fly.setHealth(6); ошибка после изменения модификатора доступа на protected

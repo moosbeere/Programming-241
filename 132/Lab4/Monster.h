@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-using std::string;
+using namespace std;
 
 class Monster
 {
@@ -8,21 +8,21 @@ class Monster
 protected:
     void printWarning(string msg);
     string name;
-    void setHealth(float health);
+    void setHealth(double health);
 
 private:
     
-    float health;
+    double health;
     float damage;
     float maxHealth;
 public:
     int static counter;
-    Monster(string name, float health, float maxHealth, float damage);
+    Monster(string name, double health, float maxHealth, float damage);
     Monster();
     ~Monster();
     void static resetCounter();
     string getName();
-    float getHealth();
+    double getHealth();
     float getDamage();
     float getMaxHealth();
 
@@ -31,6 +31,9 @@ public:
     void applyDamage();
     void recovery();
     void attack(Monster& m);
+    //virtual void print() final; ключевое слово final указывает на невозможность переопределения функции в дочерних классах
+    virtual void print() ;
+    explicit operator string() const;
     friend void test(const Monster& m);
 };
 

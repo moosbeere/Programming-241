@@ -4,30 +4,47 @@
 #include <iostream>
 using namespace std;
 
+void sumtab(int* begin, int* end) {
+    for (int* i = begin; i < end; i++) {
+        cout << *i << ' ';
+    }
+}
+
 int main()
 {
-    setlocale(LC_ALL, "russian");
-    const int P = 3.14;
-    int a;
-    float f;
-    double d;
-    char s;
-    short min;
-    //long long long long max;
+    bool a = true;
+    cout << a << endl;
+    int tab[] = { 5, 8, 9, 7 };
+    sumtab(tab, std::end(tab));
 
-    //s = 's';
-    //cout << s;
-    cout << "Привет мир\\!\n";
-    //cin >> a;
-    //cout << a;
 
-    int x = 5;
-    int y = x<<1;
-    int z = x>>1;
-    cout << y << "\n";
-    cout << z << "\n";
-    bool b1 = true;
-    cout << !b1;
+    for (int* y = tab; y <= &tab[3]; y++) {
+        std::cout << *y << "\n";
+    }
+    cout << &tab[3] << endl;
+
+    //setlocale(LC_ALL, "russian");
+    //const int P = 3.14;
+    //int a;
+    //float f;
+    //double d;
+    //char s;
+    //short min;
+    ////long long long long max;
+
+    ////s = 's';
+    ////cout << s;
+    //cout << "Привет мир\\!\n";
+    ////cin >> a;
+    ////cout << a;
+
+    //int x = 5;
+    //int y = x<<1;
+    //int z = x>>1;
+    //cout << y << "\n";
+    //cout << z << "\n";
+    //bool b1 = true;
+    //cout << !b1;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
