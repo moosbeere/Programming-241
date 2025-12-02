@@ -1,0 +1,169 @@
+#include <iostream>
+#include <cstdlib>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+using namespace std;
+
+struct Student {
+    char surname[50];
+    char name[50];
+};
+
+
+int compare(const void* a, const void* b) {
+    struct Student* s1 = (struct Student*)a;
+    struct Student* s2 = (struct Student*)b;
+
+  
+    int cmp = strcmp(s1->surname, s2->surname);
+    if (cmp != 0) {
+        return cmp;
+    }
+  
+    return strcmp(s1->name, s2->name);
+}
+
+void quick_sort(int arr[], int start, int end)
+{
+    if (start >= end)
+        return;
+
+    int x = arr[start + (end - start) / 2];  
+    
+
+    int left = start;
+    int right = end;
+
+    while (left <= right)
+    {
+        while (arr[left] < x)
+            left++;
+        while (arr[right] > x)
+            right--;
+        if (left <= right)
+        {
+            int b = arr[left];
+            arr[left] = arr[right];
+            arr[right] = b;
+            left++;
+            right--;
+        }
+    }
+
+    quick_sort(arr, start, right);
+    quick_sort(arr, left, end);
+}
+
+int main()
+{
+    setlocale(LC_ALL, "RUS");
+    cout << "Задание 1" << "\n";
+
+    int array[1000];
+    for (int i = 0; i < 1000; i++) {
+        array[i] = rand() % 10000;  
+    }
+
+  
+
+    quick_sort(array, 0, 999); 
+
+
+    for (int i = 0; i < 999; i++) {
+        cout << array[i] << " ";
+    }
+   
+    cout << "\n" << "Задание 2" << "\n";
+
+    int array2[100];
+
+    for (int i = 0; i <= 99; i++) {
+        array2[i] = (50 + rand() % (100 - 50 + 1));
+    }
+
+    quick_sort(array2, 0, 99);
+
+    for (int i = 0; i <= 99; i++) {
+        cout << array2[i] << " ";
+    }
+
+    cout << "\n" << "Задание 3" << "\n";
+
+    int array3[50][50];
+    
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            array3[i][j] = (5 + rand() % (61 - 5 + 1));
+        }
+    }
+
+    int array4[50];
+
+    for (int i = 0; i < 5; i++) {
+        array4[i] = array3[i][0];
+    }
+
+    
+    quick_sort(array4, 0, 4);
+
+    for (int i = 0; i < 5; i++) {
+        array3[i][0] = array4[i];
+    }
+
+    for (int i = 0; i < 5; i++) {
+        cout << "\n";
+        for (int j = 0; j < 5; j++) {
+            cout << array3[i][j] << " ";
+        }
+    }
+
+    cout << "\n" << "Задание 4" << "\n";
+   
+    struct Student students[30] = {
+        {"Яковлев", "Александр"},
+        {"Чиканчи", "Дарья"},
+        {"Черная", "Ульяна"},
+        {"Фай", "Адама"},
+        {"Уйсал", "Ясин"},
+        {"Турков", "Роман"},
+        {"Траксель", "Никита"},
+        {"Тошбоева", "Нилуфар"},
+        {"Степанов", "Виталий"},
+        {"Слесаренко", "Элла"},
+        {"Свирин", "Алексей"},
+        {"Сагна", "Пирре"},
+        {"Пулов", "Артем"},
+        {"Петров", "Иван"},
+        {"Обидов", "Эрадж"},
+        {"Назаров", "Дилшод"},
+        {"Мухамедьяров", "Артур"},
+        {"Муньос", "Дмитрий"},
+        {"Медведев", "Егор"},
+        {"Мацюшевский", "Егор"},
+        {"Лисьева", "Александра"},
+        {"Крутиков", "Фёдор"},
+        {"Колупаева", "Светлана"},
+        {"Зданович", "Никита"},
+        {"Воронов", "Давид"},
+        {"Вилла", "Алексей"},
+        {"Булахов", "Эрик"},
+        {"Бондаренко", "Кирилл"},
+        {"Богоявленская", "Любовь"},
+        {"Бекетов", "Назарий"}
+    };
+
+    int n = 30;
+
+   
+    qsort(students, n, sizeof(struct Student), compare);
+
+    
+    cout << "\n";
+    for (int i = 0; i < n; i++) {
+        cout << students[i].surname << " " << students[i].name << "\n";
+    }
+
+    return 0;
+}
