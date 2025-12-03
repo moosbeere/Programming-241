@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -145,6 +145,9 @@
     <ClCompile Include="homework_2.cpp" />
     <ClCompile Include="homework_3.cpp" />
     <ClCompile Include="homework_4.cpp" />
+    <ClCompile Include="homework_5.cpp" />
+    <ClCompile Include="homework_6.cpp" />
+    <ClCompile Include="homework_7.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

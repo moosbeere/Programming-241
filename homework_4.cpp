@@ -34,7 +34,7 @@ std::vector<int> get_numbers_from_input(std::ifstream& input)
 }
 
 
-int main()
+int main33()
 {
 	std::unordered_set<int> numbers {};
 	std::ifstream input_stream("input.txt", std::ios::app);
