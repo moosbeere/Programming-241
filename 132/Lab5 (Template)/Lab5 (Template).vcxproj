@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{7dad3b0a-cb0a-4fe0-a6d8-e1b6e35d336d}</ProjectGuid>
-    <RootNamespace>OOP</RootNamespace>
+    <ProjectGuid>{53c51b61-f6f7-43f7-8137-dc46c01d7cf3}</ProjectGuid>
+    <RootNamespace>Lab5Template</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -127,11 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Monster.cpp" />
-    <ClCompile Include="OOP.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Monster.h" />
+    <ClCompile Include="Lab5 (Template).cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

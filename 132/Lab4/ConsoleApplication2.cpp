@@ -6,6 +6,8 @@
 #include "AIMonster.h"
 #include "Move.h"
 #include "FlyMonster.h"
+#include "CrawlingMonster.h"
+
 using namespace std;
 
 int Monster::counter = 0;
@@ -28,6 +30,17 @@ bool operator < (FlyMonster m1, FlyMonster m2) {
 
 int main()
 {
+    //abstract
+    FlyMonster fly1("Abstract", 6, 2, 3, 7);
+    FlyMonster fly2("Fly",8,3,9,2);
+    fly1.attack(fly2);
+    fly2.print();
+
+    CrawlingMonster cm;
+    cm.attack(fly1);
+
+
+
     //operator
     FlyMonster m1("Fly1", 6, 4, 4, 4);
     FlyMonster m2("Fly1", 8, 4, 4, 4);
@@ -42,10 +55,10 @@ int main()
     //virtual
     FlyMonster virtualFly("Virtual", 3, 6, 8, 6);
     //virtualFly.print();
-    Monster* pmonsters[] = { new Monster(), new FlyMonster(), new FlyMonster() };
-    for(Monster* m : pmonsters) {
-        m->print();
-    }
+    //Monster* pmonsters[] = { new Monster(), new FlyMonster(), new FlyMonster() };
+    //for(Monster* m : pmonsters) {
+    //    m->print();
+    //}
 
     //extends
     FlyMonster fly;
@@ -71,31 +84,31 @@ int main()
     Move::move(Direction::SOUTH);
     //Move::move(5); ошибка на уровне компиляции
 
-    Monster M = Monster("Goblin", 5, 7, 3);
-    Monster M2 = Monster("attackM", 4, 6, 2);
-    M.attack(M2);
-    cout << M2.getName() << " " << M2.getHealth() << " " << M2.getDamage() << endl;
+    //Monster M = Monster("Goblin", 5, 7, 3);
+    //Monster M2 = Monster("attackM", 4, 6, 2);
+    //M.attack(M2);
+    //cout << M2.getName() << " " << M2.getHealth() << " " << M2.getDamage() << endl;
 
-    M.applyDamage(3);
-    M.applyDamage();
-    M.recovery();
-    cout << M.getName() << " " << M.getHealth() << " " << M.getDamage() << endl;
-    cout << M.getLevel() << endl;
+    //M.applyDamage(3);
+    //M.applyDamage();
+    //M.recovery();
+    //cout << M.getName() << " " << M.getHealth() << " " << M.getDamage() << endl;
+    //cout << M.getLevel() << endl;
 
-    Monster Mset = Monster("Setter", 4, 8, 9);
-    //Mset.setHealth(-2);
-    cout << Mset.getName() << " " << Mset.getHealth() << " " << Mset.getDamage() << endl;
-    test(Mset);
+    //Monster Mset = Monster("Setter", 4, 8, 9);
+    ////Mset.setHealth(-2);
+    //cout << Mset.getName() << " " << Mset.getHealth() << " " << Mset.getDamage() << endl;
+    //test(Mset);
 
-    AIMonster ai;
-    ai.move(&Mset);
-    Mset.applyDamage(50);
-    ai.move(&Mset);
+    //AIMonster ai;
+    //ai.move(&Mset);
+    //Mset.applyDamage(50);
+    //ai.move(&Mset);
 
-    //static property and method
-    cout << "\nMonster counter = " << Monster::counter << endl;
-    Monster::resetCounter();
-    cout << "Monster counter = " << Monster::counter << endl;
+    ////static property and method
+    //cout << "\nMonster counter = " << Monster::counter << endl;
+    //Monster::resetCounter();
+    //cout << "Monster counter = " << Monster::counter << endl;
 
 }
 

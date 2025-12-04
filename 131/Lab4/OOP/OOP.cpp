@@ -2,42 +2,27 @@
 //
 
 #include <iostream>
+#include "Monster.h"
 using namespace std;
-
-
-class Monster {
-public:
-    string name;
-    float health;
-    float maxHealth;
-    float damage;
-
-    Monster(string name, float health, float maxHealth, float damage):name(name), health(health), maxHealth(maxHealth), damage(damage) {}
-    Monster():Monster("Goblin", 4, 7, 4) {}
-
-    float getLevel() {
-        return maxHealth/5;
-    }
-
-    void applyDamage(float damage) {
-        health -= damage;
-    }
-    void applyDamage() {
-        applyDamage(1);
-    }
-
-    ~Monster() {
-        cout << "Объект " << name << " уничтожается!";
-    };
-};
 
 int main()
 {
     setlocale(LC_ALL, "RU");
     Monster m;
-    m.applyDamage();
-    cout << m.getLevel() << endl;
-    cout << m.health << endl;
+    Monster m1("Monster", 6, 8, 2);
+    m.attack(m1);
+    //m.warning(); скрытый protected метод
+
+    cout << m.getHealth() << endl;
+    m.setHealth(-10);
+    //cout << m.health << endl; Ошибка обращения к приватному свойству класса
+
+    //m.applyDamage();
+    //cout << m.getLevel() << endl;
+    //cout << m.health << endl;
+    //m.recovery();
+    //cout << m.health << endl;
+
 
 }
 

@@ -12,6 +12,7 @@ public:
     FlyMonster operator +(FlyMonster& m2);
     bool operator ==(FlyMonster& m2);
     bool operator !=(FlyMonster& m2);
+    void attack(Monster& m) override;
 
 
 private:

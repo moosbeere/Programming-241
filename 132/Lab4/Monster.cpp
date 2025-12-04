@@ -71,11 +71,6 @@ void Monster::recovery()
 	health = maxHealth;
 }
 
-void Monster::attack(Monster& m)
-{
-	m.applyDamage(damage);
-}
-
 void Monster::print()
 {
 	cout << "Name: " << name << endl;

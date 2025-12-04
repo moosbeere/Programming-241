@@ -30,7 +30,7 @@ public:
     void applyDamage(float damage);
     void applyDamage();
     void recovery();
-    void attack(Monster& m);
+    virtual void attack(Monster& m) = 0;
     //virtual void print() final; ключевое слово final указывает на невозможность переопределения функции в дочерних классах
     virtual void print() ;
     explicit operator string() const;

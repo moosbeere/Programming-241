@@ -38,3 +38,7 @@ bool FlyMonster::operator !=(FlyMonster& m2)
 {
 	return this->name != m2.getName();
 }
+
+void FlyMonster::attack(Monster& m) {
+	m.applyDamage(this->getDamage());
+}
