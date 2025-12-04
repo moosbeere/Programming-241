@@ -1,12 +1,19 @@
 #include "Monster.h"
 
-Monster::Monster(std::string name, float health, float maxHealth, float damage) :name(name), health(health), maxHealth(maxHealth), damage(damage){}
+Monster::Monster(std::string name, float health, float maxHealth, float damage) :name(name), health(health), maxHealth(maxHealth), damage(damage){
+    counter++;
+}
 
 Monster::Monster():Monster("Goblin", 4, 7, 4) {}
 
 float Monster::getLevel()
 {
     return maxHealth / 5;
+}
+
+void Monster::resetCounter()
+{
+    counter = 0;
 }
 
 void Monster::applyDamage(float damage) {
@@ -49,7 +56,7 @@ string Monster::getName()
     return this->name;
 }
 
-float Monster::getHealth()
+float Monster::getHealth() const
 {
     return this->health;
 }

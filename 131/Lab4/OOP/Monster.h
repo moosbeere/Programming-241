@@ -4,6 +4,8 @@ using namespace std;
 
 class Monster
 {
+    friend void test(const Monster& m);
+    friend class AIMonster;
 private:
     std::string name;
     float health;
@@ -14,6 +16,8 @@ public:
     Monster(std::string name, float health, float maxHealth, float damage);
     Monster();
 
+    static int counter;
+    static void resetCounter();
     float getLevel();
     void applyDamage(float damage);
     void applyDamage();
@@ -24,7 +28,7 @@ public:
     void setMaxHealth(float maxHealth);
     void setDamage(float damage);
     string getName();
-    float getHealth();
+    float getHealth() const;
     float getMaxHealth();
     float getDamage();
 

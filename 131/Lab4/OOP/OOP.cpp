@@ -3,10 +3,37 @@
 
 #include <iostream>
 #include "Monster.h"
+#include "AIMonster.h"
 using namespace std;
+
+int Monster::counter = 0;
+void test(const Monster& m) {
+    //cout << m.name << endl;
+    cout << m.getHealth() << endl;
+}
 
 int main()
 {
+
+    //static
+    Monster m9;
+    Monster m2;
+    Monster m3;
+    cout << Monster::counter << endl;
+    Monster::resetCounter();
+    cout << Monster::counter << endl;
+
+    
+    //friend
+    Monster m6;
+    //test(m6);
+
+    AIMonster ai;
+    ai.move(&m6);
+    m6.applyDamage(50);
+    ai.move(&m6);
+
+
     setlocale(LC_ALL, "RU");
     Monster m;
     Monster m1("Monster", 6, 8, 2);
