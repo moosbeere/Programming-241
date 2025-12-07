@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{7fbbb6fc-aab0-4c7d-9731-a0eebbabd8e4}</ProjectGuid>
-    <RootNamespace>Лаб4Задание1</RootNamespace>
+    <ProjectGuid>{749d7f08-73a4-4977-84d3-001554f615cc}</ProjectGuid>
+    <RootNamespace>ГрокЛаб1</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -127,11 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Weapon.cpp" />
-    <ClCompile Include="Лаб_4_Задание_1.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Weapon.h" />
+    <ClCompile Include="Грок_Лаб_1.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
