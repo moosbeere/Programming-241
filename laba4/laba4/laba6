@@ -1,0 +1,68 @@
+#include <iostream>
+using namespace std;
+
+enum ErrorCode {
+    OLD,
+    NOT_BORN,
+    NEGATIVE
+};
+
+class MyException {
+public:
+    ErrorCode code;
+    string message;
+
+    MyException(ErrorCode c, string msg) {
+        code = c;
+        message = msg;
+    }
+};
+
+int main() {
+    setlocale(LC_ALL, "RUS");
+
+    cout << "Введите число 1, 2 или 3: ";
+    int number;
+    cin >> number;
+
+    if (number == 1) {
+        cout << "Один" << endl;
+    }
+    else if (number == 2) {
+        cout << "Два" << endl;
+    }
+    else if (number == 3) {
+        cout << "Три" << endl;
+    }
+    else {
+        cout << "Некорректное значение" << endl;
+    }
+
+    cout << endl;
+
+    cout << "Введите год своего рождения: ";
+    int birthYear;
+    cin >> birthYear;
+
+ 
+    try {
+        if (birthYear < 0) {
+            throw MyException(NEGATIVE, "Вы ввели отрицательное число!");
+        }
+        if (birthYear < 1850) {
+            throw MyException(OLD, "Что-то не верится...");
+        }
+
+        if (birthYear > 2025) {
+            throw MyException(NOT_BORN, "Вы ещё не родились");
+        }
+
+        cout << "Спасибо!" << endl;
+
+    }
+    catch (MyException exep){
+        cout <<exep.message << endl;
+    }
+
+    return 0;
+}
