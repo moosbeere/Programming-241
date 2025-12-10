@@ -1,0 +1,106 @@
+#include <iostream>
+using namespace std;
+#include <iostream>
+#include <locale>
+
+using namespace std;
+
+// Функция из задания 10-11
+int sumToN(int n = 1) {
+    if (n <= 0) return 0;
+
+    int sum = 0;
+    for (int i = 1; i <= n; i++) {
+        sum += i;
+    }
+    return sum;
+}
+
+// Функция из задания 12-13
+void calculateSumAndProduct(int a, int b, int& sumRef, int& productRef) {
+    sumRef = a + b;
+    productRef = a * b;
+}
+
+int main() {
+    // Устанавливаем русскую локаль для консоли
+    setlocale(LC_ALL, "Russian");
+
+    // 1. Создаем двумерный массив 2x3
+    int matrix[2][3] = { {1, 2, 3}, {4, 5, 6} };
+
+    // 2. Выводим сумму всех чисел массива
+    int totalSum = 0;
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 3; j++) {
+            totalSum += matrix[i][j];
+        }
+    }
+    cout << "Сумма всех чисел массива: " << totalSum << endl;
+
+    // 3-4. Создаем одномерный массив из сумм столбцов
+    int columnSums[3] = { 0 };
+    for (int j = 0; j < 3; j++) {
+        for (int i = 0; i < 2; i++) {
+            columnSums[j] += matrix[i][j];
+        }
+    }
+
+    // 5. Выводим одномерный массив
+    cout << "Массив сумм столбцов: {";
+    for (int i = 0; i < 3; i++) {
+        cout << columnSums[i];
+        if (i < 2) cout << ", ";
+    }
+    cout << "}" << endl;
+
+    // 6. Создаем переменную float
+    float num = 20.84f;
+
+    // 7. Создаем 2 ссылки на переменную
+    float& ref1 = num;
+    float& ref2 = num;
+
+    // 8. Изменяем значение через ссылку
+    ref1 = 31.59f;
+
+    // 9. Проверяем изменения
+    cout << "num = " << num << endl;
+    cout << "ref1 = " << ref1 << endl;
+    cout << "ref2 = " << ref2 << endl;
+
+    // 10-11. Тестируем функцию sumToN
+    cout << "sumToN(0) = " << sumToN(0) << endl;
+    cout << "sumToN(-5) = " << sumToN(-5) << endl;
+    cout << "sumToN(5) = " << sumToN(5) << endl;
+    cout << "sumToN() = " << sumToN() << endl;
+
+    // 12-14. Тестируем функцию calculateSumAndProduct
+    int x = 5, y = 7;
+    int sumResult, productResult;
+
+    calculateSumAndProduct(x, y, sumResult, productResult);
+
+    cout << "После вызова функции:" << endl;
+    cout << "Сумма = " << sumResult << endl;
+    cout << "Произведение = " << productResult << endl;
+
+    // 15. Создаем переменную любого типа
+    char symbol = 'A';
+    cout << "Символ: " << symbol << endl;
+
+    // 16-18. Создаем цикл
+    for (int i = 0; i < 3; i++) {
+        // Выводим переменную из пункта 1 (возьмем элемент matrix[0][0])
+        cout << "matrix[0][0] = " << matrix[0][0] << endl;
+
+        // Объявляем переменную внутри цикла
+        int innerVar = i * 10;
+        cout << "innerVar = " << innerVar << endl;
+    }
+
+    // Попытка вывести переменную innerVar за пределами цикла
+    // cout << innerVar << endl; // Раскомментируйте эту строку, чтобы увидеть ошибку компиляции
+
+    return 0;
+}
