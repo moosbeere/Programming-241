@@ -22,17 +22,16 @@ int main() {
     staticWeapon.printInfo();
 
     std::cout <<  std::endl;
-    std::cout << "Можно поднять вес 20? "
-        << (staticWeapon.checkWeight(20) ? "Да" : "Нет") << std::endl;
+    std::cout << "Можно поднять вес 20? "<< (staticWeapon.checkWeight(20) ? "Да" : "Нет") << std::endl;
 
     std::cout << std::endl;
     orujie* dynamicWeapon = new orujie(30, "Топор", 25);
     dynamicWeapon->printInfo();
 
     std::cout << std::endl;
-    std::cout << "2.6: " << crook.sumWeight(wrist) << std::endl;
-    std::cout << "2.7: " << crook.sumWeight(5.0f) << std::endl;
-    std::cout << "2.8: " << crook.sumWeightWithOverload(wrist) << std::endl;
+    std::cout << "2.6 Добавьте метод, принимающий объект оружия, и возвращающий суммарный вес текущего объекта и переданного: " << crook.sumWeight(wrist) << std::endl;
+    std::cout << "2.7 возврат суммы веса текущего объекта и переданного веса.: " << crook.sumWeight(5.0f) << std::endl;
+    std::cout << "2.8 Перепишите функцию, принимающую объект оружия так, чтобы она использовала созданную перегрузку.: " << crook.sumWeightWithOverload(wrist) << std::endl;
 
     
     delete dynamicWeapon;
