@@ -124,6 +124,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="1.cpp" />
+    <ClCompile Include="Characteristic.cpp" />
+    <ClCompile Include="MyMath.cpp" />
+    <ClCompile Include="Orugie.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Characteristic.h" />
+    <ClInclude Include="MyMath.h" />
+    <ClInclude Include="Orugie.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
