@@ -1,6 +1,0 @@
-﻿  Characteristic.cpp
-  Weapon.cpp
-D:\Programs\Программирование\Лаб 4.4\Weapon.cpp(7,14): warning C4244: =: преобразование "int" в "float", возможна потеря данных
-  Лаб 4.4.cpp
-  Создание кода...
-  Лаб 4.4.vcxproj -> D:\Programs\Программирование\Лаб 4.4\x64\Debug\Лаб 4.4.exe
