@@ -2,6 +2,7 @@
 //
 
 #include <iostream>
+#include "PlayerException.h"
 
 class Player {
 private:
@@ -9,9 +10,12 @@ private:
 
 public:
     Player(int health) {
-        if (health < 0) throw std::logic_error("Health < 0");
-        else if (health > 100) throw std::range_error("Health > 100");
-        else if (health == 0) throw std::exception();
+        //if (health < 0) throw std::logic_error("Health < 0");
+        //else if (health > 100) throw std::range_error("Health > 100");
+        //else if (health == 0) throw std::exception();
+        if (health < 0) throw PlayerException(PlayerError::NEGATIVE);
+        else if (health > 100) PlayerException(PlayerError::BIG);
+        else if (health == 0) PlayerException(PlayerError::ZERO);
     }
     int getHealth() {
         return health;
@@ -21,13 +25,21 @@ public:
 int main()
 {
     try {
-        Player p1(2000);
+        //Player p1(2000);
+        //Player p1(-10);
+        Player p1(0);
         std::cout << "Health: " << p1.getHealth() << "\n";
     }
-    catch (std::logic_error err{
+    catch (std::logic_error err){
            std::cout << "logic error: " << err.what();
     }
-        //надо доделать
+    catch (std::range_error err) {
+        std::cout << "range error: " << err.what();
+    }
+    catch (std::exception err) {
+        std::cout << "exception: " << err.what();
+    }
+     
 
 
     /*try {
