@@ -23,7 +23,6 @@ void calculateSumAndProduct(int a, int b, int& sumRef, int& productRef) {
 }
 
 int main() {
-    // Устанавливаем русскую локаль для консоли
     setlocale(LC_ALL, "Russian");
 
     // 1. Создаем двумерный массив 2x3
@@ -99,8 +98,9 @@ int main() {
         cout << "innerVar = " << innerVar << endl;
     }
 
-    // Попытка вывести переменную innerVar за пределами цикла
-    // cout << innerVar << endl; // Раскомментируйте эту строку, чтобы увидеть ошибку компиляции
+    // вывести переменную innerVar за пределами цикла
+    // cout << innerVar << endl; 
 
     return 0;
+
 }
