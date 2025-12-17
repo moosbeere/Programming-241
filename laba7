@@ -1,0 +1,170 @@
+
+
+#include <iostream>
+#include <regex>
+using namespace ::std;
+#include <string>
+#include <cstdio>;
+#include <fstream>
+#include <vector>
+#include <map>
+
+class Settings {
+public:
+    static map<string, string> data;
+
+    static void Add(const string& key, const string& value) {
+        data[key] = value;
+    }
+
+ 
+    static string Get(const string& key) {
+        if (data.find(key) != data.end())
+            return data[key];
+        return "";
+    }
+
+  
+    static void Print() {
+        for (auto& k_v : data) {
+            cout << k_v.first << " : " << k_v.second << "\n";
+        }
+    }
+};
+
+void p_vec(vector<float>& vec) {
+    for (float i : vec) {
+        cout << i << " ";
+    }
+}
+map<string, string> Settings::data;
+int main()
+{
+    setlocale(LC_ALL, "RUS");
+
+    //Задание 1
+    string str;
+    cin >> str;
+    string b = "";
+    for (int i = 1; i <= 3; i++){
+        b += str[i];
+    }
+    cout << b << "\n";
+
+    //Задание 2
+    char a = 'a';
+    bool flag = false;
+    for (int i = 0; i < size(str); i++) {
+        if (char(str[i]) == char(a)) {
+            cout << i;
+            flag = true;
+            break;
+        }
+    }
+    if (flag == false)
+        cout << "Символа не найдено";
+
+    //Задание 3
+    string name;
+    
+    cin >> name;
+
+    regex name_("^[A-Z][a-z]{2,}$");
+
+    if (regex_match(name, name_)) {
+        cout << "Имя корректное" << endl;
+    }
+    else {
+        cout << "Имя некорректное" << endl;
+    }
+
+    string text =
+        "sdfsdf ooo@example.com,sdfsdfsdf "
+        "politech@yandex.mgu sdfsdfsd qwerty@mail.ru sdfsdf";
+
+    regex email_("[\\w.%+-]+@[\\w.-]+\\.[a-zA-Z]{2,}");
+
+    sregex_iterator begin(text.begin(), text.end(), email_);
+    sregex_iterator end;
+
+    for (sregex_iterator it = begin; it != end; it++) {
+        cout << it -> str() << endl;
+    }
+
+    //Задание 4
+    cout << "Введите радиус" << "\n";
+    float r;
+    cin >> r;
+    float S = 2 * 3.14 * r;
+    cout << S << "\n";
+    printf("%.3f\n", S);
+    
+    const string filename = "text.txt";
+
+    while (true) {
+        cout << "Введите строку: ";
+        string input;
+        getline(cin, input);
+
+        if (input == "read") {
+            ifstream fin(filename);
+        
+            string line;
+            while (getline(fin, line)) {
+                cout << line << "\n";
+            }
+            cout << "\n";
+            fin.close();
+        
+            
+          
+            continue;
+        }
+
+        if (input == "erase") {
+            ofstream fout(filename, ios::trunc);
+            fout.close();
+           
+            continue;
+        }
+
+        if (input == "exit") {
+            break;
+        }
+
+        ofstream fout(filename, ios::app);
+        fout << input << "\n";
+        fout.close();
+        
+        
+        
+    }
+    //Задание 5
+    vector<float> vec;
+    vec.push_back(32.123123);
+    vec.push_back(12.2323);
+    vec.push_back(3.3323);
+    vec.push_back(4.445);
+    vec.push_back(5.664565);
+
+    p_vec(vec);
+    cout << "\n";
+    vec.insert(vec.begin() + 3, 2332.3);
+    p_vec(vec);
+
+    vec.pop_back();
+    cout << "\n";
+    p_vec(vec);
+
+    /*Settings set1, set2, set3, set4;*/
+    /*set.Add("Вес", "50");
+    set.Add("Рост", "180");
+    set.Print();
+    cout <<set.Get("Вес");*/
+    
+    Settings::Add("Вес", "50");
+    Settings::Add("Рост", "180");
+    Settings::Print();
+    cout << Settings::Get("Вес") << endl;
+}
+
