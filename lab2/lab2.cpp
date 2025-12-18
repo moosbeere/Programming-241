@@ -5,7 +5,7 @@ int main()
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
     int x;
-    std::cout << "Введите певрое число: ";
+    std::cout << "Введите первое число: ";
     std::cin >> x;
     int y;
     std::cout << "Введите второе число: ";
