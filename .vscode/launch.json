@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/em1l4k/Documents/Programming-241/GA",
-      "program": "/Users/em1l4k/Documents/Programming-241/GA/build/Debug/outDebug"
+      "cwd": "/Users/em1l4k/Documents/Programming-241/лабы",
+      "program": "/Users/em1l4k/Documents/Programming-241/лабы/build/Debug/outDebug"
     }
   ]
 }

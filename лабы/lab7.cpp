@@ -1,126 +1,230 @@
 #include <iostream>
+#include <string>
+#include <regex>
+#include <cmath>
+#include <iomanip>
+#include <fstream>
 #include <vector>
-#include <algorithm>
+#include <map>
 
-// Решение задачи о максимальном количестве непересекающихся лекций (жадный алгоритм)
-// Находит максимальное количество лекций, которые можно посетить без пересечений
-// Входные данные:
-//   N - количество лекций
-//   Для каждой лекции: время начала и время окончания
-// Алгоритм:
-//   1. Сортирует лекции по времени окончания (раньше заканчивающиеся - первыми)
-//   2. Жадный выбор: выбирает лекцию, если она начинается не раньше окончания последней выбранной
-//   Это оптимальное решение, так как выбор лекции с ранним окончанием оставляет больше времени
-//   для последующих лекций
-int main()
+using namespace std;
+
+// Функция для вывода содержимого вектора
+void printVector(const vector<float>& v)
 {
-    // Структура для представления лекции
-    // Содержит время начала и окончания лекции
-    struct Lecture
-    {
-        int m_start;  // Время начала лекции
-        int m_end;    // Время окончания лекции
-    };
-
-    // Лямбда-функция для сравнения лекций при сортировке
-    // Сравнивает лекции по времени окончания (m_end)
-    // Возвращает true, если первая лекция заканчивается раньше второй
-    // Используется для сортировки лекций по возрастанию времени окончания
-    const auto compare_lectures = [](const Lecture& a, const Lecture& b) -> bool {
-        return a.m_end < b.m_end;
-    };
-
-    int N = 0;
-    std::cin >> N;
-
-    std::vector<Lecture> lectures(N);
-    for (auto& lecture : lectures)
-        std::cin >> lecture.m_start >> lecture.m_end;
-
-    std::sort(lectures.begin(), lectures.end(), compare_lectures);
-
-    int count = 0;
-    int last = 0;
-
-    for (auto& lecture : lectures)
-    {
-        if (lecture.m_start >= last)
-        {
-            count++;
-            last = lecture.m_end;
-        }
-    }
-
-    std::cout << count << std::endl;
-
-    return 0;
+    cout << "Вектор: ";
+    for (float x : v)
+        cout << x << " ";
+    cout << endl;
 }
 
-// Решение задачи о максимальной высоте стопки коробок (динамическое программирование)
-// Находит максимальное количество коробок, которые можно сложить в стопку
-// Условие: вес всех коробок выше текущей не должен превышать грузоподъемность текущей коробки
-// Входные данные:
-//   N - количество коробок
-//   Для каждой коробки: вес (m_weight) и грузоподъемность (m_capacity)
-// Алгоритм:
-//   1. Сортирует коробки по сумме веса и грузоподъемности, затем по грузоподъемности
-//   2. Использует динамическое программирование:
-//      box_stack[j] - минимальный общий вес стопки из j коробок
-//   3. Для каждой коробки проверяет, можно ли добавить её к существующим стопкам
-//   4. Выводит максимальное количество коробок, которые можно сложить
-int task_bulb_bulb()
+// Класс настроек
+class Settings
 {
-    // Структура для представления коробки
-    // Содержит вес коробки и её грузоподъемность (максимальный вес, который она может выдержать сверху)
-    struct Box 
+public:
+    // 14. Статическое поле Map
+    static map<string, string> values;
+
+    // 10. Добавление пары ключ-значение
+    static void Add(const string& key, const string& value)
     {
-        int m_weight;    // Вес коробки
-        int m_capacity;  // Грузоподъемность коробки (максимальный вес, который можно положить сверху)
-    };
+        values[key] = value;
+    }
 
-    // Лямбда-функция для сравнения коробок при сортировке
-    // Сначала сравнивает по сумме веса и грузоподъемности (m_weight + m_capacity)
-    // Если суммы равны, сравнивает по грузоподъемности (m_capacity)
-    // Возвращает true, если первая коробка должна идти раньше второй
-    // Используется для сортировки коробок в оптимальном порядке
-    const auto compare_boxes = [](const Box& a, const Box& b) -> bool {
-        if (a.m_weight + a.m_capacity != b.m_weight + b.m_capacity)
-            return a.m_weight + a.m_capacity < b.m_weight + b.m_capacity;
-
-        return a.m_capacity < b.m_capacity;
-    };
-
-    int N = 0;
-    std::cin >> N;
-
-    std::vector<Box> boxes(N);
-    for (auto& box : boxes)
-        std::cin >> box.m_weight >> box.m_capacity;
-
-    std::sort(boxes.begin(), boxes.end(), compare_boxes);
-
-    std::vector<long long> box_stack(N + 1, std::numeric_limits<long long>::max());
-    box_stack[0] = 0;
-
-    int max_boxes = 0;
-
-    for (const auto& box : boxes)
+    // 11. Получение значения по ключу
+    static string Get(const string& key)
     {
-        for (int j = max_boxes; j >= 0; j--) 
+        auto it = values.find(key);
+        if (it != values.end())
+            return it->second;
+        return "";
+    }
+
+    // 12. Печать содержимого Map
+    static void Print()
+    {
+        cout << "Settings:" << endl;
+        for (const auto& [key, value] : values)
+            cout << key << " = " << value << endl;
+    }
+};
+
+// Определение статического поля
+map<string, string> Settings::values {};
+
+int main()
+{
+    // ===== 1-й блок: работа со строкой и подстрокой =====
+    {
+        string s;
+        cout << "Введите строку: ";
+        getline(cin, s);
+
+        // 2. Подстрока со 2-го по 4-й символ (индексы 1..3)
+        if (s.size() >= 4)
         {
-            if (box_stack[j] != std::numeric_limits<long long>::max() 
-                && box_stack[j] <= box.m_capacity)
+            string sub = s.substr(1, 3);
+            cout << "Подстрока со 2-го по 4-й символ: " << sub << endl;
+        }
+        else
+        {
+            cout << "Строка слишком короткая для подстроки 2..4" << endl;
+        }
+
+        // 3. Поиск первого 'a'
+        size_t pos = s.find('a');
+        if (pos == string::npos)
+            cout << "Символа a не найдено" << endl;
+        else
+            cout << "Первое вхождение 'a' по индексу: " << pos << endl;
+    }
+
+    // ===== 2-й блок: имя и e-mail через регулярные выражения =====
+    {
+        // 1. Ввод имени
+        string name;
+        cout << "\nВведите своё имя: ";
+        getline(cin, name);
+
+        // 2. Регулярное выражение: 2–32 буквы, первая заглавная
+        // Разрешим как латиницу, так и кириллицу
+        regex nameRegex("^[A-ZА-Я][A-Za-zА-Яа-я]{1,31}$");
+
+        if (regex_match(name, nameRegex))
+            cout << "Имя корректно." << endl;
+        else
+            cout << "Имя некорректно." << endl;
+
+        // 3. Строка с несколькими e-mail
+        string text = "Мои почты: test@example.com, user123@mail.ru и another.address+tag@gmail.com.";
+
+        // 4. Регулярное выражение для e-mail
+        regex emailRegex(R"(([A-Za-z0-9._%+\-]+)@([A-Za-z0-9.\-]+)\.([A-Za-z]{2,}))");
+
+        cout << "Найденные e-mail адреса:" << endl;
+        sregex_iterator it(text.begin(), text.end(), emailRegex);
+        sregex_iterator end;
+        for (; it != end; ++it)
+            cout << "  " << it->str() << endl;
+    }
+
+    // ===== 3-й блок: окружность и работа с файлом =====
+    {
+        // 1. Ввод радиуса и вычисление длины окружности
+        double r;
+        cout << "\nВведите радиус окружности: ";
+        cin >> r;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // очистка остатка строки
+
+        const double PI = 3.141592653589793;
+        double length = 2.0 * PI * r;
+
+        cout << "Длина окружности: " << length << endl;
+
+        // 3. Округление до 3 знаков
+        double rounded = std::round(length * 1000.0) / 1000.0;
+        cout << "Длина окружности (округлено до 3 знаков): "
+             << fixed << setprecision(3) << rounded << endl;
+
+        // 4–8. Работа с текстовым файлом
+        const string filename = "lab7_text.txt";
+        string line;
+
+        cout << "\nВведите строки (команды: read, erase, exit):" << endl;
+        while (true)
+        {
+            cout << "> ";
+            if (!getline(cin, line))
+                break;
+
+            if (line == "read")
             {
-                if (box_stack[j + 1] > box_stack[j] + box.m_weight)
+                ifstream fin(filename);
+                if (!fin)
                 {
-                    box_stack[j + 1] = box_stack[j] + box.m_weight;
-                    max_boxes = std::max(max_boxes, j + 1);
+                    cout << "(Файл пока пуст или не существует)" << endl;
                 }
+                else
+                {
+                    cout << "--- Содержимое файла ---" << endl;
+                    string fileLine;
+                    while (getline(fin, fileLine))
+                        cout << fileLine << endl;
+                    cout << "------------------------" << endl;
+                }
+            }
+            else if (line == "erase")
+            {
+                ofstream fout(filename, ios::trunc);
+                cout << "Файл очищен." << endl;
+            }
+            else if (line == "exit")
+            {
+                cout << "Выход из программы." << endl;
+                break;
+            }
+            else
+            {
+                ofstream fout(filename, ios::app);
+                fout << line << '\n';
             }
         }
     }
 
-    std::cout << max_boxes << std::endl;
+    // ===== 4-й блок: вектор и класс Settings =====
+    {
+        // 1. Пустой вектор
+        vector<float> v;
+
+        // 2. Добавляем 5 элементов
+        v.push_back(1.1f);
+        v.push_back(2.2f);
+        v.push_back(3.3f);
+        v.push_back(4.4f);
+        v.push_back(5.5f);
+
+        // 3–4. Вывод через функцию
+        cout << "\nВектор после добавления 5 элементов:" << endl;
+        printVector(v);
+
+        // 5. Вставка элемента между 3-м и 4-м элементами (индексы 2 и 3)
+        if (v.size() >= 3)
+        {
+            v.insert(v.begin() + 3, 9.9f);
+        }
+
+        // 6. Проверка
+        cout << "Вектор после вставки элемента между 3 и 4:" << endl;
+        printVector(v);
+
+        // 7. Удаляем последний элемент
+        if (!v.empty())
+            v.pop_back();
+
+        // 8. Проверка
+        cout << "Вектор после удаления последнего элемента:" << endl;
+        printVector(v);
+
+        // 9–15. Класс Settings
+
+        // Предыдущая (нестатическая) проверка — теперь закомментирована, т.к. поле стало статическим:
+        // Settings s;
+        // s.Add("volume", "80");
+        // s.Add("brightness", "50");
+        // cout << "volume = " << s.Get("volume") << endl;
+        // s.Print();
+
+        // Теперь всё статическое:
+        Settings::Add("volume", "80");
+        Settings::Add("brightness", "50");
+        Settings::Add("language", "ru");
+
+        cout << "\nПроверка статического Settings:" << endl;
+        cout << "volume = " << Settings::Get("volume") << endl;
+        cout << "brightness = " << Settings::Get("brightness") << endl;
+        Settings::Print();
+    }
 
     return 0;
 }
+

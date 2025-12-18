@@ -1,80 +1,219 @@
 #include <iostream>
-#include <vector>
-#include <map>
-#include <queue>
+#include <string>
+#include "weapon.h"
 
-// Главная функция для поиска кратчайшего пути в графе методом BFS (поиск в ширину)
-// Реализует алгоритм поиска пути от начальной вершины 'S' до конечной 'I'
-// в графе комнат, представленном как список смежности
-// Алгоритм:
-//   1. Создает граф связей между комнатами
-//   2. Использует очередь для обхода графа в ширину
-//   3. Отслеживает посещенные вершины и родителей для восстановления пути
-//   4. Восстанавливает и выводит кратчайший путь от start до finish
-int main() 
+using namespace std;
+
+// 4. Структура игрока
+struct Player
 {
-    std::setlocale(LC_ALL, "Russian");
+    int         id;       // уникальный идентификатор
+    std::string login;    // логин
+    std::string password; // пароль
 
-    std::map<char, std::vector<char>> full_path {};
-    full_path['S'] = { 'A', 'B' };
-    full_path['A'] = { 'S' };
-    full_path['B'] = { 'S', 'C', 'D' };
-    full_path['C'] = { 'B', 'J' };
-    full_path['D'] = { 'B', 'E' };
-    full_path['E'] = { 'D', 'G' };
-    full_path['F'] = { 'G' };
-    full_path['G'] = { 'E', 'H' };
-    full_path['H'] = { 'G', 'I' };
-    full_path['I'] = { 'H', 'J' };
-    full_path['J'] = { 'C', 'I' };
-
-    char start = 'S';
-    char finish = 'I';
-
-    std::queue<char> path_queue {};
-    std::map<char, bool> used {};
-    std::map<char, char> parent {};
-
-    path_queue.push(start);
-    used[start] = true;
-    parent[start] = 0;
-
-    while (!path_queue.empty())
+    // 5. Функция вывода всех данных
+    void print() const
     {
-        char next_room = path_queue.front();
-        path_queue.pop();
+        cout << "Игрок #" << id
+             << ", логин: " << login
+             << ", пароль: " << password << endl;
+    }
+};
 
-        for (char room : full_path[next_room]) 
+// 7. Дочерний класс для магического оружия
+class MagicWeapon : public Weapon
+{
+private:
+    int extraDamage; // 8. дополнительный урон
+
+public:
+    // 9. Конструктор без параметров
+    MagicWeapon()
+        : Weapon()      // базовый конструктор оружия по умолчанию
+        , extraDamage(10)
+    {
+    }
+
+    // 9. Конструктор с параметрами
+    MagicWeapon(const std::string& name,
+                int                damage,
+                float              weight,
+                WeaponType         type,
+                int                extra)
+        : Weapon(name, damage, weight, type)
+        , extraDamage(extra)
+    {
+    }
+
+    // 10. GET-метод для дополнительного урона
+    int getExtraDamage() const
+    {
+        return extraDamage;
+    }
+
+    // 2. Переопределённый метод урона: базовый + дополнительный
+    int getDamage() const override
+    {
+        return Weapon::getDamage() + extraDamage;
+    }
+
+    // Дополнительный метод для вывода полной информации
+    void printMagicInfo() const
+    {
+        cout << "Магическое оружие:" << endl;
+        print(); // метод базового класса
+        cout << "Дополнительный магический урон: " << extraDamage << endl;
+    }
+
+    // 2. Реализация виртуальной функции атаки
+    void Attack() override
+    {
+        cout << "Атакуем магическим оружием" << endl;
+    }
+};
+
+// 5. Класс одноразового оружия
+class DisposableWeapon : public Weapon
+{
+private:
+    bool used; // 6. флаг использования
+
+public:
+    DisposableWeapon(const std::string& name,
+                     int                damage,
+                     float              weight,
+                     WeaponType         type)
+        : Weapon(name, damage, weight, type)
+        , used(false)
+    {
+    }
+
+    // 7. Поведение при атаке
+    void Attack() override
+    {
+        if (used)
         {
-            if (!used[room])
-            {
-                used[room] = true;
-                parent[room] = next_room;
-                path_queue.push(room);
-            }
+            cout << "Оружие уже было использовано" << endl;
+        }
+        else
+        {
+            cout << "Атакуем одноразовым оружием" << endl;
+            used = true;
         }
     }
+};
 
-    if (!used[finish]) 
+// 9. Шаблонный класс для хранения оружия в левой и правой руке
+template <typename L, typename R>
+class DualWield
+{
+private:
+    L leftHand;
+    R rightHand;
+
+public:
+    DualWield(const L& left, const R& right)
+        : leftHand(left)
+        , rightHand(right)
     {
-        std::cout << " " << std::endl;
-        return 0;
     }
 
-    std::vector<char> path {};
-    for (char v = finish; v != 0; v = parent[v])
-        path.push_back(v);
+    const L& getLeft() const  { return leftHand; }
+    const R& getRight() const { return rightHand; }
 
-    std::reverse(path.begin(), path.end());
+    void setLeft(const L& left)   { leftHand = left; }
+    void setRight(const R& right) { rightHand = right; }
+};
 
-    std::cout << "  - " << path.size() - 1 << std::endl;
+int main()
+{
+    // 3. Попробовать создать экземпляр Weapon НЕЛЬЗЯ:
+    // Weapon w("test", 10, 1.0f, WeaponType::ONEHANDED); // Ошибка компилятора: абстрактный класс
 
-    for (int i = 0; i < path.size(); ++i) 
-    {
-        std::cout << path[i];
+    // 2–3 (раньше 2–3). Создаём оружие с типом и выводим его тип через if
+    MagicWeapon dagger("Кинжал", 25, 1.2f, WeaponType::ONEHANDED, 5);
 
-        if (i + 1 != path.size())
-            std::cout << " -> ";
-    }
+    cout << "Оружие dagger:" << endl;
+    dagger.print();
+
+    cout << "Тип оружия (через if): ";
+    WeaponType t = dagger.getType();
+    if (t == WeaponType::ONEHANDED)
+        cout << "Одноручное оружие";
+    else if (t == WeaponType::TWOHANDED)
+        cout << "Двуручное оружие";
+    else if (t == WeaponType::BOW)
+        cout << "Лук";
+    else if (t == WeaponType::CROSSBOW)
+        cout << "Арбалет";
+    cout << endl;
+
+    // 6. Тестируем структуру Player
+    Player p;
+    p.id       = 1;
+    p.login    = "Hero123";
+    p.password = "qwerty";
+
+    cout << "\nИнформация об игроке:" << endl;
+    p.print();
+
+    // 11. Тестируем класс MagicWeapon
+    cout << "\nТест магического оружия:" << endl;
+
+    MagicWeapon defaultMagic; // конструктор без параметров
+    defaultMagic.printMagicInfo();
+
+    cout << endl;
+
+    MagicWeapon fireStaff("Огненный посох", 40, 3.0f, WeaponType::TWOHANDED, 25);
+    fireStaff.printMagicInfo();
+
+    // 3. Проверяем, что урон магического оружия = базовый + дополнительный
+    int baseDamage   = 40;
+    int extraDamage  = fireStaff.getExtraDamage();
+    int virtualDmg   = fireStaff.getDamage(); // должен быть baseDamage + extraDamage
+
+    cout << "Базовый урон: " << baseDamage << endl;
+    cout << "Дополнительный магический урон: " << extraDamage << endl;
+    cout << "Урон из виртуального метода getDamage(): " << virtualDmg << endl;
+
+    // 5. Проверяем операторы > и <
+    MagicWeapon sword("Меч", 35, 3.0f, WeaponType::ONEHANDED, 0);
+    MagicWeapon bow("Охотничий лук", 20, 2.0f, WeaponType::BOW, 0);
+
+    cout << "\nСравнение обычного оружия:" << endl;
+    cout << "Меч (" << sword.getDamage() << ") "
+         << (sword > bow ? "сильнее" : "не сильнее")
+         << " лука (" << bow.getDamage() << ")" << endl;
+
+    cout << "\nСравнение обычного и магического оружия:" << endl;
+    cout << "Меч (" << sword.getDamage() << ") "
+         << (sword < fireStaff ? "слабее" : "не слабее")
+         << " огненного посоха (" << fireStaff.getDamage() << ")" << endl;
+
+    // 4. Вызываем Attack у магического оружия
+    cout << "\nАтака магическим оружием:" << endl;
+    fireStaff.Attack();
+
+    // 8. Тест одноразового оружия
+    cout << "\nТест одноразового оружия:" << endl;
+    DisposableWeapon bomb("Бомба", 100, 5.0f, WeaponType::TWOHANDED);
+    bomb.Attack(); // первый раз
+    bomb.Attack(); // второй раз
+
+    // 11. Проверка шаблона DualWield
+    cout << "\nТест шаблонного класса DualWield:" << endl;
+
+    // Вариант 1: реальные объекты оружия
+    DualWield<MagicWeapon, DisposableWeapon> hands1(fireStaff, bomb);
+    cout << "Левая рука держит: ";  hands1.getLeft().printMagicInfo();
+    cout << "Правая рука держит: "; const_cast<DisposableWeapon&>(hands1.getRight()).Attack(); // просто вызов атаки
+
+    // Вариант 2: идентификаторы оружия (ints)
+    DualWield<int, int> weaponIds(101, 202);
+    cout << "ID оружия в левой руке: " << weaponIds.getLeft() << endl;
+    cout << "ID оружия в правой руке: " << weaponIds.getRight() << endl;
+
+    return 0;
 }
 
