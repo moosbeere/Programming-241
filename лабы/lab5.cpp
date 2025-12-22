@@ -29,8 +29,10 @@ private:
 public:
     // 9. Конструктор без параметров
     MagicWeapon()
-        : Weapon()      // базовый конструктор оружия по умолчанию
-        , extraDamage(10)
+        : Weapon()      // : Weapon() - список инициализации, вызывает конструктор базового класса
+                        // базовый конструктор оружия по умолчанию
+        , extraDamage(10) // , extraDamage(10) - инициализация поля производного класса
+                          // порядок важен: сначала базовый класс, потом производный
     {
     }
 
@@ -52,9 +54,13 @@ public:
     }
 
     // 2. Переопределённый метод урона: базовый + дополнительный
-    int getDamage() const override
+    int getDamage() const override  // override - ключевое слово C++11, явно указывает переопределение
+                                    // const - метод не изменяет состояние объекта
     {
         return Weapon::getDamage() + extraDamage;
+                                    // Weapon::getDamage() - явный вызов метода базового класса
+                                    // :: - оператор области видимости
+                                    // получаем базовый урон и добавляем дополнительный магический
     }
 
     // Дополнительный метод для вывода полной информации
@@ -66,7 +72,9 @@ public:
     }
 
     // 2. Реализация виртуальной функции атаки
-    void Attack() override
+    void Attack() override  // override - переопределение чисто виртуальной функции из базового класса
+                             // базовый класс Weapon имеет virtual void Attack() = 0;
+                             // это делает Weapon абстрактным классом
     {
         cout << "Атакуем магическим оружием" << endl;
     }
@@ -83,8 +91,8 @@ public:
                      int                damage,
                      float              weight,
                      WeaponType         type)
-        : Weapon(name, damage, weight, type)
-        , used(false)
+        : Weapon(name, damage, weight, type)  // вызываем конструктор базового класса с параметрами
+        , used(false)                         // инициализируем флаг used значением false
     {
     }
 
@@ -104,24 +112,28 @@ public:
 };
 
 // 9. Шаблонный класс для хранения оружия в левой и правой руке
+// template <typename L, typename R> - объявление шаблона с двумя параметрами типа
+// L и R - это типы-заглушки, которые будут заменены конкретными типами при использовании
 template <typename L, typename R>
 class DualWield
 {
 private:
-    L leftHand;
-    R rightHand;
+    L leftHand;   // поле типа L (будет заменено на конкретный тип, например MagicWeapon)
+    R rightHand;  // поле типа R (будет заменено на конкретный тип, например DisposableWeapon)
 
 public:
-    DualWield(const L& left, const R& right)
-        : leftHand(left)
+    DualWield(const L& left, const R& right)  // const L& - константная ссылка на тип L
+                                               // ссылка (&) - не копирует объект, работает с оригиналом
+        : leftHand(left)                       // инициализация через список инициализации
         , rightHand(right)
     {
     }
 
-    const L& getLeft() const  { return leftHand; }
+    const L& getLeft() const  { return leftHand; }  // const после () - метод не изменяет объект
+                                                     // const L& - возвращаем константную ссылку
     const R& getRight() const { return rightHand; }
 
-    void setLeft(const L& left)   { leftHand = left; }
+    void setLeft(const L& left)   { leftHand = left; }   // присваивание нового значения
     void setRight(const R& right) { rightHand = right; }
 };
 
@@ -206,11 +218,21 @@ int main()
 
     // Вариант 1: реальные объекты оружия
     DualWield<MagicWeapon, DisposableWeapon> hands1(fireStaff, bomb);
+                              // <MagicWeapon, DisposableWeapon> - явное указание типов для шаблона
+                              // L заменяется на MagicWeapon, R на DisposableWeapon
+                              // компилятор создаст специализацию класса для этих типов
     cout << "Левая рука держит: ";  hands1.getLeft().printMagicInfo();
-    cout << "Правая рука держит: "; const_cast<DisposableWeapon&>(hands1.getRight()).Attack(); // просто вызов атаки
+    cout << "Правая рука держит: "; const_cast<DisposableWeapon&>(hands1.getRight()).Attack();
+                              // const_cast - снятие константности (небезопасная операция!)
+                              // getRight() возвращает const R&, но Attack() не const метод
+                              // const_cast позволяет вызвать неконстантный метод
+                              // лучше было бы сделать Attack() const или убрать const из getRight()
 
     // Вариант 2: идентификаторы оружия (ints)
     DualWield<int, int> weaponIds(101, 202);
+                              // шаблон работает с любыми типами, не только классами
+                              // здесь L = int, R = int
+                              // демонстрирует универсальность шаблонов
     cout << "ID оружия в левой руке: " << weaponIds.getLeft() << endl;
     cout << "ID оружия в правой руке: " << weaponIds.getRight() << endl;
 

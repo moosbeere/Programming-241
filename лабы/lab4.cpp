@@ -72,14 +72,22 @@ int main()
 
     // 3. Создаём динамический объект оружия
     Weapon* bow = new Weapon("Боевой лук", 30, 2.0f, WeaponType::BOW);
+                              // new Weapon(...) - динамическое выделение памяти в куче (heap)
+                              // создаёт объект Weapon и возвращает указатель на него
+                              // Weapon* - указатель на объект типа Weapon
     cout << "\nДинамический объект weapon (bow):" << endl;
-    bow->print();
+    bow->print();             // bow->print() - доступ к методу через указатель
+                              // -> это оператор разыменования указателя с доступом к члену
+                              // эквивалентно (*bow).print()
 
     // 5. Проверяем метод isTooHeavy
     float maxWeightForHero = 3.0f;
     cout << "\nМаксимально допустимый вес для героя: " << maxWeightForHero << " кг" << endl;
     cout << "Может ли герой поднять меч? "
          << (sword.isTooHeavy(maxWeightForHero) ? "Нет, слишком тяжёлый" : "Да, может") << endl;
+                              // тернарный оператор ? : - условное выражение
+                              // если условие true, возвращает первое значение, иначе второе
+                              // здесь используется для выбора текста в зависимости от результата
     cout << "Может ли герой поднять лук? "
          << (bow->isTooHeavy(maxWeightForHero) ? "Нет, слишком тяжёлый" : "Да, может") << endl;
 
@@ -105,8 +113,11 @@ int main()
     cout << "После изменения урона setDamage(60): " << sword.getDamage() << endl;
 
     // 8. Проверка класса Characteristic и метода GetDamage
-    Characteristic heroStrength(25);
+    Characteristic heroStrength(25);  // explicit конструктор предотвращает неявные преобразования
+                                      // без explicit можно было бы написать Characteristic h = 25;
     int fullDamage = heroStrength.GetDamage(sword);
+                                      // GetDamage имеет доступ к приватному полю weapon.damage
+                                      // благодаря friend class Characteristic в определении Weapon
     cout << "\nУрон героя с мечом (сила + урон оружия): " << fullDamage << endl;
 
     // 11–13. Проверка класса MyMath и счётчика вызовов
@@ -128,8 +139,11 @@ int main()
          << MyMath::callCount << endl;
 
     // 4. Не забываем удалить динамический объект, чтобы увидеть вызов деструктора
-    delete bow;
-    bow = nullptr;
+    delete bow;              // delete вызывает деструктор объекта, затем освобождает память
+                              // важно: каждый new должен иметь соответствующий delete
+    bow = nullptr;            // обнуляем указатель для безопасности
+                              // nullptr - специальное значение "пустой указатель" (C++11)
+                              // предотвращает случайное использование после delete
 
     cout << "\nЗавершение программы, сейчас будут вызваны деструкторы статических объектов." << endl;
 
