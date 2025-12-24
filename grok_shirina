@@ -1,0 +1,130 @@
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <map>
+#include <set>
+
+using namespace std;
+
+
+vector<char> findShortestPath(const map<char, vector<char>>& graph, char start, char end) {
+
+    struct Node {
+        char vertex;
+        vector<char> path;
+    };
+
+    queue<Node> q;
+    q.push({ start, {start} });
+
+    set<char> visited;
+    visited.insert(start);
+
+    while (!q.empty()) {
+        Node current = q.front();
+        q.pop();
+
+       
+        if (current.vertex == end) {
+            return current.path;
+        }
+
+    
+        auto it = graph.find(current.vertex);
+        if (it != graph.end()) {
+      
+            for (char neighbor : it->second) {
+                if (visited.find(neighbor) == visited.end()) {
+                    visited.insert(neighbor);
+
+                    vector<char> newPath = current.path;
+                    newPath.push_back(neighbor);
+                    q.push({ neighbor, newPath });
+                }
+            }
+        }
+    }
+
+
+    return {};
+}
+
+
+void printPath(const vector<char>& path) {
+    if (path.empty()) {
+        cout << "Путь не найден!" << endl;
+        return;
+    }
+
+    cout << "Кратчайший путь (" << path.size() - 1 << " шагов): ";
+    for (size_t i = 0; i < path.size(); i++) {
+        cout << path[i];
+        if (i != path.size() - 1) {
+            cout << " -> ";
+        }
+    }
+    cout << endl;
+}
+
+int main() {
+    map<char, vector<char>> maze;
+
+
+    maze['S'] = { 'A', 'B', 'E' };       
+    maze['A'] = { 'S' };               
+    maze['B'] = { 'S', 'C', 'D' };        
+    maze['C'] = { 'B', 'J' };             
+    maze['D'] = { 'S', 'B', 'G' };       
+    maze['F'] = { 'H', 'G' };             
+    maze['G'] = { 'E', 'D', 'J', 'H' };  
+    maze['H'] = { 'F', 'I', 'G' };        
+    maze['I'] = { 'G', 'H', 'T' };       
+    maze['E'] = { 'S', 'G' };             
+    maze['T'] = { 'I' };                  
+
+
+    maze['J'] = { 'C', 'G' };
+
+    cout << "Граф лабиринта:\n";
+    cout << "===============\n";
+    for (const auto& node : maze) {
+        cout << node.first << ": ";
+        for (char neighbor : node.second) {
+            cout << neighbor << " ";
+        }
+        cout << endl;
+    }
+    cout << endl;
+
+    cout << "Поиск пути от входа S до выхода T:\n";
+    vector<char> path1 = findShortestPath(maze, 'S', 'T');
+    printPath(path1);
+
+    cout << "\n--- Другие пути ---\n";
+
+    cout << "От S до J:\n";
+    vector<char> path2 = findShortestPath(maze, 'S', 'J');
+    printPath(path2);
+
+   
+    cout << "От A до T:\n";
+    vector<char> path3 = findShortestPath(maze, 'A', 'T');
+    printPath(path3);
+
+
+    cout << "От B до G:\n";
+    vector<char> path4 = findShortestPath(maze, 'B', 'G');
+    printPath(path4);
+
+ 
+    cout << "От E до I:\n";
+    vector<char> path5 = findShortestPath(maze, 'E', 'I');
+    printPath(path5);
+
+  
+    cout << "От D до T:\n";
+    vector<char> path6 = findShortestPath(maze, 'D', 'T');
+    printPath(path6);
+
+    return 0;
+}
