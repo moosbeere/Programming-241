@@ -1,0 +1,133 @@
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <limits>
+
+using namespace std;
+
+void task1() {
+    int N, S, F;
+    cin >> N >> S >> F;
+    S--; F--;
+    
+    vector<vector<pair<int, int>>> graph(N);
+    
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            int weight;
+            cin >> weight;
+            if (weight > 0 && i != j) {
+                graph[i].push_back({j, weight});
+            }
+        }
+    }
+    
+    vector<int> dist(N, numeric_limits<int>::max());
+    dist[S] = 0;
+    
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+    pq.push({0, S});
+    
+    while (!pq.empty()) {
+        int current = pq.top().second;
+        int currentDist = pq.top().first;
+        pq.pop();
+        
+        if (currentDist > dist[current]) continue;
+        
+        for (auto& edge : graph[current]) {
+            int neighbor = edge.first;
+            int weight = edge.second;
+            
+            if (dist[current] + weight < dist[neighbor]) {
+                dist[neighbor] = dist[current] + weight;
+                pq.push({dist[neighbor], neighbor});
+            }
+        }
+    }
+    
+    if (dist[F] == numeric_limits<int>::max()) {
+        cout << -1 << endl;
+    } else {
+        cout << dist[F] << endl;
+    }
+}
+
+void task2() {
+    int N;
+    cin >> N;
+    
+    vector<int> cost(N);
+    for (int i = 0; i < N; i++) {
+        cin >> cost[i];
+    }
+    
+    vector<vector<int>> graph(N);
+    
+    int M;
+    cin >> M;
+    for (int i = 0; i < M; i++) {
+        int u, v;
+        cin >> u >> v;
+        u--; v--;
+        graph[u].push_back(v);
+        graph[v].push_back(u);
+    }
+    
+    vector<vector<int>> dist(N, vector<int>(101, numeric_limits<int>::max()));
+    dist[0][0] = 0;
+    
+    priority_queue<pair<int, pair<int, int>>, 
+                   vector<pair<int, pair<int, int>>>, 
+                   greater<pair<int, pair<int, int>>>> pq;
+    pq.push({0, {0, 0}});
+    
+    int answer = numeric_limits<int>::max();
+    
+    while (!pq.empty()) {
+        int currentCost = pq.top().first;
+        int city = pq.top().second.first;
+        int fuel = pq.top().second.second;
+        pq.pop();
+        
+        if (city == N - 1) {
+            answer = min(answer, currentCost);
+            continue;
+        }
+        
+        if (currentCost > dist[city][fuel]) continue;
+        
+        for (int addFuel = 0; addFuel <= 100 - fuel; addFuel++) {
+            int newFuel = fuel + addFuel;
+            int newCost = currentCost + addFuel * cost[city];
+            
+            if (newFuel >= 1) {
+                for (int neighbor : graph[city]) {
+                    if (newFuel - 1 <= 100 && newCost < dist[neighbor][newFuel - 1]) {
+                        dist[neighbor][newFuel - 1] = newCost;
+                        pq.push({newCost, {neighbor, newFuel - 1}});
+                    }
+                }
+            }
+        }
+    }
+    
+    if (answer == numeric_limits<int>::max()) {
+        cout << -1 << endl;
+    } else {
+        cout << answer << endl;
+    }
+}
+
+int main() {
+    int task;
+    cin >> task;
+    
+    if (task == 1) {
+        task1();
+    } else if (task == 2) {
+        task2();
+    }
+    
+    return 0;
+}
