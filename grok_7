@@ -1,0 +1,77 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <queue>
+
+using namespace std;
+
+void task1() {
+    int N;
+    cin >> N;
+    
+    vector<pair<int, int>> lectures(N);
+    for (int i = 0; i < N; i++) {
+        cin >> lectures[i].second >> lectures[i].first;
+    }
+    
+    sort(lectures.begin(), lectures.end());
+    
+    int count = 0;
+    int last_end = 0;
+    
+    for (int i = 0; i < N; i++) {
+        if (lectures[i].second >= last_end) {
+            count++;
+            last_end = lectures[i].first;
+        }
+    }
+    
+    cout << count << endl;
+}
+
+void task2() {
+    int n;
+    cin >> n;
+    
+    vector<pair<int, int>> boxes(n);
+    for (int i = 0; i < n; i++) {
+        cin >> boxes[i].first >> boxes[i].second;
+    }
+    
+    sort(boxes.begin(), boxes.end(), [](const pair<int, int>& a, const pair<int, int>& b) {
+        return a.first + a.second < b.first + b.second;
+    });
+    
+    priority_queue<int> pq;
+    long long total_weight = 0;
+    
+    for (int i = 0; i < n; i++) {
+        int weight = boxes[i].first;
+        int capacity = boxes[i].second;
+        
+        if (total_weight <= capacity) {
+            pq.push(weight);
+            total_weight += weight;
+        } else if (!pq.empty() && pq.top() > weight) {
+            total_weight -= pq.top();
+            pq.pop();
+            pq.push(weight);
+            total_weight += weight;
+        }
+    }
+    
+    cout << pq.size() << endl;
+}
+
+int main() {
+    int task;
+    cin >> task;
+    
+    if (task == 1) {
+        task1();
+    } else if (task == 2) {
+        task2();
+    }
+    
+    return 0;
+}
