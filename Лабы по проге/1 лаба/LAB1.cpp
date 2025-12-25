@@ -1,28 +1,37 @@
-#include <iostream>
-#include <cstdint>
-using namespace std;
+#include <iostream>   // Подключаем библиотеку для ввода и вывода
+#include <cstdint>    // Подключаем библиотеку для работы с целочисленными типами фиксированного размера
+using namespace std;  // Позволяет не писать std:: перед cout, string и т.д.
 
 int main() {
-    int a = 150;
-    float b = 15.933f;
-    uint8_t c = 250;
+    // Объявление и инициализация переменных
+    int a = 150;          // Целочисленная переменная
+    float b = 15.933f;    // Вещественная переменная
+    uint8_t c = 250;      // Беззнаковое 8-битное целое число (0–255)
 
+    // Вывод значений переменных
     cout << "a = " << a << endl;
     cout << "b = " << b << endl;
+
+    // uint8_t выводится как символ, поэтому приводим к int
     cout << "c = " << static_cast<int>(c) << endl;
 
-    uint8_t day = 8;
-    string month = "Июль";
-    uint16_t year = 2006;
+    // Переменные для хранения даты рождения
+    uint8_t day = 8;        // День (малый тип, так как число небольшое)
+    string month = "Июль";  // Месяц в виде строки
+    uint16_t year = 2006;   // Год (16-битное беззнаковое число)
 
-    cout << "Моя дата рождения: " << static_cast<int>(day) << " " << month << " " << year << " года" << endl;
+    // Вывод даты рождения
+    cout << "Моя дата рождения: "
+         << static_cast<int>(day) << " "
+         << month << " "
+         << year << " года" << endl;
 
-    const float PI = 2.3f;
-    const string OS = "WINDOWS";
+    // Объявление констант
+    const float PI = 2.3f;      // Константа вещественного типа
+    const string OS = "WINDOWS"; // Константа строкового типа
 
+    // Вывод значений констант
     cout << PI << " " << OS << endl;
 
-    return 0;
+    return 0; // Завершение программы
 }
-
-
