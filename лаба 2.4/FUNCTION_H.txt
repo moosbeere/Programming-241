@@ -1,0 +1,14 @@
+#ifndef FUNCTION_H
+#define FUNCTION_H
+
+#include <iostream>
+
+namespace MyFunctions {
+    // Объявление функции со статической переменной
+    void functionWithStatic(int number);
+}
+
+// Макрос для вычисления суммы двух чисел
+#define SUM(x, y) ((x) + (y))
+
+#endif // FUNCTION_H
