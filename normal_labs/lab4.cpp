@@ -14,7 +14,7 @@ public:
     Weapon(string n, int d, float w)
         : name(n), damage(d), weight(w) {}
 
-    // 3. Конструктор без параметров, вызывающий первый конструктор
+    // Конструктор без параметров, вызывающий первый конструктор
     Weapon() : Weapon("Default Gun", 10, 2.5f) {}
 
     void printInfo() {
@@ -38,3 +38,4 @@ int main() {
 
     return 0;
 }
+
