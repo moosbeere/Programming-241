@@ -1,0 +1,9 @@
+#include <iostream>
+
+int main() {
+    std::cout << "First string" << std::endl;
+    std::cout << "Первая строка\nВторая строка" << std::endl;
+    std::cout << "Спецсимволы \"\\\"." << std::endl;
+    return 0;
+}
+
