@@ -1,0 +1,164 @@
+#include <iostream>
+
+enum class WeaponType
+{
+    ONEHANDED,
+    TWOHANDED,
+    BOW,
+    CROSSBOW
+};
+
+class Weapon
+{
+public:
+    Weapon()
+        : Weapon("default_weapon_name", 10, 20, WeaponType::ONEHANDED)
+    { }
+
+    Weapon(const std::string& name,
+        const int damage,
+        const int weight,
+        const WeaponType type)
+        : m_name(name)
+        , m_damage(damage)
+        , m_weight(weight)
+        , m_type(type)
+    { }
+
+    ~Weapon()
+    {
+        std::printf("(DESTRUCTOR) name: %s, damage: %d, weight: %d\n", m_name.c_str(), m_damage, m_weight);
+    }
+
+    void print()
+    {
+        std::printf("name: %s, damage: %d, weight: %d\n", m_name.c_str(), m_damage, m_weight);
+    }
+
+    virtual void attack() = 0;
+
+    bool is_weight_accessable(const int max_weight)
+    {
+        return m_weight > max_weight;
+    }
+
+    int sum_properties(const int weight)
+    {
+        return m_weight + weight;
+    }
+
+    int sum_properties(Weapon* weapon)
+    {
+        return sum_properties(weapon->m_weight);
+    }
+
+    void set_name(const std::string& name) { m_name = name; }
+    void set_damage(const int damage) { m_damage = damage; }
+    void set_weight(const int weight) { m_weight = weight; }
+
+    const std::string& get_name() { return m_name; }
+    virtual int get_damage() const { return m_damage; }
+    int get_weight() { return m_weight; }
+    WeaponType get_type() { return m_type; }
+
+    inline bool operator>(const Weapon& right)
+    {
+        return get_damage() > right.get_damage();
+    }
+    inline bool operator<(const Weapon& right)
+    {
+        return get_damage() < right.get_damage();
+    }
+protected:
+    std::string m_name;
+    int m_damage;
+    int m_weight;
+    WeaponType m_type;
+};
+
+class MagicWeapon : public Weapon
+{
+public:
+    MagicWeapon()
+        : Weapon("magic_weapon", 10, 20, WeaponType::ONEHANDED)
+        , m_additional_damage(5)
+    { }
+
+    MagicWeapon(const std::string& name,
+        const int damage,
+        const int additional_damage,
+        const int weight,
+        const WeaponType type)
+        : Weapon(name, damage, weight, type)
+        , m_additional_damage(additional_damage)
+    { }
+
+    void attack() override { std::cout << "Атакуем магическим оружием" << std::endl; }
+
+    int get_damage() const override { return m_damage + m_additional_damage; }
+    int get_additional_damage() { return m_additional_damage; }
+private:
+    int m_additional_damage;
+};
+
+class OneHandedWeapon : public Weapon
+{
+public:
+    OneHandedWeapon()
+        : m_is_used(false)
+    { }
+
+    void attack() override
+    {
+        if (!m_is_used)
+            std::cout << "Атакуем одноразовым оружием" << std::endl;
+        else
+            std::cout << "Оружие уже было использовано" << std::endl;
+
+        m_is_used = true;
+    }
+private:
+    bool m_is_used;
+};
+
+template <class _X, class _Y>
+class TwoHandedWeapon : public Weapon
+{
+public:
+    TwoHandedWeapon(const WeaponType left, const WeaponType right)
+        : m_left(left)
+        , m_right(right)
+    { }
+
+    void attack() override { std::cout << "Атакуем TwoHandedWeapon оружием" << std::endl; }
+
+    void set_left_weapon(const WeaponType left) { m_left = left; }
+    void set_right_weapon(const WeaponType right) { m_right = right; }
+
+    WeaponType get_left_weapon() { return m_left; }
+    WeaponType get_right_weapon() { return m_right; }
+private:
+    WeaponType m_left;
+    WeaponType m_right;
+};
+
+static void task_1()
+{
+    MagicWeapon magic_weapon;
+    OneHandedWeapon onehanded_weapon;
+    magic_weapon.attack();
+
+    onehanded_weapon.attack();
+    onehanded_weapon.attack();
+
+    TwoHandedWeapon two_handed_weapon(WeaponType::BOW, WeaponType::CROSSBOW);
+
+    std::cout << "left hand: " << static_cast<int>(two_handed_weapon.get_left_weapon()) << " right hand: " << static_cast<int>(two_handed_weapon.get_right_weapon()) << std::endl;
+}
+
+int main()
+{
+    std::setlocale(LC_ALL, "Russian");
+
+    task_1();
+}
