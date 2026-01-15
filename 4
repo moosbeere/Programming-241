@@ -1,0 +1,66 @@
+#include "lab_4.h"  // Подключение заголовочного файла с объявлениями классов
+
+// Задание 1: Демонстрация работы с объектами Weapon
+static void task_1()  // Статическая функция (видна только в этом файле)
+{
+    Weapon default_weapon;  // Создание объекта с конструктором по умолчанию
+    Weapon crowbar("crowbar", 5, 12);  // Создание объекта с параметрами: название, урон, вес
+
+    default_weapon.print();  // Вызов метода print() для первого оружия
+    crowbar.print();         // Вызов метода print() для второго оружия
+}
+
+// Задание 2: Работа с динамической памятью и методами класса
+static void task_2()
+{
+    Weapon default_weapon;  // Создание объекта в стековой памяти (автоматическое управление)
+    Weapon* crowbar = new Weapon("crowbar", 5, 12);  // Создание объекта в куче (динамическая память)
+
+    // Проверка веса оружия относительно заданного лимита
+    std::cout << "1. weight check: " << default_weapon.is_weight_accessable(30) << std::endl;  // Для объекта в стеке
+    std::cout << "2. weight check: " << crowbar->is_weight_accessable(10) << std::endl;       // Для объекта в куче (через указатель)
+
+    // Суммирование весов двух оружий
+    std::cout << "sum weights: " << default_weapon.sum_properties(crowbar) << std::endl;
+
+    delete crowbar;  // Освобождение динамически выделенной памяти (важно для избежания утечек)
+}
+
+// Задание 4: Работа с геттерами/сеттерами и вспомогательными классами
+static void task_4()
+{
+    Weapon default_weapon;  // Создание оружия с параметрами по умолчанию
+
+    // Использование геттеров (методов получения значений)
+    std::cout << "get_name: " << default_weapon.get_name() << std::endl;    // Получение названия
+    std::cout << "get_damage: " << default_weapon.get_damage() << std::endl; // Получение урона
+    std::cout << "get_weight: " << default_weapon.get_weight() << std::endl; // Получение веса
+
+    // Использование сеттеров (методов установки значений)
+    default_weapon.set_name("not_default_weapon");  // Изменение названия
+    default_weapon.set_damage(344);                 // Изменение урона
+    default_weapon.set_weight(132);                 // Изменение веса
+
+    // Вывод обновленных значений
+    std::cout << "get_name: " << default_weapon.get_name() << std::endl;
+    std::cout << "get_damage: " << default_weapon.get_damage() << std::endl;
+    std::cout << "get_weight: " << default_weapon.get_weight() << std::endl;
+
+    Characteristic characteristic(90);  // Создание объекта Characteristic с параметром 90
+    // Получение урона с учетом характеристики (вероятно умножает урон оружия на характеристику)
+    std::cout << "characteristic: " << characteristic.get_damage(&default_weapon) << std::endl;
+
+    // Работа со статическим классом MyMath
+    std::cout << "add: " << MyMath::add(12, 20) << std::endl;        // Сложение: 12 + 20 = 32
+    std::cout << "sub: " << MyMath::sub(12, 20) << std::endl;        // Вычитание: 12 - 20 = -8
+    std::cout << "mul: " << MyMath::mul(12, 20) << std::endl;        // Умножение: 12 * 20 = 240
+    std::cout << "div: " << MyMath::div(20, 2) << std::endl;         // Деление: 20 / 2 = 10
+    std::cout << "calls: " << MyMath::m_calls_counter << std::endl;  // Счетчик вызовов методов MyMath
+}
+
+// Главная функция программы
+int main()
+{
+    task_4();  // Выполнение задания 4
+    return 0;  // Возврат успешного завершения (неявно возвращается в C++)
+}
