@@ -1,80 +1,98 @@
-#include <iostream>
-#include <array>
-#include <fstream>
-#include <map>
-#include <vector>
-#include <regex>
+```cpp
+#include <iostream>        // Стандартный ввод-вывод
+#include <array>           // Стандартная библиотека С++
+#include <fstream>         // Работа с файлами
+#include <map>             // Ассоциативный контейнер map
+#include <vector>          // Динамический массив для работы с векторами
+#include <regex>           // Регулярные выражения
 
-#define _USE_MATH_DEFINES
-#include <math.h>
+#define _USE_MATH_DEFINES  // Для использования констант из math.h (например M_PI)
+#include <math.h>          // Математические функции
 
-static void task_1()
+static void task_1()  // Статическая функция для задания 1
 {
-    std::string user_data;
+    std::string user_data;  // Объявление строки для хранения пользовательских данных
 
-    std::cin >> user_data;
+    std::cin >> user_data;  // Чтение строки из стандартного ввода (до первого пробела)
 
+    // Вывод подстроки: начинается с индекса 1, длиной 3 символа
     std::cout << "Подстрока: " << user_data.substr(1, 3) << std::endl;
 
+    // Поиск первого вхождения символа 'a' в строке
     const size_t index = user_data.find_first_of('a');
-    if (index != std::string::npos)
-        std::cout << "Индекс 'a': " << index << std::endl;
+    if (index != std::string::npos)  // Если символ найден (npos = не найдено)
+        std::cout << "Индекс 'a': " << index << std::endl;  // Вывод индекса
     else
-        std::cout << "Символа 'a' не найдено" << std::endl;
+        std::cout << "Символа 'a' не найдено" << std::endl;  // Сообщение об отсутствии
 }
 
-static bool user_name_validation(const std::string& name)
+// Валидация имени пользователя без использования регулярных выражений
+static bool user_name_validation(const std::string& name)  // Принимает строку по константной ссылке
 {
-    if (name.size() < 2 || name.size() > 32)
-        return false;
+    if (name.size() < 2 || name.size() > 32)  // Проверка длины имени (2-32 символа)
+        return false;  // Возврат false при неверной длине
 
-    if (!std::isupper(name[0]))
-        return false;
+    if (!std::isupper(name[0]))  // Проверка первого символа на заглавную букву
+        return false;  // Возврат false если первая буква не заглавная
 
-    for (const auto ch : name)
+    for (const auto ch : name)  // Цикл по всем символам имени
     {
-        if (!std::isalpha(ch))
-            return false;
+        if (!std::isalpha(ch))  // Проверка, является ли символ буквой
+            return false;  // Возврат false если найден небуквенный символ
     }
 
-    return true;
+    return true;  // Все проверки пройдены, возврат true
 }
 
-static void print_all_emails(const std::string& emails)
+// Извлечение email-адресов из строки без использования регулярных выражений
+static void print_all_emails(const std::string& emails)  // Принимает строку с email-адресами
 {
+    // Статический массив допустимых доменов первого уровня
     static const std::array<std::string, 2> FIRST_DOMAIN_LEVEL
     {
-        "ru",
-        "com",
+        "ru",   // Российский домен
+        "com",  // Коммерческий домен
     };
 
-    int next_email = 0;
-    int next_email_dog = 0;
+    int next_email = 0;      // Индекс начала следующего email
+    int next_email_dog = 0;  // Индекс символа '@' следующего email
+    
+    // Цикл поиска всех символов '@' в строке
     while ((next_email_dog = emails.find_first_of('@', next_email_dog + 1)) != std::string::npos)
     {
+        // Поиск точки после символа '@'
         size_t dot_index = emails.find_first_of('.', next_email_dog);
 
+        // Проверка, что точка найдена и после неё есть минимум 2 символа
         if (dot_index != std::string::npos && dot_index + 2 < emails.size())
         {
+            // Извлечение первых 2 символов после точки (домен первого уровня)
             std::string domain_first = emails.substr(dot_index + 1, 2);
 
+            // Поиск домена в массиве допустимых доменов
             const auto it = std::find(FIRST_DOMAIN_LEVEL.begin(), FIRST_DOMAIN_LEVEL.end(), domain_first);
-            if (it != FIRST_DOMAIN_LEVEL.end())
+            if (it != FIRST_DOMAIN_LEVEL.end())  // Если домен найден (ru или com из 2 символов)
             {
+                // Вывод email адреса (от next_email до конца домена)
                 std::cout << emails.substr(next_email, dot_index + 3 - next_email) << std::endl;
 
+                // Обновление индекса начала следующего email
                 next_email = dot_index + 3;
             }
-            else if (dot_index + 3 < emails.size())
+            else if (dot_index + 3 < emails.size())  // Если после точки есть 3 символа
             {
+                // Извлечение 3 символов после точки (для доменов длиной 3 символа)
                 domain_first = emails.substr(dot_index + 1, 3);
 
+                // Повторный поиск в массиве допустимых доменов
                 const auto it = std::find(FIRST_DOMAIN_LEVEL.begin(), FIRST_DOMAIN_LEVEL.end(), domain_first);
 
-                if (it != FIRST_DOMAIN_LEVEL.end())
+                if (it != FIRST_DOMAIN_LEVEL.end())  // Если домен найден
                 {
+                    // Вывод email адреса
                     std::cout << emails.substr(next_email, dot_index + 4 - next_email) << std::endl;
 
+                    // Обновление индекса начала следующего email
                     next_email = dot_index + 4;
                 }
             }
@@ -82,153 +100,160 @@ static void print_all_emails(const std::string& emails)
     }
 }
 
+// Задание 2: работа с регулярными выражениями
 static void task_2()
 {
-    std::string name;
-    std::cin >> name;
+    std::string name;        // Объявление строки для имени пользователя
+    std::cin >> name;        // Чтение имени из стандартного ввода
 
+    // Регулярное выражение для валидации имени:
+    // ^ - начало строки
+    // [A-Z] - первая заглавная буква
+    // [a-zA-Z]{1,31} - от 1 до 31 буквы (строчных или заглавных)
+    // $ - конец строки
     std::regex name_regex("^[A-Z][a-zA-Z]{1,31}$");
 
-    if (!std::regex_search(name, name_regex))
-        std::cout << "Имя пользователя корректно!" << std::endl;
+    // Некорректная проверка: условие должно быть наоборот
+    if (!std::regex_search(name, name_regex))  // Если имя НЕ соответствует regex
+        std::cout << "Имя пользователя корректно!" << std::endl;  // Сообщение (логическая ошибка)
 
-    std::smatch matches;
+    std::smatch matches;  // Контейнер для результатов поиска по regex
+    // Регулярное выражение для поиска email адресов:
+    // \b - граница слова
+    // [\w._%+-]+ - одно или больше буквенно-цифровых символов или ._%+-
+    // @ - символ @
+    // [\w.-]+ - одно или больше буквенно-цифровых символов или .-
+    // \. - точка (экранированная)
+    // [A-Za-z]{2,} - две или больше буквы (домен верхнего уровня)
+    // \b - граница слова
     std::regex email_regex(R"(\b[\w._%+-]+@[\w.-]+\.[A-Za-z]{2,}\b)");
     std::string emails = "lhandrew@mail.com does anyone even using std::regex? i think most of the programmers using"
         "custom libraries, because standard regex isn't being friendly to the performance hello@custom-domain.com";
 
+    // Цикл поиска всех email адресов в строке
     while (std::regex_search(emails, matches, email_regex))
     {
-        std::cout << matches[0] << std::endl;
+        std::cout << matches[0] << std::endl;  // Вывод найденного email (полное совпадение)
 
-        emails = matches.suffix();
+        emails = matches.suffix();  // Продолжение поиска в оставшейся части строки
     }
 }
 
+// Задание 3: математические операции и работа с файлами
 static void task_3()
 {
-    int radius = 0;
-    std::cin >> radius;
+    int radius = 0;            // Объявление переменной для радиуса
+    std::cin >> radius;        // Чтение радиуса из стандартного ввода
 
-    float result = 2 * M_PI * radius;
+    float result = 2 * M_PI * radius;  // Вычисление длины окружности: 2πr
 
+    // Вывод длины окружности как целого числа (с округлением вниз)
     std::cout << "Длина окружности: " << static_cast<int>(result) << std::endl;
+    // Вывод округленного значения до 3 знаков после запятой
     std::cout << "Округление: " << std::round(result * 1000) / 1000 << std::endl;
 
-    std::string file_data {};
+    std::string file_data {};  // Строка для хранения данных файла
+    // Открытие файла для записи с режимом trunc (удаление содержимого при открытии)
     std::ofstream file_stream("text.txt", std::ios::trunc);
 
-    while (true)
+    while (true)  // Бесконечный цикл для интерактивного ввода
     {
-        std::string text;
-        std::cin >> text;
+        std::string text;      // Временная строка для ввода
+        std::cin >> text;      // Чтение строки из стандартного ввода
 
-        if (text == "read")
+        if (text == "read")    // Если введено "read"
         {
-            std::cout << file_data << std::endl;
+            std::cout << file_data << std::endl;  // Вывод содержимого file_data
         }
-        else if (text == "erase")
+        else if (text == "erase")  // Если введено "erase"
         {
-            std::cout << "Файл очищен" << std::endl;
-            file_data.clear();
+            std::cout << "Файл очищен" << std::endl;  // Сообщение об очистке
+            file_data.clear();  // Очистка строки file_data
         }
-        else if (text == "exit")
+        else if (text == "exit")  // Если введено "exit"
         {
+            // Запись данных из file_data в файл
             file_stream.write(file_data.c_str(), file_data.size());
-            file_stream.close();
-            break;
+            file_stream.close();  // Закрытие файлового потока
+            break;  // Выход из цикла
         }
-        else
+        else  // Любой другой текст
         {
-            file_data = file_data + text;
+            file_data = file_data + text;  // Конкатенация строк (добавление текста)
         }
     }
 }
 
-static void print_vector(const std::vector<float>& floats)
+// Вспомогательная функция для вывода вектора чисел с плавающей точкой
+static void print_vector(const std::vector<float>& floats)  // Принимает вектор по константной ссылке
 {
-    for (const auto i : floats)
-        std::cout << i << std::endl;
+    for (const auto i : floats)  // Цикл for-each по всем элементам вектора
+        std::cout << i << std::endl;  // Вывод каждого элемента
 
-    std::cout << "----------------" << std::endl;
+    std::cout << "----------------" << std::endl;  // Разделитель для визуального отделения
 }
 
-//class Settings
-//{
-//public:
-//    void add(const std::string& key, const std::string& value)
-//    {
-//        m_values.emplace(key, value);
-//    }
-//
-//    const std::string& get(const std::string& key)
-//    {
-//        return m_values[key];
-//    }
-//
-//    void print()
-//    {
-//        for (const auto& [key, value] : m_values)
-//            std::cout << "Key: " << key << " Value: " << value << std::endl;
-//    }
-//private:
-//    std::map<std::string, std::string> m_values;
-//};
-
+// Класс Settings с статическими методами (синглтон)
 class Settings
 {
 public:
+    // Статический метод добавления пары ключ-значение
     static void add(const std::string& key, const std::string& value)
     {
-        m_values.emplace(key, value);
+        m_values.emplace(key, value);  // Вставка пары в map (или обновление значения)
     }
 
+    // Статический метод получения значения по ключу
     static const std::string& get(const std::string& key)
     {
-        return m_values[key];
+        return m_values[key];  // Возврат значения по ключу (создаст пустую строку если ключа нет)
     }
 
+    // Статический метод вывода всех пар ключ-значение
     static void print()
     {
+        // Structured binding (C++17): разложение пары на key и value
         for (const auto& [key, value] : m_values)
             std::cout << "Key: " << key << " Value: " << value << std::endl;
     }
 private:
+    // Статическое inline поле (C++17): map для хранения настроек
     static inline std::map<std::string, std::string> m_values;
 };
 
+// Задание 4: работа с векторами и классом Settings
 static void task_4()
 {
-    std::vector<float> floats {};
+    std::vector<float> floats {};  // Создание пустого вектора чисел с плавающей точкой
 
-    floats.push_back(12.9f);
-    floats.push_back(5.9f);
-    floats.push_back(4.9242f);
-    floats.push_back(8.1355f);
-    floats.push_back(1.1f);
-    print_vector(floats);
+    // Добавление элементов в конец вектора
+    floats.push_back(12.9f);    // Добавление 12.9
+    floats.push_back(5.9f);     // Добавление 5.9
+    floats.push_back(4.9242f);  // Добавление 4.9242
+    floats.push_back(8.1355f);  // Добавление 8.1355
+    floats.push_back(1.1f);     // Добавление 1.1
+    print_vector(floats);       // Вывод вектора
 
+    // Вставка элемента на позицию с индексом 3 (перед 4-м элементом)
     floats.insert(floats.begin() + 3, 1.12f);
-    print_vector(floats);
+    print_vector(floats);  // Вывод измененного вектора
 
+    // Удаление последнего элемента вектора
     floats.pop_back();
-    print_vector(floats);
+    print_vector(floats);  // Вывод вектора после удаления
 
-    //Settings settings {};
-    //settings.add("key_1", "12");
-    //settings.add("key_2", "24");
-    //settings.add("vasya", "frfrfrr");
-    //settings.print();
-
-    Settings::add("key_1", "12");
-    Settings::add("key_2", "24");
-    Settings::add("vasya", "frfrfrr");
-    Settings::print();
+    // Работа с классом Settings (статические методы)
+    Settings::add("key_1", "12");        // Добавление пары "key_1": "12"
+    Settings::add("key_2", "24");        // Добавление пары "key_2": "24"
+    Settings::add("vasya", "frfrfrr");   // Добавление пары "vasya": "frfrfrr"
+    Settings::print();                   // Вывод всех пар ключ-значение
 }
 
+// Главная функция программы
 int main()
 {
-    std::setlocale(LC_ALL, "Russian");
+    std::setlocale(LC_ALL, "Russian");  // Установка русской локали для корректного вывода
 
-    task_2();
+    task_2();  // Вызов функции для задания 2
 }
+```
