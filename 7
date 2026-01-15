@@ -1,0 +1,234 @@
+#include <iostream>
+#include <array>
+#include <fstream>
+#include <map>
+#include <vector>
+#include <regex>
+
+#define _USE_MATH_DEFINES
+#include <math.h>
+
+static void task_1()
+{
+    std::string user_data;
+
+    std::cin >> user_data;
+
+    std::cout << "Подстрока: " << user_data.substr(1, 3) << std::endl;
+
+    const size_t index = user_data.find_first_of('a');
+    if (index != std::string::npos)
+        std::cout << "Индекс 'a': " << index << std::endl;
+    else
+        std::cout << "Символа 'a' не найдено" << std::endl;
+}
+
+static bool user_name_validation(const std::string& name)
+{
+    if (name.size() < 2 || name.size() > 32)
+        return false;
+
+    if (!std::isupper(name[0]))
+        return false;
+
+    for (const auto ch : name)
+    {
+        if (!std::isalpha(ch))
+            return false;
+    }
+
+    return true;
+}
+
+static void print_all_emails(const std::string& emails)
+{
+    static const std::array<std::string, 2> FIRST_DOMAIN_LEVEL
+    {
+        "ru",
+        "com",
+    };
+
+    int next_email = 0;
+    int next_email_dog = 0;
+    while ((next_email_dog = emails.find_first_of('@', next_email_dog + 1)) != std::string::npos)
+    {
+        size_t dot_index = emails.find_first_of('.', next_email_dog);
+
+        if (dot_index != std::string::npos && dot_index + 2 < emails.size())
+        {
+            std::string domain_first = emails.substr(dot_index + 1, 2);
+
+            const auto it = std::find(FIRST_DOMAIN_LEVEL.begin(), FIRST_DOMAIN_LEVEL.end(), domain_first);
+            if (it != FIRST_DOMAIN_LEVEL.end())
+            {
+                std::cout << emails.substr(next_email, dot_index + 3 - next_email) << std::endl;
+
+                next_email = dot_index + 3;
+            }
+            else if (dot_index + 3 < emails.size())
+            {
+                domain_first = emails.substr(dot_index + 1, 3);
+
+                const auto it = std::find(FIRST_DOMAIN_LEVEL.begin(), FIRST_DOMAIN_LEVEL.end(), domain_first);
+
+                if (it != FIRST_DOMAIN_LEVEL.end())
+                {
+                    std::cout << emails.substr(next_email, dot_index + 4 - next_email) << std::endl;
+
+                    next_email = dot_index + 4;
+                }
+            }
+        }
+    }
+}
+
+static void task_2()
+{
+    std::string name;
+    std::cin >> name;
+
+    std::regex name_regex("^[A-Z][a-zA-Z]{1,31}$");
+
+    if (!std::regex_search(name, name_regex))
+        std::cout << "Имя пользователя корректно!" << std::endl;
+
+    std::smatch matches;
+    std::regex email_regex(R"(\b[\w._%+-]+@[\w.-]+\.[A-Za-z]{2,}\b)");
+    std::string emails = "lhandrew@mail.com does anyone even using std::regex? i think most of the programmers using"
+        "custom libraries, because standard regex isn't being friendly to the performance hello@custom-domain.com";
+
+    while (std::regex_search(emails, matches, email_regex))
+    {
+        std::cout << matches[0] << std::endl;
+
+        emails = matches.suffix();
+    }
+}
+
+static void task_3()
+{
+    int radius = 0;
+    std::cin >> radius;
+
+    float result = 2 * M_PI * radius;
+
+    std::cout << "Длина окружности: " << static_cast<int>(result) << std::endl;
+    std::cout << "Округление: " << std::round(result * 1000) / 1000 << std::endl;
+
+    std::string file_data {};
+    std::ofstream file_stream("text.txt", std::ios::trunc);
+
+    while (true)
+    {
+        std::string text;
+        std::cin >> text;
+
+        if (text == "read")
+        {
+            std::cout << file_data << std::endl;
+        }
+        else if (text == "erase")
+        {
+            std::cout << "Файл очищен" << std::endl;
+            file_data.clear();
+        }
+        else if (text == "exit")
+        {
+            file_stream.write(file_data.c_str(), file_data.size());
+            file_stream.close();
+            break;
+        }
+        else
+        {
+            file_data = file_data + text;
+        }
+    }
+}
+
+static void print_vector(const std::vector<float>& floats)
+{
+    for (const auto i : floats)
+        std::cout << i << std::endl;
+
+    std::cout << "----------------" << std::endl;
+}
+
+//class Settings
+//{
+//public:
+//    void add(const std::string& key, const std::string& value)
+//    {
+//        m_values.emplace(key, value);
+//    }
+//
+//    const std::string& get(const std::string& key)
+//    {
+//        return m_values[key];
+//    }
+//
+//    void print()
+//    {
+//        for (const auto& [key, value] : m_values)
+//            std::cout << "Key: " << key << " Value: " << value << std::endl;
+//    }
+//private:
+//    std::map<std::string, std::string> m_values;
+//};
+
+class Settings
+{
+public:
+    static void add(const std::string& key, const std::string& value)
+    {
+        m_values.emplace(key, value);
+    }
+
+    static const std::string& get(const std::string& key)
+    {
+        return m_values[key];
+    }
+
+    static void print()
+    {
+        for (const auto& [key, value] : m_values)
+            std::cout << "Key: " << key << " Value: " << value << std::endl;
+    }
+private:
+    static inline std::map<std::string, std::string> m_values;
+};
+
+static void task_4()
+{
+    std::vector<float> floats {};
+
+    floats.push_back(12.9f);
+    floats.push_back(5.9f);
+    floats.push_back(4.9242f);
+    floats.push_back(8.1355f);
+    floats.push_back(1.1f);
+    print_vector(floats);
+
+    floats.insert(floats.begin() + 3, 1.12f);
+    print_vector(floats);
+
+    floats.pop_back();
+    print_vector(floats);
+
+    //Settings settings {};
+    //settings.add("key_1", "12");
+    //settings.add("key_2", "24");
+    //settings.add("vasya", "frfrfrr");
+    //settings.print();
+
+    Settings::add("key_1", "12");
+    Settings::add("key_2", "24");
+    Settings::add("vasya", "frfrfrr");
+    Settings::print();
+}
+
+int main()
+{
+    std::setlocale(LC_ALL, "Russian");
+
+    task_2();
+}
