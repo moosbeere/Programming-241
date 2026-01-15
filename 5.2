@@ -1,164 +1,206 @@
+```cpp
 #include <iostream>
 
+// Перечисление типов оружия
 enum class WeaponType
 {
-    ONEHANDED,
-    TWOHANDED,
-    BOW,
-    CROSSBOW
+    ONEHANDED,    // Одноручное оружие
+    TWOHANDED,    // Двуручное оружие
+    BOW,          // Лук
+    CROSSBOW      // Арбалет
 };
 
 class Weapon
 {
 public:
+    // Конструктор по умолчанию
     Weapon()
-        : Weapon("default_weapon_name", 10, 20, WeaponType::ONEHANDED)
+        : Weapon("default_weapon_name", 10, 20, WeaponType::ONEHANDED) // Вызов конструктора с параметрами
     { }
 
-    Weapon(const std::string& name,
-        const int damage,
-        const int weight,
-        const WeaponType type)
-        : m_name(name)
-        , m_damage(damage)
-        , m_weight(weight)
-        , m_type(type)
+    // Конструктор с параметрами
+    Weapon(const std::string& name,    // Название оружия
+        const int damage,              // Урон оружия
+        const int weight,              // Вес оружия
+        const WeaponType type)         // Тип оружия
+        : m_name(name)                 // Инициализация названия
+        , m_damage(damage)             // Инициализация урона
+        , m_weight(weight)             // Инициализация веса
+        , m_type(type)                 // Инициализация типа
     { }
 
+    // Деструктор
     ~Weapon()
     {
+        // Вывод информации при уничтожении объекта
         std::printf("(DESTRUCTOR) name: %s, damage: %d, weight: %d\n", m_name.c_str(), m_damage, m_weight);
     }
 
+    // Вывод информации об оружии
     void print()
     {
+        // Форматированный вывод характеристик
         std::printf("name: %s, damage: %d, weight: %d\n", m_name.c_str(), m_damage, m_weight);
     }
 
+    // Чистая виртуальная функция атаки (делает класс абстрактным)
     virtual void attack() = 0;
 
+    // Проверка доступности веса
     bool is_weight_accessable(const int max_weight)
     {
+        // Возвращает true если вес оружия больше максимального
         return m_weight > max_weight;
     }
 
+    // Суммирование весов (с целым числом)
     int sum_properties(const int weight)
     {
+        // Возвращает сумму веса оружия и переданного веса
         return m_weight + weight;
     }
 
+    // Суммирование весов (с другим оружием)
     int sum_properties(Weapon* weapon)
     {
+        // Рекурсивный вызов с весом другого оружия
         return sum_properties(weapon->m_weight);
     }
 
-    void set_name(const std::string& name) { m_name = name; }
-    void set_damage(const int damage) { m_damage = damage; }
-    void set_weight(const int weight) { m_weight = weight; }
+    // Сеттеры (установщики значений)
+    void set_name(const std::string& name) { m_name = name; }        // Установка названия
+    void set_damage(const int damage) { m_damage = damage; }         // Установка урона
+    void set_weight(const int weight) { m_weight = weight; }         // Установка веса
 
-    const std::string& get_name() { return m_name; }
-    virtual int get_damage() const { return m_damage; }
-    int get_weight() { return m_weight; }
-    WeaponType get_type() { return m_type; }
+    // Геттеры (получатели значений)
+    const std::string& get_name() { return m_name; }                 // Получение названия
+    virtual int get_damage() const { return m_damage; }              // Получение урона (виртуальный)
+    int get_weight() { return m_weight; }                            // Получение веса
+    WeaponType get_type() { return m_type; }                         // Получение типа
 
+    // Перегрузка оператора "больше"
     inline bool operator>(const Weapon& right)
     {
+        // Сравнение урона текущего оружия с уроном правого
         return get_damage() > right.get_damage();
     }
+    
+    // Перегрузка оператора "меньше"
     inline bool operator<(const Weapon& right)
     {
+        // Сравнение урона текущего оружия с уроном правого
         return get_damage() < right.get_damage();
     }
+    
 protected:
-    std::string m_name;
-    int m_damage;
-    int m_weight;
-    WeaponType m_type;
+    std::string m_name;    // Название оружия
+    int m_damage;          // Базовый урон
+    int m_weight;          // Вес оружия
+    WeaponType m_type;     // Тип оружия
 };
 
-class MagicWeapon : public Weapon
+class MagicWeapon : public Weapon  // Наследование от Weapon
 {
 public:
+    // Конструктор по умолчанию
     MagicWeapon()
-        : Weapon("magic_weapon", 10, 20, WeaponType::ONEHANDED)
-        , m_additional_damage(5)
+        : Weapon("magic_weapon", 10, 20, WeaponType::ONEHANDED)  // Вызов конструктора родителя
+        , m_additional_damage(5)                                 // Инициализация дополнительного урона
     { }
 
+    // Конструктор с параметрами
     MagicWeapon(const std::string& name,
         const int damage,
-        const int additional_damage,
+        const int additional_damage,  // Дополнительный магический урон
         const int weight,
         const WeaponType type)
-        : Weapon(name, damage, weight, type)
-        , m_additional_damage(additional_damage)
+        : Weapon(name, damage, weight, type)   // Вызов конструктора родителя
+        , m_additional_damage(additional_damage) // Инициализация доп. урона
     { }
 
+    // Переопределение виртуальной функции атаки
     void attack() override { std::cout << "Атакуем магическим оружием" << std::endl; }
 
+    // Переопределение получения урона (учитывает дополнительный)
     int get_damage() const override { return m_damage + m_additional_damage; }
+    
+    // Получение дополнительного урона
     int get_additional_damage() { return m_additional_damage; }
+    
 private:
-    int m_additional_damage;
+    int m_additional_damage;  // Дополнительный магический урон
 };
 
-class OneHandedWeapon : public Weapon
+class OneHandedWeapon : public Weapon  // Наследование от Weapon
 {
 public:
+    // Конструктор по умолчанию
     OneHandedWeapon()
-        : m_is_used(false)
+        : m_is_used(false)  // Инициализация флага использования
     { }
 
+    // Переопределение виртуальной функции атаки
     void attack() override
     {
-        if (!m_is_used)
-            std::cout << "Атакуем одноразовым оружием" << std::endl;
-        else
-            std::cout << "Оружие уже было использовано" << std::endl;
+        if (!m_is_used)                                          // Если оружие не использовалось
+            std::cout << "Атакуем одноразовым оружием" << std::endl;  // Сообщение об атаке
+        else                                                     // Иначе
+            std::cout << "Оружие уже было использовано" << std::endl; // Сообщение о невозможности атаки
 
-        m_is_used = true;
+        m_is_used = true;  // Установка флага использования
     }
+    
 private:
-    bool m_is_used;
+    bool m_is_used;  // Флаг, было ли использовано оружие
 };
 
-template <class _X, class _Y>
-class TwoHandedWeapon : public Weapon
+template <class _X, class _Y>  // Шаблон с двумя параметрами
+class TwoHandedWeapon : public Weapon  // Наследование от Weapon
 {
 public:
-    TwoHandedWeapon(const WeaponType left, const WeaponType right)
-        : m_left(left)
-        , m_right(right)
+    // Конструктор с параметрами
+    TwoHandedWeapon(const WeaponType left, const WeaponType right)  // Типы оружия для левой и правой руки
+        : m_left(left)      // Инициализация типа для левой руки
+        , m_right(right)    // Инициализация типа для правой руки
     { }
 
+    // Переопределение виртуальной функции атаки
     void attack() override { std::cout << "Атакуем TwoHandedWeapon оружием" << std::endl; }
 
-    void set_left_weapon(const WeaponType left) { m_left = left; }
-    void set_right_weapon(const WeaponType right) { m_right = right; }
+    // Сеттеры для типов оружия в руках
+    void set_left_weapon(const WeaponType left) { m_left = left; }    // Установка типа для левой руки
+    void set_right_weapon(const WeaponType right) { m_right = right; } // Установка типа для правой руки
 
-    WeaponType get_left_weapon() { return m_left; }
-    WeaponType get_right_weapon() { return m_right; }
+    // Геттеры для типов оружия в руках
+    WeaponType get_left_weapon() { return m_left; }    // Получение типа для левой руки
+    WeaponType get_right_weapon() { return m_right; }  // Получение типа для правой руки
+    
 private:
-    WeaponType m_left;
-    WeaponType m_right;
+    WeaponType m_left;   // Тип оружия в левой руке
+    WeaponType m_right;  // Тип оружия в правой руке
 };
 
+// Функция для демонстрации работы классов
 static void task_1()
 {
-    MagicWeapon magic_weapon;
-    OneHandedWeapon onehanded_weapon;
-    magic_weapon.attack();
+    MagicWeapon magic_weapon;       // Создание магического оружия (конструктор по умолчанию)
+    OneHandedWeapon onehanded_weapon; // Создание одноручного оружия (конструктор по умолчанию)
+    magic_weapon.attack();          // Вызов атаки магическим оружием
 
-    onehanded_weapon.attack();
-    onehanded_weapon.attack();
+    onehanded_weapon.attack();      // Первый вызов атаки одноручным оружием (успешно)
+    onehanded_weapon.attack();      // Второй вызов атаки одноручным оружием (неуспешно)
 
-    TwoHandedWeapon two_handed_weapon(WeaponType::BOW, WeaponType::CROSSBOW);
+    TwoHandedWeapon two_handed_weapon(WeaponType::BOW, WeaponType::CROSSBOW); // Создание двуручного оружия
 
+    // Вывод типов оружия в руках (приведение к int для вывода числовых значений)
     std::cout << "left hand: " << static_cast<int>(two_handed_weapon.get_left_weapon()) << " right hand: " << static_cast<int>(two_handed_weapon.get_right_weapon()) << std::endl;
 }
 
+// Главная функция программы
 int main()
 {
-    std::setlocale(LC_ALL, "Russian");
+    std::setlocale(LC_ALL, "Russian");  // Установка русской локали
 
-    task_1();
+    task_1();  // Вызов демонстрационной функции
 }
+```
