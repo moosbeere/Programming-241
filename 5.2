@@ -32,7 +32,10 @@ public:
     ~Weapon()
     {
         // Вывод информации при уничтожении объекта
-        std::printf("(DESTRUCTOR) name: %s, damage: %d, weight: %d\n", m_name.c_str(), m_damage, m_weight);
+        std::printf("(DESTRUCTOR) name: %s, damage: %d, weight: %d\n", m_name.c_str(), m_damage, m_weight);//
+        
+%s - спецификатор формата для строки
+%d - спецификатор формата для целого числа
     }
 
     // Вывод информации об оружии
