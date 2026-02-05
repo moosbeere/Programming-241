@@ -1,0 +1,80 @@
+#include <iostream>
+using namespace std;
+#include <string>
+#include <vector>
+
+class Vehicle {
+private:
+	string brand;
+	int maxSpeed;
+	int currentSpeed;
+public:
+	Vehicle(string vehicle_brand, int vehicle_maxSpeed) {
+		brand = vehicle_brand;
+		maxSpeed = vehicle_maxSpeed;
+		int currentSpeed = 0;
+	}
+
+	void accelerate(int increment) {
+		currentSpeed += increment;
+		if (currentSpeed > maxSpeed)
+			currentSpeed = maxSpeed;
+	}
+
+	void brake(int decrement) {
+		currentSpeed -= decrement;
+		if (currentSpeed < 0)
+			currentSpeed = 0;
+	}
+
+	void getStatus() {
+		cout << "Марка: " << brand;
+		cout << "Текущая скорость: " << currentSpeed;
+	}
+
+};
+
+class FreightVehicle : public Vehicle {
+private:
+	int cargoCapacity;
+
+public:
+	FreightVehicle(string vehicleBrand, int vehicleMaxSpeed, int capacity) : Vehicle(vehicleBrand, vehicleMaxSpeed) {
+		cargoCapacity = capacity;
+	}
+
+	void getStatus() {
+		Vehicle::getStatus();
+		cout << "Грузоподъемность: " << cargoCapacity;
+	}
+};
+
+
+
+
+
+int main()
+{
+	vector <Vehicle> vehicles;
+
+	vehicles.push_back(Vehicle("BMW", 330));
+	vehicles.push_back(Vehicle("AUDI", 240));
+	vehicles.push_back(Vehicle("LADA", 1000));
+
+	vehicles[0].accelerate(50);
+	vehicles[1].accelerate(20);
+	vehicles[2].accelerate(1000);
+
+	vehicles[0].brake(30);
+	vehicles[1].brake(151);
+	vehicles[2].brake(131);
+
+	vehicles[0].getStatus();
+	vehicles[1].getStatus();
+	vehicles[2].getStatus();
+
+	FreightVehicle kamazz("Gaz", 120, 130);
+	kamazz.getStatus();
+
+
+}
