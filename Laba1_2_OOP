@@ -47,17 +47,16 @@ int main()
 	vehicles.push_back(Vehicle("AUDI", 240));
 	vehicles.push_back(Vehicle("LADA", 1000));
 
-	vehicles[0].accelerate(50);
-	vehicles[1].accelerate(20);
-	vehicles[2].accelerate(1000);
 
-	vehicles[0].brake(30);
-	vehicles[1].brake(151);
-	vehicles[2].brake(131);
-	
-	vehicles[0].getStatus();
-	vehicles[1].getStatus();
-	vehicles[2].getStatus();
+
+	for (int i = 0; i <= 2; i++) {
+		vehicles[i].accelerate(250);
+		vehicles[i].brake(120);
+		vehicles[i].getStatus();
+	}
+
+
 
 
 }
+
