@@ -66,6 +66,7 @@ int main()
 {
     // 2. Создаём объект оружия (статический объект на стеке)
     Weapon sword("Меч рыцаря", 50, 4.5f, WeaponType::TWOHANDED);
+    Weapon alina;
 
     cout << "Статический объект weapon (sword):" << endl;
     sword.print();
