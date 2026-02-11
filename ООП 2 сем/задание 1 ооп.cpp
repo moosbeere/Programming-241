@@ -57,4 +57,5 @@ int main() {
     car.getStatus();   // Текущая скорость: 0
 
     return 0;
+
 }
