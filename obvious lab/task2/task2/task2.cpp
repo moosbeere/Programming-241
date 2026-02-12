@@ -1,44 +1,13 @@
 ﻿#include <iostream>
 #include <string>
 #include <vector>
+#include "transport.h"
 using namespace std;
-
-class Vehicle {
-private:
-	string brand;
-	int maxSpeed;
-	int currentSpeed;
-
-public:
-	Vehicle(string carsBrand, int MaxSpeed) {
-		brand = carsBrand;
-		maxSpeed = MaxSpeed;
-		currentSpeed = 0;
-	}
-
-	void accelerate(int increment) {
-		currentSpeed += increment;
-		if (currentSpeed > maxSpeed) {
-			currentSpeed = maxSpeed;
-		}
-	}
-
-	void brake(int decrement) {
-		currentSpeed -= decrement;
-		if (currentSpeed < 0) {
-			currentSpeed = 0;
-		}
-	}
-
-	void getStatus() {
-		cout << "mark:" << brand<<" ";
-		cout << "speed:" << currentSpeed<<" ";
-	}
-};
 
 
 
 int main() {
+	setlocale(LC_ALL, "RU");
 	vector <Vehicle> carPark;
 
 	carPark.push_back(Vehicle("BYD", 210));
