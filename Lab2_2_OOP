@@ -1,0 +1,91 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+
+class TransportUnit {
+public:
+    virtual double calculateToll(double distance) const = 0;
+
+    virtual ~TransportUnit() {}
+};
+
+class Car : public TransportUnit {
+public:
+    double calculateToll(double distance) const override {
+        return distance * 0.1;
+    }
+};
+
+
+class Truck : public TransportUnit {
+public:
+    double calculateToll(double distance) const override {
+        return distance * 0.3 + 5.0;
+    }
+};
+
+class Route {
+private:
+    string startPoint;
+    string endPoint;
+    double length;
+
+public:
+    Route(string start, string end, double len)
+        : startPoint(start), endPoint(end), length(len) {
+    }
+
+    void printInfo() const {
+        cout << "Старт " << startPoint << "\n";
+        cout << "Финиш " << endPoint << "\n";
+        cout << "Длина " << length << "\n";
+    }
+
+    double getLength() const {
+        return length;
+    }
+};
+
+class AssignedRoute {
+private:
+    Route route;
+    TransportUnit* transport;
+
+public:
+    AssignedRoute(string start, string end, double km, TransportUnit* vehicle)
+        : route(start, end, km), transport(vehicle) {
+    }
+
+    double calculateTotalCost() const {
+        return transport->calculateToll(route.getLength());
+    }
+
+    void printAssignedInfo() const {
+        route.printInfo();
+        cout << "Стоимость " << calculateTotalCost() << "\n";
+    }
+
+    ~AssignedRoute() {}
+};
+
+int main() {
+    setlocale(LC_ALL, "RUS");
+
+ 
+    Car car1, car2;
+    Truck truck1, truck2;
+
+    AssignedRoute route1("Москва", "Алматы", 700, &car1);
+    AssignedRoute route2("Париж", "Москва", 800, &truck1);
+    AssignedRoute route3("Москва", "Мытищи", 760, &car2);
+    AssignedRoute route4("Екатеринбург", "Тюмень", 320, &truck2);
+
+
+    route1.printAssignedInfo();
+    route2.printAssignedInfo();
+    route3.printAssignedInfo();
+    route4.printAssignedInfo();
+
+    return 0;
+}
