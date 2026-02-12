@@ -1,7 +1,7 @@
 #pragma once
 using namespace std;
+#include <string>
 
-#include <string>;
 
 class Vehicle {
 private:
@@ -10,7 +10,7 @@ private:
 	int currentSpeed;
 
 public:
-	Vehicle(const string& brand, int maxSpeed);
+	Vehicle(const string brand, int maxSpeed);
 	
 	void accelerate(int increment);
 	void brake(int decrement);
@@ -21,3 +21,4 @@ public:
 	int CurrentSpeed()const;
 
 };
+
