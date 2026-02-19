@@ -1,0 +1,53 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+template <typename T>
+class Warehouse {
+private:
+    vector<T> items;   
+
+public:
+
+    void addItem(const T& item) {
+        items.push_back(item);
+    }
+
+    T getItem(int index){
+        return items[index];
+
+    }
+
+    int getTotalItems() {
+        return items.size();
+    }
+};
+
+int main() {
+
+    setlocale(LC_ALL, "RUS");
+
+    Warehouse<int> a;
+    a.addItem(123);
+    a.addItem(2322);
+    a.addItem(303);
+
+    cout << a.getTotalItems() << "\n";
+
+    cout << a.getItem(0) << "\n";
+
+
+
+    Warehouse<string> b;
+    b.addItem("Молоток");
+    b.addItem("Холодильник");
+    b.addItem("Стол");
+
+
+    cout << b.getTotalItems() << "\n";
+
+    cout << b.getItem(1);
+
+ 
+}
