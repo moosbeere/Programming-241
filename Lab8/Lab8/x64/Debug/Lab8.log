@@ -1,0 +1,13 @@
+﻿  Lab8.cpp
+C:\Users\kfedo\Documents\2kurs\proga4sem\OOP\Lab8\Warehouse.h(24,26): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
+  (компиляция исходного файла "Lab8.cpp")
+      C:\Users\kfedo\Documents\2kurs\proga4sem\OOP\Lab8\Warehouse.h(24,26):
+      контекст создания экземпляра шаблона (сначала самый старый)
+          C:\Users\kfedo\Documents\2kurs\proga4sem\OOP\Lab8\Lab8.cpp(20,23):
+          выполняется компиляция ссылки на экземпляр класс шаблон функции "Warehouse<std::string>"
+          C:\Users\kfedo\Documents\2kurs\proga4sem\OOP\Lab8\Warehouse.h(23,9):
+          во время компиляции функции-члена класс шаблон "int Warehouse<std::string>::getTotalItems(void)"
+              C:\Users\kfedo\Documents\2kurs\proga4sem\OOP\Lab8\Lab8.cpp(25,101):
+              см. первую ссылку на "Warehouse<std::string>::getTotalItems" в "main"
+  
+  Lab8.vcxproj -> C:\Users\kfedo\Documents\2kurs\proga4sem\OOP\Lab8\x64\Debug\Lab8.exe
