@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+
+
+class DispatchCenter {
+public:
+    static int totalVehiclesDispatched;
+
+    static void report() {
+        cout << "Всего машин: " << totalVehiclesDispatched << "\n";
+    }
+};
+
+
+int DispatchCenter::totalVehiclesDispatched = 0;
+
+
+class Vehicle {
+public:
+    Vehicle() {
+        DispatchCenter::totalVehiclesDispatched++;
+    }
+};
+
+
+int main() {
+    Vehicle a;
+    Vehicle b;
+    Vehicle c;
+
+    DispatchCenter::report();
+}
+
+
