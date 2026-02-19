@@ -14,10 +14,10 @@ void Vehicle::accelerate(int increment) {
 }
 
 void Vehicle::brake(int decrement) {
-    if (decrement > 0) {               // защита от отрицательного торможения
+    if (decrement > 0) {              
         currentSpeed -= decrement;
         if (currentSpeed < 0) {
-            currentSpeed = 0;           // не даём уйти в минус
+            currentSpeed = 0;          
         }
     }
 }
@@ -27,4 +27,5 @@ void Vehicle::getStatus() const {
               << "Максимальная скорость: " << maxSpeed << " км/ч\n"
               << "Текущая скорость: " << currentSpeed << " км/ч\n"
               << "------------------------------\n";
+
 }
