@@ -1,0 +1,86 @@
+#include <iostream>
+#include <vector>
+#include <memory>
+using namespace std;
+
+class TransportUnit {
+public:
+    virtual double calculateToll(double distance) const = 0;
+    virtual ~TransportUnit() {}
+};
+
+class Car : public TransportUnit {
+public:
+    double calculateToll(double distance) const override {
+        return distance * 0.1;
+    }
+};
+
+class Truck : public TransportUnit {
+public:
+    double calculateToll(double distance) const override {
+        return distance * 0.3 + 5.0;
+    }
+};
+
+class Route {
+private:
+    string startPoint;
+    string endPoint;
+    double length;
+
+public:
+    Route(string start, string end, double len)
+        : startPoint(start), endPoint(end), length(len) {
+    }
+
+    void printInfo() const {
+        cout << "Старт: " << startPoint << "\n";
+        cout << "Финиш: " << endPoint << "\n";
+        cout << "Длина: " << length << "\n";
+    }
+
+    double getLength() const {
+        return length;
+    }
+};
+
+class AssignedRoute {
+private:
+    Route route;
+    unique_ptr<TransportUnit> transport;
+
+public:
+    AssignedRoute(string start, string end, double km,
+        unique_ptr<TransportUnit> vehicle)
+        : route(start, end, km), transport(move(vehicle)) {
+    }
+
+    double calculateTotalCost() const {
+        return transport->calculateToll(route.getLength());
+    }
+
+    void printAssignedInfo() const {
+        route.printInfo();
+        cout << "Стоимость: " << calculateTotalCost() << "\n\n";
+    }
+};
+
+int main() {
+    setlocale(LC_ALL, "RUS");
+
+    AssignedRoute route1(
+        "Москва", "Алматы", 700,
+        make_unique<Car>()
+    );
+
+    AssignedRoute route2(
+        "Париж", "Москва", 800,
+        make_unique<Truck>()
+    );
+
+    route1.printAssignedInfo();
+    route2.printAssignedInfo();
+
+    return 0;
+}
