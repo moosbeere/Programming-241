@@ -15,20 +15,20 @@ private:
 public:
     /**
      * Конструктор с параметрами.
-     * @param brand марка
-     * @param maxSpeed максимальная скорость
+     * brand марка
+     * maxSpeed максимальная скорость
      */
     Vehicle(const std::string& brand, int maxSpeed);
 
     /**
      * Увеличить текущую скорость на increment (но не выше maxSpeed).
-     * @param increment величина увеличения
+     *  increment величина увеличения
      */
     void accelerate(int increment);
 
     /**
      * Уменьшить текущую скорость на decrement (но не ниже 0).
-     * @param decrement величина уменьшения
+     *  decrement величина уменьшения
      */
     void brake(int decrement);
 
@@ -39,3 +39,4 @@ public:
 };
 
 #endif // VEHICLE_H
+
