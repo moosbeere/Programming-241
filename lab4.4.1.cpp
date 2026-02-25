@@ -1,4 +1,3 @@
-#include "lab4.4.2.h"
 #include "lab4.4.3.h"
 #include "lab4.4.4.h"
 #include <iostream>
