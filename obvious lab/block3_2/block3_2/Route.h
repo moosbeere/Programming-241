@@ -15,20 +15,18 @@ public:
 
 class AssignedRoute {
 private:
-    unique_ptr<TransportUnit> transport;  // unique_ptr вместо обычного указател€!
+    unique_ptr<TransportUnit> transport;  
     Route* route;
 
 public:
-    //  онструктор принимает unique_ptr (забирает владение)
     AssignedRoute(unique_ptr<TransportUnit> t, Route* r);
 
-    // «апрещаем копирование (unique_ptr нельз€ копировать)
     AssignedRoute(const AssignedRoute&) = delete;
     AssignedRoute& operator=(const AssignedRoute&) = delete;
 
-    // ƒеструктор (можно оставить дл€ отладки)
     ~AssignedRoute();
 
     double calculateTotalCost();
     void PrintInfo();
 };
+

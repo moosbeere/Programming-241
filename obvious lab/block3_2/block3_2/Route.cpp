@@ -10,17 +10,15 @@ void Route::PrintInfo()
     cout << "Длина: " << length << " км" << endl;
 }
 
-// Конструктор забирает владение unique_ptr через move
 AssignedRoute::AssignedRoute(unique_ptr<TransportUnit> t, Route* r)
-    : transport(move(t)), route(r)  // move передает владение
+    : transport(move(t)), route(r)  
 {
-    cout << "Создание назначенного маршрута с unique_ptr" << endl;
+
 }
 
 AssignedRoute::~AssignedRoute()
 {
-    cout << "Удаление назначенного маршрута" << endl;
-    // transport удалится автоматически!
+
 }
 
 double AssignedRoute::calculateTotalCost()
@@ -30,8 +28,7 @@ double AssignedRoute::calculateTotalCost()
 
 void AssignedRoute::PrintInfo()
 {
-    cout << "\n=== НАЗНАЧЕННЫЙ МАРШРУТ ===" << endl;
     route->PrintInfo();
     cout << "Транспорт: " << transport->getLicensePlate() << endl;
-    cout << "Стоимость проезда: " << calculateTotalCost() << " у.е." << endl;
+    cout << "Стоимость проезда: " << calculateTotalCost() << endl;
 }
