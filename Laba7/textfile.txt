@@ -1,8 +1,0 @@
-'read'
-'exit'
-
-
-0
-'read'
-'erase'
-exit'
