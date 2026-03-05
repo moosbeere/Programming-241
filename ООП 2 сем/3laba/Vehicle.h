@@ -1,28 +1,22 @@
-#ifndef VEHICLE_H      // Защита от повторного включения
+#ifndef VEHICLE_H
 #define VEHICLE_H
 
 #include <iostream>
 #include <string>
 
-// Базовый класс "Транспортное средство"
 class Vehicle {
 private:
-    std::string brand;  // Марка транспортного средства
+    std::string brand;          
 
 public:
-    // Конструктор с параметром для инициализации марки
+    // Конструктор с одним параметром (марка)
     Vehicle(const std::string& b) : brand(b) {}
 
-    // Виртуальный деструктор (нужен для корректного удаления через указатель на базовый класс)
-    virtual ~Vehicle() {}
-
-    // Виртуальный метод для получения статуса (будет переопределён в наследниках)
-    virtual void getStatus() const {
+  
+    virtual void getStatus() {
         std::cout << "Марка: " << brand << std::endl;
     }
-
-    // Метод доступа к марке (если понадобится в наследниках)
-    std::string getBrand() const { return brand; }
 };
 
 #endif
+
