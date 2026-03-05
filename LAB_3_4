@@ -1,0 +1,48 @@
+#include <iostream>
+#include <algorithm>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+class Vehicle {
+private:
+    string name;
+    int maxSpeed;
+
+public:
+    Vehicle(const string& n, int speed) : name(n), maxSpeed(speed) {}
+
+    bool operator<(const Vehicle& other) const {
+        return this->maxSpeed < other.maxSpeed;
+    }
+
+    int getMaxSpeed() const {
+        return maxSpeed;
+    }
+
+    void display() const {
+        cout << name << " " << maxSpeed << endl;
+    }
+};
+
+int main() {
+    setlocale(LC_ALL, "RUS");
+
+    vector<Vehicle> vehicles = {
+        Vehicle("Бентли", 280),
+        Vehicle("Москвич", 220),
+        Vehicle("Бэтмобиль", 120),
+        Vehicle("F1", 350),
+
+    };
+
+
+    sort(vehicles.begin(), vehicles.end());
+
+    for (const auto& v : vehicles) {
+        v.display();
+    }
+
+    return 0;
+}
