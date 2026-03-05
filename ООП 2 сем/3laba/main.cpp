@@ -1,18 +1,18 @@
-#include <iostream>
 #include "FreightVehicle.h"
 
 int main() {
     // Создаём объект грузового транспорта
     FreightVehicle truck("КамАЗ", 12.5);
 
-    // Вызываем переопределённый метод getStatus()
+    // Прямой вызов метода через объект
     std::cout << "Информация о грузовике:\n";
     truck.getStatus();
 
-    // Демонстрация полиморфизма: указатель на базовый класс, объект производного
+    // Создаём указатель на базовый класс, который указывает на тот же объект
     Vehicle* ptr = &truck;
+
     std::cout << "\nЧерез указатель на Vehicle:\n";
-    ptr->getStatus();  // вызовется версия FreightVehicle (благодаря virtual)
+    (*ptr).getStatus();  
 
     return 0;
 }
