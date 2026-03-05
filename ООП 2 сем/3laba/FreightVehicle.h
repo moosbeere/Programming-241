@@ -1,19 +1,18 @@
 #ifndef FREIGHTVEHICLE_H
 #define FREIGHTVEHICLE_H
 
-#include "Vehicle.h"   // Подключаем базовый класс
+#include "Vehicle.h"
 
-// Производный класс "Грузовой транспорт"
 class FreightVehicle : public Vehicle {
 private:
-    double cargoCapacity;  // Грузоподъёмность в тоннах (private)
+    double cargoCapacity;          // новое поле — грузоподъёмность
 
 public:
-    // Конструктор: передаём марку в базовый класс и инициализируем своё поле
     FreightVehicle(const std::string& b, double capacity);
 
-    // Переопределённый метод getStatus() — теперь выводит и грузоподъёмность
-    void getStatus() const override;
+    // Переопределённый метод getStatus()
+    void getStatus();
 };
 
 #endif
+
