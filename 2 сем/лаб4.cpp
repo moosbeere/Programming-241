@@ -1,42 +1,7 @@
 #include <iostream>
 #include <vector>
 
-// Абстрактный базовый класс "Транспортная единица"
-class TransportUnit
-{
-public:
-    // Чисто виртуальная функция расчёта платы за проезд
-    virtual double calculateToll(double distance) const = 0;
-
-    // Виртуальный деструктор для корректного удаления через указатель базового класса
-    virtual ~TransportUnit() = default;
-};
-
-// Легковой автомобиль
-class Car : public TransportUnit
-{
-public:
-    // Плата = distance * 0.1
-    double calculateToll(double distance) const override
-    {
-        if (distance < 0)
-            distance = 0;
-        return distance * 0.1;
-    }
-};
-
-// Грузовик
-class Truck : public TransportUnit
-{
-public:
-    // Плата = distance * 0.3 + 5.0
-    double calculateToll(double distance) const override
-    {
-        if (distance < 0)
-            distance = 0;
-        return distance * 0.3 + 5.0;
-    }
-};
+#include "transport_unit.h"
 
 int main()
 {

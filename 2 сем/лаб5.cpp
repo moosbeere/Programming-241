@@ -1,35 +1,7 @@
 #include <iostream>
 #include <string>
 
-// Базовый абстрактный класс (как в задаче 4)
-class TransportUnit
-{
-public:
-    virtual double calculateToll(double distance) const = 0;
-    virtual ~TransportUnit() = default;
-};
-
-class Car : public TransportUnit
-{
-public:
-    double calculateToll(double distance) const override
-    {
-        if (distance < 0)
-            distance = 0;
-        return distance * 0.1;
-    }
-};
-
-class Truck : public TransportUnit
-{
-public:
-    double calculateToll(double distance) const override
-    {
-        if (distance < 0)
-            distance = 0;
-        return distance * 0.3 + 5.0;
-    }
-};
+#include "transport_unit.h"
 
 // Класс "Маршрут" (композиция)
 class Route

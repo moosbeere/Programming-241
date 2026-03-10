@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 
+#include "vehicle.h"
+
 // Диспетчерский центр
 class DispatchCenter
 {
@@ -19,23 +21,15 @@ public:
 // Обязательное определение статического поля
 int DispatchCenter::totalVehiclesDispatched = 0;
 
-// Класс "Транспортное средство"
-class Vehicle
+// Класс-обёртка над Vehicle для учёта в диспетчерской
+class CountedVehicle : public Vehicle
 {
-private:
-    std::string brand;
-
 public:
-    Vehicle(const std::string& brand)
-        : brand(brand)
+    CountedVehicle(const std::string& brand, int maxSpeed)
+        : Vehicle(brand, maxSpeed)
     {
-        // Каждый созданный объект Vehicle регистрируется в диспетчерской
+        // Каждый созданный объект регистрируется в диспетчерской
         DispatchCenter::totalVehiclesDispatched++;
-    }
-
-    void getStatus() const
-    {
-        std::cout << "Vehicle brand: " << brand << "\n";
     }
 };
 
@@ -44,16 +38,16 @@ int main()
     std::cout << "Before creating vehicles:\n";
     DispatchCenter::report();
 
-    Vehicle v1("Toyota");
-    Vehicle v2("BMW");
-    Vehicle v3("Volvo");
+    CountedVehicle v1("Toyota", 180);
+    CountedVehicle v2("BMW", 220);
+    CountedVehicle v3("Volvo", 160);
 
     std::cout << "\nAfter creating 3 vehicles:\n";
     DispatchCenter::report();
 
     {
-        Vehicle v4("Mercedes");
-        Vehicle v5("Audi");
+        CountedVehicle v4("Mercedes", 200);
+        CountedVehicle v5("Audi", 210);
         std::cout << "\nAfter creating 2 more vehicles in inner scope:\n";
         DispatchCenter::report();
     }

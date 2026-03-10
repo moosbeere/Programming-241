@@ -1,50 +1,7 @@
 #include <iostream>
 #include <string>
 
-// Базовый класс "Транспортное средство" (как в лабе 2)
-class Vehicle
-{
-private:
-    std::string brand;   // марка транспортного средства
-    int maxSpeed;        // максимальная возможная скорость
-    int currentSpeed;    // текущая скорость (меняется при ускорении/торможении)
-
-public:
-    Vehicle(const std::string& brand, int maxSpeed)
-        : brand(brand),
-          maxSpeed(maxSpeed < 0 ? 0 : maxSpeed),
-          currentSpeed(0)
-    {
-    }
-
-    void accelerate(int increment)
-    {
-        if (increment <= 0)
-            return;
-
-        currentSpeed += increment;
-        if (currentSpeed > maxSpeed)
-            currentSpeed = maxSpeed;
-    }
-
-    void brake(int decrement)
-    {
-        if (decrement <= 0)
-            return;
-
-        currentSpeed -= decrement;
-        if (currentSpeed < 0)
-            currentSpeed = 0;
-    }
-
-    void getStatus() const
-    {
-        std::cout << "Vehicle status:\n";
-        std::cout << "  brand: " << brand << "\n";
-        std::cout << "  maxSpeed: " << maxSpeed << "\n";
-        std::cout << "  currentSpeed: " << currentSpeed << "\n";
-    }
-};
+#include "vehicle.h"
 
 // Класс "Грузовой транспорт", наследуется от Vehicle
 class FreightVehicle : public Vehicle
@@ -62,7 +19,7 @@ public:
 
     // Переопределённый (расширенный) метод getStatus:
     // сначала выводит информацию базового класса, затем грузоподъёмность
-    void getStatus() const
+    void getStatus() const override
     {
         Vehicle::getStatus();
         std::cout << "  cargoCapacity: " << cargoCapacity << " tons\n";
