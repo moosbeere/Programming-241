@@ -2,67 +2,8 @@
 #include <string>
 
 #include "transport_unit.h"
-
-// Класс "Маршрут" (композиция)
-class Route
-{
-private:
-    std::string startPoint;
-    std::string endPoint;
-    double length; // в км
-
-public:
-    Route(const std::string& startPoint,
-          const std::string& endPoint,
-          double length)
-        : startPoint(startPoint),
-          endPoint(endPoint),
-          length(length < 0 ? 0.0 : length)
-    {
-    }
-
-    double getLength() const
-    {
-        return length;
-    }
-
-    void printInfo() const
-    {
-        std::cout << "Route info:\n";
-        std::cout << "  from: " << startPoint << "\n";
-        std::cout << "  to:   " << endPoint << "\n";
-        std::cout << "  length: " << length << " km\n";
-    }
-};
-
-// Класс "Назначенный маршрут" (композиция + агрегация)
-class AssignedRoute
-{
-private:
-    Route route;                 // композиция: маршрут - часть объекта
-    TransportUnit* transport;    // агрегация: внешний по управлению объект
-
-public:
-    AssignedRoute(const Route& route, TransportUnit* transport)
-        : route(route),
-          transport(transport)
-    {
-    }
-
-    // Стоимость поездки по маршруту данным транспортом
-    double calculateTotalCost() const
-    {
-        if (!transport)
-            return 0.0;
-        return transport->calculateToll(route.getLength());
-    }
-
-    void printFullInfo() const
-    {
-        route.printInfo();
-        std::cout << "  total cost: " << calculateTotalCost() << " units\n";
-    }
-};
+#include "route.h"
+#include "assigned_route.h"
 
 int main()
 {
