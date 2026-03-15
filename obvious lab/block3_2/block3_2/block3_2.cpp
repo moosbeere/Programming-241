@@ -16,13 +16,13 @@ int main() {
 
     Route route2;
     route2.startPoint = "Москва";
-    route2.endPoint = "Питер";
+    route2.endPoint = "Саранск";
     route2.length = 700;
 
 
 
     {
-        cout << "Создание с Car" << endl;
+    
 
         unique_ptr<TransportUnit> carPtr = make_unique<Car>("A123BC");
         AssignedRoute assigned1(move(carPtr), &route1);

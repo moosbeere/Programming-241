@@ -1,7 +1,7 @@
 #pragma once
 using namespace std;
 #include <string>
-#include <memory>  // для unique_ptr
+#include <memory>  
 #include "Unit.h"
 
 class Route {
