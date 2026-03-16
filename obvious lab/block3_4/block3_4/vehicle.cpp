@@ -6,7 +6,7 @@ Vehicle::Vehicle(const string brand, int maxSpeed)
     : brand(brand), maxSpeed(maxSpeed), currentSpeed(0) {
 }
 
-// ИСПРАВЛЕНО: было increment+increment, стало currentSpeed + increment
+
 void Vehicle::accelerate(int increment) {
     if (currentSpeed + increment > maxSpeed) {
         currentSpeed = maxSpeed;
@@ -16,7 +16,6 @@ void Vehicle::accelerate(int increment) {
     }
 }
 
-// ИСПРАВЛЕНО: было currentSpeed+decrement, стало currentSpeed - decrement
 void Vehicle::brake(int decrement) {
     if (currentSpeed - decrement <= 0) {
         currentSpeed = 0;
@@ -29,8 +28,8 @@ void Vehicle::brake(int decrement) {
 void Vehicle::getStatus() const {
     cout << "Марка: " << brand << endl;
     cout << "Макс скорость: " << maxSpeed << " км/ч" << endl;
-    cout << "Текущая скорость: " << currentSpeed << " км/ч" << endl;
-    cout << "------------------------" << endl;
+    cout << "Текущая скорость: " << currentSpeed << " км/ч" << endl << endl;
+
 }
 
 string Vehicle::getBrand() const {

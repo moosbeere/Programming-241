@@ -19,7 +19,7 @@ public:
     int getMaxSpeed() const;
     int getCurrentSpeed() const;
 
-    // œ≈–≈√–”« ¿ Œœ≈–¿“Œ–¿ < (ÌÛÊÌ‡ ‰Îˇ sort)
+  
     bool operator<(const Vehicle& other) const {
         return this->maxSpeed < other.maxSpeed;
     }
