@@ -32,7 +32,7 @@ int main() {
     }
 
     {
-        cout << "Создание с Truck сразу в конструкторе" << endl;
+        cout << "" << endl;
 
         AssignedRoute assigned2(make_unique<Truck>("B456CD"), &route2);
         assigned2.PrintInfo();
