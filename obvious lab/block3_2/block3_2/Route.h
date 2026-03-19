@@ -1,32 +1,26 @@
 #pragma once
-using namespace std;
 #include <string>
-#include <memory>  
+#include <memory>
 #include "Unit.h"
-
+using namespace std;
 class Route {
 public:
     string startPoint;
     string endPoint;
     int length;
 
-    void PrintInfo();
+    Route(string from = "", string to = "", int dist = 0);
+    void printInfo() const;
 };
 
 class AssignedRoute {
 private:
-    unique_ptr<TransportUnit> transport;  
-    Route* route;
+    Route route;
+    std::unique_ptr<TransportUnit> transport;
 
 public:
-    AssignedRoute(unique_ptr<TransportUnit> t, Route* r);
+    AssignedRoute(const Route& r, unique_ptr<TransportUnit> t);
 
-    AssignedRoute(const AssignedRoute&) = delete;
-    AssignedRoute& operator=(const AssignedRoute&) = delete;
-
-    ~AssignedRoute();
-
-    double calculateTotalCost();
-    void PrintInfo();
+    double calculateTotalCost() const;
+    void printInfo() const;
 };
-

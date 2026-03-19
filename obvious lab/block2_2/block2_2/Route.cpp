@@ -3,35 +3,25 @@
 #include <memory>
 using namespace std;
 
-void Route::PrintInfo()
-{
-    cout << "Точка отправления: " << startPoint << endl;
-    cout << "Точка назначения: " << endPoint << endl;
-    cout << "Длина: " << length << " км" << endl;
+class Route {
+public:
+    std::string startPoint;
+    std::string endPoint;
+    int length;
+
+    Route(std::string from = "", std::string to = "", int dist = 0);
+    void printInfo() const;
+};
+
+AssignedRoute::AssignedRoute(const Route& r, std::unique_ptr<TransportUnit> t)
+    : route(r), transport(std::move(t)) {
 }
 
-// Конструктор забирает владение unique_ptr через move
-AssignedRoute::AssignedRoute(unique_ptr<TransportUnit> t, Route* r)
-    : transport(move(t)), route(r)  // move передает владение
-{
-    cout << "Создание назначенного маршрута с unique_ptr" << endl;
+double AssignedRoute::calculateTotalCost() const {
+    return transport->calculateToll(route.length);
 }
 
-AssignedRoute::~AssignedRoute()
-{
-    cout << "Удаление назначенного маршрута" << endl;
-    // transport удалится автоматически!
-}
-
-double AssignedRoute::calculateTotalCost()
-{
-    return transport->calculateToll(route->length);
-}
-
-void AssignedRoute::PrintInfo()
-{
-    cout << "\n=== НАЗНАЧЕННЫЙ МАРШРУТ ===" << endl;
-    route->PrintInfo();
-    cout << "Транспорт: " << transport->getLicensePlate() << endl;
-    cout << "Стоимость проезда: " << calculateTotalCost() << " у.е." << endl;
-}
+void AssignedRoute::printInfo() const {
+    std::cout << "\n Назначенный маршрут" << std::endl;
+    route.printInfo();
+    std::cout << "Стоимость проезда: " << calculateTotalCost() << " у.е." << std::endl;

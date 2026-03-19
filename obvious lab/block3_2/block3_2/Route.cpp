@@ -1,34 +1,26 @@
 #include "Route.h"
 #include <iostream>
-#include <memory>
-using namespace std;
 
-void Route::PrintInfo()
-{
-    cout << "Точка отправления: " << startPoint << endl;
-    cout << "Точка назначения: " << endPoint << endl;
-    cout << "Длина: " << length << " км" << endl;
+Route::Route(std::string from, std::string to, int dist)
+    : startPoint(from), endPoint(to), length(dist) {
 }
 
-AssignedRoute::AssignedRoute(unique_ptr<TransportUnit> t, Route* r)
-    : transport(move(t)), route(r)  
-{
-
+void Route::printInfo() const {
+    std::cout << "Маршрут: " << startPoint << " " << endPoint << std::endl;
+    std::cout << "Длина: " << length << " км" << std::endl;
 }
 
-AssignedRoute::~AssignedRoute()
-{
-
+AssignedRoute::AssignedRoute(const Route& r, std::unique_ptr<TransportUnit> t)
+    : route(r), transport(std::move(t)) {
 }
 
-double AssignedRoute::calculateTotalCost()
-{
-    return transport->calculateToll(route->length);
+double AssignedRoute::calculateTotalCost() const {
+    return transport->calculateToll(route.length);
 }
 
-void AssignedRoute::PrintInfo()
-{
-    route->PrintInfo();
-    cout << "Транспорт: " << transport->getLicensePlate() << endl;
-    cout << "Стоимость проезда: " << calculateTotalCost() << endl;
+void AssignedRoute::printInfo() const {
+    std::cout << "\nМаршрут" << std::endl;
+    route.printInfo();
+    std::cout << "Транспорт: " << transport->getType() << std::endl;
+    std::cout << "Стоимость: " << calculateTotalCost() << " у.е." << std::endl;
 }

@@ -129,10 +129,11 @@
   <ItemGroup>
     <ClCompile Include="block3_2.cpp" />
     <ClCompile Include="Route.cpp" />
+    <ClCompile Include="Unit.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\block2_2\block2_2\Unit.h" />
     <ClInclude Include="Route.h" />
+    <ClInclude Include="Unit.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

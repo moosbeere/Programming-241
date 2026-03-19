@@ -21,12 +21,15 @@
     <ClCompile Include="Route.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Unit.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\block2_2\block2_2\Unit.h">
+    <ClInclude Include="Route.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Route.h">
+    <ClInclude Include="Unit.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
