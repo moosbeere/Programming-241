@@ -5,5 +5,5 @@ public:
     double calculateToll(double distance) const override {
         return distance * 2.5; 
     }
-};
+}; 
 
