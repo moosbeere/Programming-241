@@ -13,7 +13,7 @@ public:
 
 	string getFueltypel() const;
 
-	void displayInfo() const override;
-	string getType() const override;
+	void displayInfo() const;
+	string getType() const;
 };
 

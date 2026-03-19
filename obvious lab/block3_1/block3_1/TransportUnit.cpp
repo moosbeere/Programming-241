@@ -1,6 +1,6 @@
 ﻿#include "TransportUnit.h"
 
-int DispatchCenter::totalVehiclesDispatched = 0;
+
 
 void DispatchCenter::report()
 {

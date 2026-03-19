@@ -7,7 +7,6 @@ private:
     string brand;
     int maxSpeed;
     int currentSpeed;
-
 public:
     Vehicle(const string brand, int maxSpeed);
 

@@ -15,6 +15,6 @@ public:
     string getRouteNumber() const;
     int getPassengerCapacity() const;
 
-    void displayInfo() const override = 0;
-    string getType() const override = 0;
+    void displayInfo()const=0;
+    string getType()const=0;
 };

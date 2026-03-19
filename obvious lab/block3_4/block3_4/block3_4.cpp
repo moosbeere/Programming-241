@@ -26,7 +26,7 @@ int main() {
 
     sort(lst.begin(), lst.end());
 
-    cout <<"МАШИНЫ, ОТСОРТИРОВАННЫЕ ПО СКОРОСТИ \n" << endl;
+    cout <<"Сортировка машин по скорости  \n" << endl;
     for (const auto& elem : lst) {
         elem.getStatus();
     }
