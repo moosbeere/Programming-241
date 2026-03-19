@@ -1,0 +1,10 @@
+#include "Route.h"
+#include <iostream>
+
+Route::Route(const std::string& start, const std::string& end, double len)
+    : startPoint(start), endPoint(end), length(len) {}
+
+void Route::printInfo() const {
+    std::cout << "Маршрут: " << startPoint << " -> " << endPoint
+        << ", длина: " << length << " км" << std::endl;
+}
