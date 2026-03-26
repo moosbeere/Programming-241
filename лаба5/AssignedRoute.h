@@ -4,8 +4,8 @@
 
 class AssignedRoute {
 private:
-    Route route;                  // композиция
-    const TransportUnit* transport; // агрегация (указатель, не владеет)
+    Route route;                  
+    const TransportUnit* transport;
 public:
     AssignedRoute(const Route& r, const TransportUnit* t);
     double calculateTotalCost() const;
