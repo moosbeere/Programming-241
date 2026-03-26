@@ -5,6 +5,6 @@ Route::Route(const std::string& start, const std::string& end, double len)
     : startPoint(start), endPoint(end), length(len) {}
 
 void Route::printInfo() const {
-    std::cout << "Ìàðøðóò: " << startPoint << " -> " << endPoint
-        << ", äëèíà: " << length << " êì" << std::endl;
+    std::cout << "ÐÐ°Ñ‡Ð°Ð»ÑŒÐ½Ð°Ñ Ñ‚Ð¾Ñ‡ÐºÐ°: " << startPoint << " -> " << endPoint
+        << ", Ð´Ð»Ð¸Ð½Ð°" << length << " ÃªÃ¬" << std::endl;
 }
