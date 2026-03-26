@@ -12,6 +12,6 @@ int main(){
 	bus.getInfo();
 	cout << "\n";
 	Tram tram("Травмвай", 80, "9C" , 120, 350);
-	tram.getStatus();
+	cout << "Трамвай \n";
 	tram.getInfo();
 }

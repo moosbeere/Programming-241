@@ -2,7 +2,7 @@
 #include <iostream>
 #include "PublicTransport.h"
 using namespace std;
-class Tram:PublicTransport, virtual public Vehicle
+class Tram:PublicTransport
 {
 public:
 	int electricLineVoltage;
