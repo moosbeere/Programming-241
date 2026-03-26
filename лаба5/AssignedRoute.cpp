@@ -13,5 +13,5 @@ double AssignedRoute::calculateTotalCost() const {
 
 void AssignedRoute::printAssignedInfo() const {
     route.printInfo();
-    std::cout << "Îáùàÿ ñòîèìîñòü ïðîåçäà: " << calculateTotalCost() << " ó.å." << std::endl;
+    std::cout << "Ð¡Ñ‚Ð¾Ð¸Ð¼Ð¾ÑÑ‚ÑŒ Ð¼Ð°Ñ€ÑˆÑ€ÑƒÑ‚Ð°: " << calculateTotalCost() << " Ñ€ÑƒÐ±Ð»ÐµÐ¹" << std::endl;
 }
