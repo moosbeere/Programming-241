@@ -9,7 +9,7 @@ public:
 
     
     static void report() {
-        std::cout << "Îáùåå êîëè÷åñòâî îáñëóæåííûõ òðàíñïîðòíûõ ñðåäñòâ: " << totalVehiclesDispatched << std::endl;
+        std::cout << "ÐžÐ±Ñ‰ÐµÐµ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð¾Ð±ÑÐ»ÑƒÐ¶ÐµÐ½Ð½Ñ‹Ñ… Ñ‚Ñ€Ð°Ð½ÑÐ¿Ð¾Ñ€Ñ‚Ð½Ñ‹Ñ… ÑÑ€ÐµÐ´ÑÑ‚Ð²:" << totalVehiclesDispatched << std::endl;
     }
 
 };
