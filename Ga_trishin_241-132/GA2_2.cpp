@@ -1,0 +1,18 @@
+﻿#include <iostream>
+#include <vector>
+using namespace std;
+
+int func(int a) {
+    if (a < 10)
+        return a;
+    else
+        return (a % 10) + func(a / 10);
+}
+
+int main()
+{
+    setlocale(LC_ALL, "rus");
+    int n;
+    cin >> n;
+    cout << func(n);
+}
