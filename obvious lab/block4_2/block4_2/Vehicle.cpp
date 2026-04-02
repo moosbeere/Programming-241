@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Vehicle::Vehicle(std::string str, int mS) {
+Vehicle::Vehicle(string str, int mS) {
     brand = str;
     maxSpeed = mS;
     currentSpeed = 0;
