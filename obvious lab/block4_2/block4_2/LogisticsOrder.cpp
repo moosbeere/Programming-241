@@ -2,9 +2,9 @@
 #include "FreightVehicle.h"
 #include <iostream>
 
-LogisticsOrder::LogisticsOrder(double w) : weight(w) {}
+LogisticsOrder::LogisticsOrder(double w) : weight(w) {};
 
-void LogisticsOrder::assignVehicle(Vehicle v) {
+void LogisticsOrder::assignVehicle(Vehicle& v) {
     if (weight < 0) {
         throw invalid_argument("Масса не может быть отрецательной");
     }
@@ -14,6 +14,3 @@ void LogisticsOrder::assignVehicle(Vehicle v) {
     cout <<"" << std::endl;
 }
 
-double LogisticsOrder::getWeight() {
-    return weight;
-}

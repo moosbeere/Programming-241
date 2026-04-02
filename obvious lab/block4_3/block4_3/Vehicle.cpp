@@ -29,7 +29,15 @@ bool Vehicle::operator<(const Vehicle& other) const {
     return this->maxSpeed < other.maxSpeed;
 }
 
-double Vehicle::getCargoCapacity() const
-{
-    return 0.0;
+int Vehicle::getCurrentSpeed() const {
+    return currentSpeed;
 }
+
+int Vehicle::getMaxSpeed() const {
+    return maxSpeed;
+}
+
+string Vehicle::getBrand() const {
+    return brand;
+}
+

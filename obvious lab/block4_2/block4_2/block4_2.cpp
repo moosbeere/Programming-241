@@ -8,40 +8,40 @@ using namespace std;
 int main() {
     setlocale(LC_ALL, "RU");
     try {
-        FreightVehicle truck("Volvo", 120, 10.0);
-        LogisticsOrder order1(5.0);
+        FreightVehicle truck("Volvo", 120, 10);
+        LogisticsOrder order1(9);
         order1.assignVehicle(truck);
-        cout << "Order1 добавлен.\n";
+        cout << "Заказ1 добавлен.\n";
     }
     catch (invalid_argument e) {
         cerr << "Исключение: " << e.what() << endl;
     }
 
     try {
-        FreightVehicle truck("MAN", 100, 5.0);
-        LogisticsOrder order2(7.0);
+        FreightVehicle truck("MAN", 100, 5);
+        LogisticsOrder order2(3);
         order2.assignVehicle(truck);
-        cout << "Order2 добавлен.\n";
+        cout << "Заказ2 добавлен.\n";
     }
     catch (invalid_argument e) {
         cerr << "Исключение: " << e.what() << endl;
     }
 
     try {
-        Vehicle car("Lada", 250);
+        Vehicle car("Lada", 200);
         LogisticsOrder order3(200);
         order3.assignVehicle(car);
-        cout << "Order3 добавлен.\n";
+        cout << "Заказ3 добавлен.\n";
     }
     catch (invalid_argument e) {
         cerr << "Исключение: " << e.what() << endl;
     }
 
     try {
-        FreightVehicle truck("Kamaz", 90, 8.0);
-        LogisticsOrder order4(-3.0);
+        FreightVehicle truck("Kamaz", 90, 8);
+        LogisticsOrder order4(-3);
         order4.assignVehicle(truck);
-        cout << "Order4 добавлен.\n";
+        cout << "Заказ4 добавлен.\n";
     }
     catch (invalid_argument e) {
         cerr << "Исключение: " << e.what() << endl;

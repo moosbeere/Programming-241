@@ -14,4 +14,4 @@ int main(){
 	Tram tram("Травмвай", 80, "9C" , 120, 350);
 	cout << "Трамвай \n";
 	tram.getInfo();
-}
+}	

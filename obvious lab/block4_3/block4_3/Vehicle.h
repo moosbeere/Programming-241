@@ -9,10 +9,12 @@ private:
     int maxSpeed;
     int currentSpeed;
 public:
-    Vehicle(std::string str, int mS);
+    Vehicle(string str, int mS);
     void accelerate(int num);
     void brake(int num);
     void getStatus();
     bool operator<(const Vehicle& other) const;
-    virtual double getCargoCapacity() const ;
+    int getCurrentSpeed() const;
+    int getMaxSpeed() const;
+    string getBrand() const;
 };

@@ -6,6 +6,5 @@ private:
 	double weight;
 public:
 	LogisticsOrder(double w);
-	void assignVehicle(Vehicle v);
-	double getWeight();
+	void assignVehicle(Vehicle& v);
 };
