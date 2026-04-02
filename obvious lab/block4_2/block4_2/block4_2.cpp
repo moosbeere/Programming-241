@@ -8,7 +8,7 @@ using namespace std;
 int main() {
     setlocale(LC_ALL, "RU");
     try {
-        FreightVehicle truck("Volvo", 120, 10);
+        FreightVehicle truck("TOYOTA", 120, 10);
         LogisticsOrder order1(9);
         order1.assignVehicle(truck);
         cout << "Заказ1 добавлен.\n";
@@ -18,7 +18,7 @@ int main() {
     }
 
     try {
-        FreightVehicle truck("MAN", 100, 5);
+        FreightVehicle truck("TRUCK", 100, 5);
         LogisticsOrder order2(3);
         order2.assignVehicle(truck);
         cout << "Заказ2 добавлен.\n";
@@ -28,7 +28,7 @@ int main() {
     }
 
     try {
-        Vehicle car("Lada", 200);
+        Vehicle car("AUDI", 200);
         LogisticsOrder order3(200);
         order3.assignVehicle(car);
         cout << "Заказ3 добавлен.\n";
