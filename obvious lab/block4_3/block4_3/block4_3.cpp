@@ -17,12 +17,12 @@ int main() {
     flow.addVehicle(make_unique<Car>("Toyota"));
     flow.addVehicle(make_unique<Truck>("KamAZ", 15));
     flow.addVehicle(make_unique<Car>("BMW"));
-    flow.addVehicle(make_unique<Truck>("Volvo", 20));
+    flow.addVehicle(make_unique<Truck>("Shkoda", 20));
 
     cout << "\nВсего машин: " << flow.getVehicleCount() << endl;
 
     for (int step = 0; step <= 10; ++step) {
-        cout << "\n--- Время: " << step << " с ---" << endl;
+        cout << "\nВремя: " << step << " с" << endl;
         flow.printStatus();
 
         if (step < 10) {

@@ -3,5 +3,5 @@
 
 class Truck : public Vehicle {
 public:
-    Truck(string brand);
+    Truck(string brand, int maxSpeed);
 };

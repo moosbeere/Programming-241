@@ -1,2 +1,2 @@
 #include "Truck.h"
-Truck::Truck(string brand) : Vehicle(brand, 120) {}
+Truck::Truck(string brand, int maxSpeed) : Vehicle(brand, 120) {}

@@ -20,9 +20,9 @@ void TrafficFlow::simulate(double timeStep, const RoadSegment& road) {
 }
 
 void TrafficFlow::printStatus() const {
-    cout << "\n=== ÏÎÒÎÊ ÒÐÀÍÑÏÎÐÒÀ ===" << endl;
+    cout << "\n Ïîòîê òðàíñïîðòà:" << endl;
     for (size_t i = 0; i < vehicles.size(); ++i) {
-        cout << i + 1 << ". " << vehicles[i]->getBrand() << " | ñêîðîñòü: "
+        cout << i + 1 << ". " << vehicles[i]->getBrand() << " ñêîðîñòü: "
             << vehicles[i]->getCurrentSpeed() << " êì/÷" << endl;
     }
 }
