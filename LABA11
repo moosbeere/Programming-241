@@ -1,0 +1,42 @@
+#include <iostream>
+#include <stdexcept>
+
+using namespace std;
+
+class FreightVehicle {
+private:
+    double cargoCapacity;
+public:
+    FreightVehicle(double capacity) : cargoCapacity(capacity) {}
+    double getCargoCapacity() { return cargoCapacity; }
+};
+
+class LogisticsOrder {
+private:
+    double weight;
+public:
+    LogisticsOrder(double w) : weight(w) {}
+
+    void assignVehicle(FreightVehicle& v) {
+        if (weight < 0) {
+            throw invalid_argument("Weight negative");
+        }
+        if (weight > v.getCargoCapacity()) {
+            throw invalid_argument("cargo capacity");
+        }
+    }
+};
+
+int main() {
+    FreightVehicle truck(5000);
+
+    try {
+        LogisticsOrder order(6000);
+        order.assignVehicle(truck);
+    }
+    catch (const invalid_argument& e) {
+        cout << e.what() << endl;
+    }
+
+    return 0;
+}
