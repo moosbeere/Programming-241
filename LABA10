@@ -1,0 +1,63 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Vehicle {
+protected:
+    string manufacturer;
+public:
+    Vehicle(const string& mfr = "") : manufacturer(mfr) {}
+};
+
+class PublicTransport : virtual public Vehicle {
+protected:
+    int routeNumber;
+    int passengerCapacity;
+public:
+    PublicTransport(int route = 0, int capacity = 0, const string& mfr = "")
+        : Vehicle(mfr), routeNumber(route), passengerCapacity(capacity) {
+    }
+};
+
+class Bus : public PublicTransport {
+private:
+    string fuelType;
+public:
+    Bus(int route, int capacity, const string& mfr, const string& fuel)
+        : Vehicle(mfr), PublicTransport(route, capacity, mfr), fuelType(fuel) {
+    }
+
+    void show() {
+        cout << "Bus: route=" << routeNumber
+            << ", capacity=" << passengerCapacity
+            << ", manufacturer=" << manufacturer
+            << ", fuel=" << fuelType << endl;
+    }
+};
+
+class Tram : public PublicTransport {
+private:
+    int electricLineVoltage;
+public:
+    Tram(int route, int capacity, const string& mfr, int voltage)
+        : Vehicle(mfr), PublicTransport(route, capacity, mfr), electricLineVoltage(voltage) {
+    }
+
+    void show() {
+        cout << "Tram: route=" << routeNumber
+            << ", capacity=" << passengerCapacity
+            << ", manufacturer=" << manufacturer
+            << ", voltage=" << electricLineVoltage << endl;
+    }
+};
+
+int main() {
+    Bus bus(101, 50, "Volvo", "Diesel");
+    Tram tram(5, 120, "Tatra", 600);
+
+    bus.show();
+    tram.show();
+
+    return 0;
+}
