@@ -34,7 +34,6 @@ public:
     }
     
     void displayStatus() const {
-        cout << "\n=== Traffic Flow Status ===" << endl;
         for (size_t i = 0; i < vehicles.size(); ++i) {
             cout << "Vehicle " << i << ": ";
             vehicles[i]->display();
@@ -70,7 +69,7 @@ int main() {
     
     for (int step = 0; step < 20; ++step) {
         totalTime += timeStep;
-        cout << "\Time: " << totalTime;
+        cout << "Time: " << totalTime;
         
         flow.simulate(timeStep, road);
         flow.displayStatus();
