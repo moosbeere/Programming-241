@@ -1,0 +1,86 @@
+#include <iostream>
+#include <vector>
+#include <memory>
+#include <algorithm>
+#include "Vehicle.h"
+
+using namespace std;
+
+class RoadSegment {
+private:
+    double length;
+    double maxSpeed;
+    
+public:
+    RoadSegment(double len, double maxSpd) : length(len), maxSpeed(maxSpd) {}
+    
+    double getLength() const { return length; }
+    double getMaxSpeed() const { return maxSpeed; }
+};
+
+class TrafficFlow {
+private:
+    vector<unique_ptr<Vehicle>> vehicles;
+    
+public:
+    void addVehicle(unique_ptr<Vehicle> v) {
+        vehicles.push_back(move(v));
+    }
+    
+    void simulate(double timeStep, RoadSegment& road) {
+        for (auto& v : vehicles) {
+            v->update(timeStep, road.getMaxSpeed());
+        }
+    }
+    
+    void displayStatus() const {
+        cout << "\n=== Traffic Flow Status ===" << endl;
+        for (size_t i = 0; i < vehicles.size(); ++i) {
+            cout << "Vehicle " << i << ": ";
+            vehicles[i]->display();
+            cout << endl;
+        }
+    }
+    
+    void removeVehiclesFinished(double roadLength) {
+        vehicles.erase(
+            remove_if(vehicles.begin(), vehicles.end(),
+                [roadLength](const unique_ptr<Vehicle>& v) {
+                    return v->getPosition() >= roadLength;
+                }),
+            vehicles.end()
+        );
+    }
+    
+    size_t size() const {
+        return vehicles.size();
+    }
+};
+
+int main() {
+    RoadSegment road(1000, 25.0);
+    TrafficFlow flow;
+    
+    flow.addVehicle(make_unique<Car>());
+    flow.addVehicle(make_unique<Truck>());
+    flow.addVehicle(make_unique<Car>());
+    
+    double timeStep = 1.0;
+    double totalTime = 0;
+    
+    for (int step = 0; step < 20; ++step) {
+        totalTime += timeStep;
+        cout << "\n--- Time: " << totalTime << " seconds ---";
+        
+        flow.simulate(timeStep, road);
+        flow.displayStatus();
+        flow.removeVehiclesFinished(road.getLength());
+        
+        if (flow.size() == 0) {
+            cout << "\nAll vehicles reached the end!" << endl;
+            break;
+        }
+    }
+    
+    return 0;
+}
