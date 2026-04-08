@@ -70,14 +70,14 @@ int main() {
     
     for (int step = 0; step < 20; ++step) {
         totalTime += timeStep;
-        cout << "\n--- Time: " << totalTime << " seconds ---";
+        cout << "\Time: " << totalTime;
         
         flow.simulate(timeStep, road);
         flow.displayStatus();
         flow.removeVehiclesFinished(road.getLength());
         
         if (flow.size() == 0) {
-            cout << "\nAll vehicles reached the end!" << endl;
+            cout << "\n end" << endl;
             break;
         }
     }
