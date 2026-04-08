@@ -1,0 +1,42 @@
+#include "Vehicle.h"
+#include <algorithm>
+
+using namespace std;
+
+Vehicle::Vehicle(double maxSpd, double acc, double dec) 
+    : speed(0), position(0), maxSpeed(maxSpd), acceleration(acc), deceleration(dec) {}
+
+void Vehicle::update(double timeStep, double roadMaxSpeed) {
+    double targetSpeed = min(maxSpeed, roadMaxSpeed);
+    
+    if (speed < targetSpeed) {
+        speed += acceleration * timeStep;
+        if (speed > targetSpeed) speed = targetSpeed;
+    } else if (speed > targetSpeed) {
+        speed -= deceleration * timeStep;
+        if (speed < targetSpeed) speed = targetSpeed;
+    }
+    
+    position += speed * timeStep;
+}
+
+double Vehicle::getPosition() const { return position; }
+double Vehicle::getSpeed() const { return speed; }
+
+void Vehicle::display() const {
+    cout << "Position: " << position << "m, Speed: " << speed << " m/s";
+}
+
+Car::Car() : Vehicle(30.0, 2.5, 3.0) {}
+
+void Car::display() const {
+    cout << "Car - ";
+    Vehicle::display();
+}
+
+Truck::Truck() : Vehicle(22.0, 1.2, 1.5) {}
+
+void Truck::display() const {
+    cout << "Truck - ";
+    Vehicle::display();
+}
