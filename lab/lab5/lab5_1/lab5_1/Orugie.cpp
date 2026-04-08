@@ -13,7 +13,7 @@ TypeOrugie Orugie::GetType()
 string Orugie::GetName()
 {
 	return name;
-}
+} 
 
 int Orugie::GetUron()
 {
