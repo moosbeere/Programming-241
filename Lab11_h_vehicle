@@ -1,0 +1,36 @@
+#ifndef VEHICLE_H
+#define VEHICLE_H
+
+#include <iostream>
+using namespace std;
+
+class Vehicle {
+protected:
+    double speed;
+    double position;
+    double maxSpeed;
+    double acceleration;
+    double deceleration;
+    
+public:
+    Vehicle(double maxSpd, double acc, double dec);
+    virtual ~Vehicle() = default;
+    virtual void update(double timeStep, double roadMaxSpeed);
+    double getPosition() const;
+    double getSpeed() const;
+    virtual void display() const;
+};
+
+class Car : public Vehicle {
+public:
+    Car();
+    void display() const override;
+};
+
+class Truck : public Vehicle {
+public:
+    Truck();
+    void display() const override;
+};
+
+#endif
