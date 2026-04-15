@@ -1,0 +1,61 @@
+﻿
+#include <iostream>
+using namespace std;
+#include <string>
+#include <vector>
+
+class Vehicle {
+private:
+	string brand;
+	int maxSpeed;
+	int currentSpeed;
+public:
+	Vehicle(string vehicle_brand, int vehicle_maxSpeed) {
+		brand = vehicle_brand;
+		maxSpeed = vehicle_maxSpeed;
+		int currentSpeed = 0;
+	}
+
+	void accelerate(int increment) {
+		currentSpeed += increment;
+		if (currentSpeed > maxSpeed)
+			currentSpeed = maxSpeed;
+	}
+
+	void brake(int decrement) {
+		currentSpeed -= decrement;
+		if (currentSpeed < 0)
+			currentSpeed = 0;
+	}
+
+	void getStatus() {
+		cout << "марка: " << brand;
+		cout << "текущая скорость: " << currentSpeed;
+	}
+
+};
+
+
+
+
+
+int main()
+{
+	vector <Vehicle> vehicles;
+
+	vehicles.push_back(Vehicle("nissan", 330));
+	vehicles.push_back(Vehicle("toyota", 240));
+	vehicles.push_back(Vehicle("lexus", 1000));
+
+
+
+	for (int i = 0; i <= 2; i++) {
+		vehicles[i].accelerate(250);
+		vehicles[i].brake(120);
+		vehicles[i].getStatus();
+	}
+
+
+
+
+}
