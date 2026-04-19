@@ -7,11 +7,12 @@
 #include "road_segment.h"
 
 // Легковой автомобиль в модели транспортного потока.
+// Наследуется от Vehicle (марка/макс. скорость) и Movable (умение симулировать движение).
 class FlowCar : public Vehicle, public Movable
 {
 private:
     double position;   // м от начала участка
-    double speed;      // км/ч
+    double speed;      // км/ч (текущая скорость в модели)
     double accelRate;  // км/ч за секунду при разгоне
     double brakeRate;  // км/ч за секунду при торможении
 
@@ -28,8 +29,13 @@ public:
     {
     }
 
+    // Один шаг симуляции:
+    // 1) целевая скорость = min(макс скорость авто, ограничение дороги)
+    // 2) если текущая скорость ниже цели — разгоняем, если выше — тормозим
+    // 3) обновляем position (переводим км/ч в м/с)
     void simulateStep(const RoadSegment& segment, double timeStep) override
     {
+        // target ограничивает и "ум" авто (getMaxSpeed), и "правила" дороги (getSpeedLimit)
         const double target =
             std::min<double>(getMaxSpeed(), segment.getSpeedLimit());
 
@@ -50,10 +56,12 @@ public:
         const double speedMS = speed * 1000.0 / 3600.0;
         position += speedMS * timeStep;
 
+        // Если доехали дальше конца участка — фиксируем на границе.
         if (position > segment.getLength())
             position = segment.getLength();
     }
 
+    // Геттеры, нужные интерфейсу Movable
     double getPosition() const override { return position; }
     double getCurrentSpeed() const override { return speed; }
 };

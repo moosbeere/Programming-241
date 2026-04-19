@@ -4,7 +4,12 @@
 
 int main()
 {
+    // Описываем участок дороги:
+    // - длина задаёт, где заканчивается моделирование по координате
+    // - speedLimit ограничивает целевую скорость на участке
     RoadSegment segment(1000.0, 60.0); // 1 км, ограничение 60 км/ч
+
+    // TrafficFlow хранит транспортные средства и по шагам симулирует движение
     TrafficFlow flow(segment);
 
     // Легковые: быстрее разгоняются и тормозят
@@ -20,8 +25,12 @@ int main()
     double currentTime = 0.0;
     for (int i = 0; i < steps; ++i)
     {
+        // Один шаг симуляции: каждому объекту, который умеет Movable,
+        // вызывается simulateStep(...) и обновляются position/speed.
         flow.simulate(timeStep);
         currentTime += timeStep;
+
+        // Печатаем состояние потока в консоль
         flow.printState(currentTime);
     }
 

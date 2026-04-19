@@ -7,6 +7,7 @@
 #include "road_segment.h"
 
 // Грузовой автомобиль в модели транспортного потока.
+// Отличается параметрами разгона/торможения, но использует те же идеи симуляции.
 class FlowTruck : public Vehicle, public Movable
 {
 private:
@@ -28,6 +29,9 @@ public:
     {
     }
 
+    // Один шаг симуляции (см. комментарии в FlowCar):
+    // целевая скорость ограничена min(getMaxSpeed авто, speedLimit дороги),
+    // затем обновляются speed и position.
     void simulateStep(const RoadSegment& segment, double timeStep) override
     {
         const double target =
@@ -49,10 +53,12 @@ public:
         const double speedMS = speed * 1000.0 / 3600.0;
         position += speedMS * timeStep;
 
+        // Ограничиваем position концом участка.
         if (position > segment.getLength())
             position = segment.getLength();
     }
 
+    // Геттеры, нужные интерфейсу Movable
     double getPosition() const override { return position; }
     double getCurrentSpeed() const override { return speed; }
 };

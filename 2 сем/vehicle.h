@@ -11,14 +11,17 @@ private:
     int currentSpeed;    // текущая скорость
 
 public:
+    // Конструктор для задания базовых характеристик.
     Vehicle(const std::string& brand, int maxSpeed);
 
+    // Действия меняющие состояние объекта.
     void accelerate(int increment);
     void brake(int decrement);
 
-    // Виртуальный метод, чтобы его можно было расширять в наследниках (напр. FreightVehicle)
+    // Виртуальный метод: позволяет переопределять вывод информации в наследниках.
     virtual void getStatus() const;
 
+    // Геттеры используются в других частях ЛР 12 (например TrafficFlow).
     int getMaxSpeed() const;
     const std::string& getBrand() const;
 
