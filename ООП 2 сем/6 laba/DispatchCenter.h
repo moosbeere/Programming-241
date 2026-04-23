@@ -2,12 +2,9 @@
 #define DISPATCH_CENTER_H
 
 class DispatchCenter {
-private:
-    static int totalVehiclesDispatched;  // Статическое поле
-    
 public:
-    static void report();                 // Статический метод
-    static void incrementCounter();      
+    static int totalVehiclesDispatched;   
+    static void report();                 // статический метод вывода отчёта
 };
 
 #endif
