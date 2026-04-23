@@ -8,6 +8,6 @@ Vehicle::Vehicle(const std::string& m, const std::string& n)
 }
 
 void Vehicle::registerVehicle() {
-    DispatchCenter::totalVehiclesDispatched++;   //увеличиваем статическое поле
+    DispatchCenter::totalVehiclesDispatched++;   
     std::cout << "Зарегистрировано: " << model << " (" << number << ")" << std::endl;
 }
