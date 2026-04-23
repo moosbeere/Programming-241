@@ -2,19 +2,14 @@
 #define VEHICLE_H
 
 #include <string>
-using namespace std;
 
 class Vehicle {
 private:
-    string brand;    
-    string model;      
-    string plateNumber; // Госномер
-    
+    std::string model;
+    std::string number;
 public:
-    Vehicle(string b, string m, string plate);
-    
-    // Метод для вывода информации о ТС
-    void showInfo() const;
+    Vehicle(const std::string& m, const std::string& n);
+    void registerVehicle();   // метод, увеличивающий счётчик
 };
 
 #endif
