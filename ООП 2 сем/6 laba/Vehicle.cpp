@@ -1,22 +1,13 @@
 #include "Vehicle.h"
 #include "DispatchCenter.h"
 #include <iostream>
-using namespace std;
 
-
-Vehicle::Vehicle(string b, string m, string plate) {
-    brand = b;
-    model = m;
-    plateNumber = plate;
-    
-    // При создании нового ТС увеличиваем счетчик в диспетчерской
-    DispatchCenter::addVehicle();
-    
-    cout << "[СОЗДАНО] Транспортное средство: " 
-         << brand << " " << model << " (" << plateNumber << ")" << endl;
+Vehicle::Vehicle(const std::string& m, const std::string& n)
+    : model(m), number(n) {
+    registerVehicle();   // регистрируем при создании объекта
 }
 
-void Vehicle::showInfo() const {
-    cout << "Транспортное средство: " << brand << " " << model 
-         << ", госномер: " << plateNumber << endl;
+void Vehicle::registerVehicle() {
+    DispatchCenter::totalVehiclesDispatched++;   // увеличиваем статическое поле
+    std::cout << "Зарегистрировано: " << model << " (" << number << ")" << std::endl;
 }
