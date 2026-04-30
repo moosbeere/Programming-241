@@ -3,80 +3,74 @@
 
 #include <iostream>
 #include <string>
-#include <memory>  // для std::unique_ptr
+#include <memory>
 
-// Базовый класс транспортного средства
+// Базовый класс
 class TransportUnit {
 protected:
     std::string model;
-    double fuelConsumption;  // л/км
-    int capacity;            // грузоподъемность в кг
-
-public:
-    TransportUnit(const std::string& m, double fuel, int cap);
-    virtual ~TransportUnit();
-
-    virtual void displayInfo() const;
-    virtual double calculateFuelCost(double distance, double fuelPrice) const;
+    double fuelRate;     // расход топлива
+    int capacity;        // грузоподъемность
     
-    // Геттеры
-    std::string getModel() const { return model; }
-    double getFuelConsumption() const { return fuelConsumption; }
+public:
+    TransportUnit(std::string m, double fuel, int cap);
+    virtual ~TransportUnit();
+    
+    virtual void show() const;
+    virtual double getCost(double dist, double price) const;
+    
     int getCapacity() const { return capacity; }
+    std::string getModel() const { return model; }
 };
 
-// Класс грузовика
+// Грузовик
 class Truck : public TransportUnit {
 private:
-    int trailerCapacity;  // грузоподъемность прицепа
-
-public:
-    Truck(const std::string& m, double fuel, int cap, int trailer);
+    int trailerCap;
     
-    void displayInfo() const override;
-    double calculateFuelCost(double distance, double fuelPrice) const override;
-    int getTotalCapacity() const { return capacity + trailerCapacity; }
+public:
+    Truck(std::string m, double fuel, int cap, int trailer);
+    
+    void show() const override;
+    double getCost(double dist, double price) const override;
+    int getFullCap() const { return capacity + trailerCap; }
 };
 
-// Класс легкового автомобиля
+// Легковая машина
 class Car : public TransportUnit {
 private:
-    std::string bodyType;  // тип кузова
-
-public:
-    Car(const std::string& m, double fuel, int cap, const std::string& body);
+    std::string type;
     
-    void displayInfo() const override;
+public:
+    Car(std::string m, double fuel, int cap, std::string t);
+    
+    void show() const override;
 };
 
-// Класс назначенного маршрута (с умным указателем)
+// Маршрут с умным указателем
 class AssignedRoute {
 private:
-    std::string routeName;
-    double distance;      // км
-    double cargoWeight;   // кг
-    std::unique_ptr<TransportUnit> transport;  // УМНЫЙ УКАЗАТЕЛЬ
-
-public:
-    // Конструктор принимает владение через unique_ptr
-    AssignedRoute(const std::string& name, double dist, double cargo,
-                  std::unique_ptr<TransportUnit> unit);
+    std::string name;
+    double distance;
+    double weight;
+    std::unique_ptr<TransportUnit> vehicle;  // умный указатель
     
-    // Запрещаем копирование (unique_ptr нельзя копировать)
+public:
+    AssignedRoute(std::string n, double dist, double w, 
+                  std::unique_ptr<TransportUnit> v);
+    
+    // Запрещаем копирование
     AssignedRoute(const AssignedRoute&) = delete;
     AssignedRoute& operator=(const AssignedRoute&) = delete;
     
     // Разрешаем перемещение
-    AssignedRoute(AssignedRoute&& other) noexcept = default;
-    AssignedRoute& operator=(AssignedRoute&& other) noexcept = default;
+    AssignedRoute(AssignedRoute&& other) = default;
+    AssignedRoute& operator=(AssignedRoute&& other) = default;
     
-    // Деструктор не нужен - unique_ptr сам всё удалит
-    
-    bool canTransport() const;
-    void displayRouteInfo() const;
-    
-    // Получить указатель на транспорт (только для чтения)
-    const TransportUnit* getTransport() const { return transport.get(); }
+    void showRoute() const;
+    bool checkCapacity() const;
 };
 
 #endif
+    
+    
