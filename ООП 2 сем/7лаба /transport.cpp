@@ -1,94 +1,85 @@
 #include "transport.h"
 
-TransportUnit::TransportUnit(const std::string& m, double fuel, int cap)
-    : model(m), fuelConsumption(fuel), capacity(cap) {
-    std::cout << "Создан транспорт: " << model << std::endl;
+// === TransportUnit ===
+TransportUnit::TransportUnit(std::string m, double fuel, int cap)
+    : model(m), fuelRate(fuel), capacity(cap) {
+    std::cout << "Создан " << model << std::endl;
 }
 
 TransportUnit::~TransportUnit() {
-    std::cout << "Уничтожен транспорт: " << model << std::endl;
+    std::cout << "Уничтожен " << model << std::endl;
 }
 
-void TransportUnit::displayInfo() const {
-    std::cout << "Модель: " << model 
-              << ", Расход: " << fuelConsumption << " л/км"
-              << ", Грузоподъемность: " << capacity << " кг";
+void TransportUnit::show() const {
+    std::cout << model << " (расход: " << fuelRate << " л/км, груз: " << capacity << " кг)";
 }
 
-double TransportUnit::calculateFuelCost(double distance, double fuelPrice) const {
-    return distance * fuelConsumption * fuelPrice;
+double TransportUnit::getCost(double dist, double price) const {
+    return dist * fuelRate * price;
 }
 
-
-Truck::Truck(const std::string& m, double fuel, int cap, int trailer)
-    : TransportUnit(m, fuel, cap), trailerCapacity(trailer) {
-    std::cout << "  (грузовик с прицепом +" << trailer << " кг)" << std::endl;
+// === Truck ===
+Truck::Truck(std::string m, double fuel, int cap, int trailer)
+    : TransportUnit(m, fuel, cap), trailerCap(trailer) {
+    std::cout << "  + прицеп (" << trailerCap << " кг)" << std::endl;
 }
 
-void Truck::displayInfo() const {
-    TransportUnit::displayInfo();
-    std::cout << ", Прицеп: +" << trailerCapacity << " кг"
-              << ", ИТОГО: " << getTotalCapacity() << " кг";
+void Truck::show() const {
+    TransportUnit::show();
+    std::cout << " + прицеп " << trailerCap << " кг (всего: " << getFullCap() << " кг)";
 }
 
-double Truck::calculateFuelCost(double distance, double fuelPrice) const {
-
-    double extraConsumption = (trailerCapacity > 0) ? 1.2 : 1.0;
-    return distance * fuelConsumption * fuelPrice * extraConsumption;
+double Truck::getCost(double dist, double price) const {
+    double extra = (trailerCap > 0) ? 1.2 : 1.0;
+    return dist * fuelRate * price * extra;
 }
 
-
-Car::Car(const std::string& m, double fuel, int cap, const std::string& body)
-    : TransportUnit(m, fuel, cap), bodyType(body) {
-    std::cout << "  (легковой автомобиль, кузов: " << body << ")" << std::endl;
+// === Car ===
+Car::Car(std::string m, double fuel, int cap, std::string t)
+    : TransportUnit(m, fuel, cap), type(t) {
+    std::cout << "  (кузов: " << type << ")" << std::endl;
 }
 
-void Car::displayInfo() const {
-    TransportUnit::displayInfo();
-    std::cout << ", Тип кузова: " << bodyType;
+void Car::show() const {
+    TransportUnit::show();
+    std::cout << ", тип: " << type;
 }
 
-
-AssignedRoute::AssignedRoute(const std::string& name, double dist, double cargo,
-                             std::unique_ptr<TransportUnit> unit)
-    : routeName(name), distance(dist), cargoWeight(cargo),
-      transport(std::move(unit)) {  // ПЕРЕДАЕМ ВЛАДЕНИЕ
-    std::cout << "Создан маршрут: " << routeName << std::endl;
+// === AssignedRoute ===
+AssignedRoute::AssignedRoute(std::string n, double dist, double w,
+                             std::unique_ptr<TransportUnit> v)
+    : name(n), distance(dist), weight(w), vehicle(std::move(v)) {
+    std::cout << "Маршрут: " << name << std::endl;
 }
 
-bool AssignedRoute::canTransport() const {
-    if (!transport) return false;
+bool AssignedRoute::checkCapacity() const {
+    if (!vehicle) return false;
     
-    // Проверяем, грузовик ли это (с прицепом)
-    Truck* truck = dynamic_cast<Truck*>(transport.get());
+    // Проверяем, грузовик ли это
+    Truck* truck = dynamic_cast<Truck*>(vehicle.get());
     if (truck) {
-        return cargoWeight <= truck->getTotalCapacity();
+        return weight <= truck->getFullCap();
     }
-    
-    // Для обычного транспорта
-    return cargoWeight <= transport->getCapacity();
+    return weight <= vehicle->getCapacity();
 }
 
-void AssignedRoute::displayRouteInfo() const {
-    std::cout << "\nМАРШРУТ: " << routeName << " =" << std::endl;
-    std::cout << "Расстояние: " << distance << " км" << std::endl;
-    std::cout << "Вес груза: " << cargoWeight << " кг" << std::endl;
+void AssignedRoute::showRoute() const {
+    std::cout << "\nМаршрут: " << name << " (" << distance << " км, груз " << weight << " кг)" << std::endl;
     
-    if (transport) {
-        std::cout << "Транспортное средство: ";
-        transport->displayInfo();
-        std::cout << std::endl;
-        
-        if (canTransport()) {
-            std::cout << "Статус: ТРАНСПОРТ ПОДХОДИТ" << std::endl;
-            double fuelPrice = 2.5;  // цена за литр
-            double cost = transport->calculateFuelCost(distance, fuelPrice);
-            std::cout << "Затраты на топливо: " << cost << " руб." << std::endl;
-        } else {
-            std::cout << "Статус: ТРАНСПОРТ НЕ ПОДХОДИТ (мала грузоподъемность)" << std::endl;
-        }
-    } else {
-        std::cout << "Транспорт: НЕ НАЗНАЧЕН" << std::endl;
+    if (!vehicle) {
+        std::cout << "Машина не назначена!" << std::endl;
+        return;
     }
+    
+    std::cout << "Транспорт: ";
+    vehicle->show();
     std::cout << std::endl;
+    
+    if (checkCapacity()) {
+        std::cout << "OK: Машина подходит" << std::endl;
+        double price = 2.5;
+        std::cout << "Топливо: " << vehicle->getCost(distance, price) << " руб" << std::endl;
+    } else {
+        std::cout << "ОШИБКА: Не хватает грузоподъемности!" << std::endl;
+    }
 }
