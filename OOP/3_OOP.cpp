@@ -75,7 +75,6 @@ public:
         cout << "Максимальная скорость: " << getMaxSpeed() << " км/ч" << endl;
         cout << "Текущая скорость: " << getCurrentSpeed() << " км/ч" << endl;
         cout << "Грузоподъемность: " << cargoCapacity << " тонн" << endl;
-        cout << "------------------------" << endl;
     }
 };
 
