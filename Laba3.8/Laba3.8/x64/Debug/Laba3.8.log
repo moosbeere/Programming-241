@@ -1,0 +1,12 @@
+﻿  Laba3.8.cpp
+C:\Users\kiryu\OneDrive\Рабочий стол\C++\2 Kurs\2 SEM\Laba3.8\Laba3.8.cpp(32,26): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
+      C:\Users\kiryu\OneDrive\Рабочий стол\C++\2 Kurs\2 SEM\Laba3.8\Laba3.8.cpp(32,26):
+      контекст создания экземпляра шаблона (сначала самый старый)
+          C:\Users\kiryu\OneDrive\Рабочий стол\C++\2 Kurs\2 SEM\Laba3.8\Laba3.8.cpp(52,23):
+          выполняется компиляция ссылки на экземпляр класс шаблон функции "Warehouse<std::string>"
+          C:\Users\kiryu\OneDrive\Рабочий стол\C++\2 Kurs\2 SEM\Laba3.8\Laba3.8.cpp(31,9):
+          во время компиляции функции-члена класс шаблон "int Warehouse<std::string>::getTotalItems(void)"
+              C:\Users\kiryu\OneDrive\Рабочий стол\C++\2 Kurs\2 SEM\Laba3.8\Laba3.8.cpp(57,72):
+              см. первую ссылку на Warehouse<std::string>::getTotalItems "main"
+  
+  Laba3.8.vcxproj -> C:\Users\kiryu\OneDrive\Рабочий стол\C++\2 Kurs\2 SEM\Laba3.8\x64\Debug\Laba3.8.exe
