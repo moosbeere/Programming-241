@@ -3,35 +3,31 @@
 #include "Warehouse.h"
 
 int main() {
-    // Склад с числами
-    Warehouse<int> numWarehouse;
     
-    numWarehouse.addItem(10);
-    numWarehouse.addItem(20);
-    numWarehouse.addItem(30);
+    Warehouse<int> intWarehouse;
     
-    std::cout << "Чисел на складе: " << numWarehouse.getTotalItems() << std::endl;
-    std::cout << "Первое число: " << numWarehouse.getItem(0) << std::endl;
-    std::cout << "Второе число: " << numWarehouse.getItem(1) << std::endl;
+    intWarehouse.addItem(101);
+    intWarehouse.addItem(202);
+    intWarehouse.addItem(303);
     
-    // Склад со словами
-    Warehouse<std::string> wordWarehouse;
+    std::cout << "Склад с номерами грузов:" << std::endl;
+    std::cout << "Всего грузов: " << intWarehouse.getTotalItems() << std::endl;
+    std::cout << "Груз 0: " << intWarehouse.getItem(0) << std::endl;
+    std::cout << "Груз 1: " << intWarehouse.getItem(1) << std::endl;
+    std::cout << "Груз 2: " << intWarehouse.getItem(2) << std::endl;
     
-    wordWarehouse.addItem("Стол");
-    wordWarehouse.addItem("Стул");
-    wordWarehouse.addItem("Шкаф");
+  
+    Warehouse<std::string> stringWarehouse;
     
-    std::cout << "\nСлов на складе: " << wordWarehouse.getTotalItems() << std::endl;
-    std::cout << "Первое слово: " << wordWarehouse.getItem(0) << std::endl;
-    std::cout << "Второе слово: " << wordWarehouse.getItem(1) << std::endl;
+    stringWarehouse.addItem("Книги");
+    stringWarehouse.addItem("Тетради");
+    stringWarehouse.addItem("Ручки");
     
-    // Проверка ошибки
-    try {
-        std::cout << wordWarehouse.getItem(99);
-    }
-    catch (const char* msg) {
-        std::cout << "\nОшибка: " << msg << std::endl;
-    }
+    std::cout << "\nСклад с названиями грузов:" << std::endl;
+    std::cout << "Всего грузов: " << stringWarehouse.getTotalItems() << std::endl;
+    std::cout << "Груз 0: " << stringWarehouse.getItem(0) << std::endl;
+    std::cout << "Груз 1: " << stringWarehouse.getItem(1) << std::endl;
+    std::cout << "Груз 2: " << stringWarehouse.getItem(2) << std::endl;
     
     return 0;
 }
