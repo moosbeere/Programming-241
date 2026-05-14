@@ -14,9 +14,6 @@ public:
     }
     
     T getItem(int index) {
-        if (index < 0 || index >= (int)items.size()) {
-            throw "Нет такого груза!";
-        }
         return items[index];
     }
     
