@@ -1,0 +1,292 @@
+﻿  AssignedRoute.cpp
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\AssignedRoute.cpp(4,46): error C2065: Vehicle: необъявленный идентификатор
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\AssignedRoute.cpp(4,35): error C2923: std::unique_ptr: "Vehicle" не является допустимым аргументом типа шаблон для параметра "_Ty"
+      C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\AssignedRoute.cpp(4,46):
+       см. объявление "Vehicle"
+  
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\AssignedRoute.cpp(4,35): error C2976: std::unique_ptr: слишком мало аргументов шаблон
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\memory(3347,7):
+       см. объявление "std::unique_ptr"
+  
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\AssignedRoute.cpp(4,16): error C2511: AssignedRoute::AssignedRoute(std::unique_ptr,const Route &): перегруженная функция-член не найдена в "AssignedRoute"
+      C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\AssignedRoute.h(9,7):
+       см. объявление "AssignedRoute"
+  
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\AssignedRoute.cpp(6,20): error C2672: "std::move": не найдена соответствующая перегруженная функция
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\xutility(5160,21):
+      может быть "_OutIt std::move(_InIt,_InIt,_OutIt)"
+          C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\AssignedRoute.cpp(6,20):
+          "_OutIt std::move(_InIt,_InIt,_OutIt)": ожидаются аргументы 3 — 1 предоставлены
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\type_traits(1512,64):
+      или       "remove_reference<_Ty>::type &&std::move(_Ty &&) noexcept"
+          C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\AssignedRoute.cpp(6,20):
+          Сбой при специализации функции-шаблона "remove_reference<_Ty>::type &&std::move(_Ty &&) noexcept"
+              C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\AssignedRoute.cpp(6,20):
+              Со следующими аргументами шаблона:
+                  C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\AssignedRoute.cpp(6,20):
+                  "_Ty=std::unique_ptr &"
+              C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\xtr1common(235,78):
+              "std::unique_ptr": для использования класс шаблон требуется список аргументов шаблон
+              C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\memory(3347,7):
+               см. объявление "std::unique_ptr"
+  
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\AssignedRoute.cpp(7,1): error C2550: AssignedRoute::{ctor}: список инициализации конструктора должен использоваться только в месте определения конструктора
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\AssignedRoute.cpp(10,21): error C2039: "showAssignment": не является членом "AssignedRoute".
+      C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\AssignedRoute.h(9,7):
+       см. объявление "AssignedRoute"
+  
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\AssignedRoute.cpp(10,21): error C2270: showAssignment: модификаторы недопустимы для функций, не являющихся членами
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\AssignedRoute.cpp(11,5): error C2065: vehicle: необъявленный идентификатор
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\AssignedRoute.cpp(12,5): error C2065: route: необъявленный идентификатор
+  Car.cpp
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\Car.cpp(6,1): error C2512: TransportUnit: нет подходящего конструктора по умолчанию
+      C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\TransportUnit.h(6,7):
+       см. объявление "TransportUnit"
+  
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\Car.cpp(5,7): error C2614: Car: недопустимая инициализация члена: "Vehicle" не является базовым классом или членом
+  OOPlabs4-9.cpp
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\Truck.h(15,2): error C2014: команда препроцессора не должна начинаться с пробела
+  (компиляция исходного файла "OOPlabs4-9.cpp")
+  
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(18,5): error C2065: Truck: необъявленный идентификатор
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(18,11): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "truck1"
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(18,11): error C3861: truck1: идентификатор не найден
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(26,17): error C2665: "Route::Route": ни одна перегруженная функция не может преобразовать все типы аргументов
+      C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\Route.h(19,1):
+      может быть "Route::Route(Route &&)"
+          C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(26,17):
+          "Route::Route(Route &&)": невозможно преобразовать аргумент 1 из "const char [7]" в "Route &&"
+              C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(26,18):
+              Причина: невозможно преобразовать "const char [7]" в "Route"
+      C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\Route.h(19,1):
+      или       "Route::Route(const Route &)"
+          C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(26,17):
+          "Route::Route(const Route &)": невозможно преобразовать аргумент 1 из "const char [7]" в "const Route &"
+              C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(26,18):
+              Причина: невозможно преобразовать "const char [7]" в "const Route"
+      C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(26,17):
+      при попытке сопоставить список аргументов "(const char [7])"
+  
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(29,26): error C2065: Truck: необъявленный идентификатор
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(29,14): error C2672: "std::make_unique": не найдена соответствующая перегруженная функция
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\memory(3640,6):
+      может быть "void std::make_unique(_Types ...)"
+          C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(29,26):
+          "std::make_unique": недопустимый аргумент шаблон для "_Ty", ожидается тип
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\memory(3634,57):
+      или       "std::unique_ptr<_Ty,std::default_delete<_Ty>> std::make_unique(const size_t)"
+          C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(29,26):
+          "std::make_unique": недопустимый аргумент шаблон для "_Ty", ожидается тип
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\memory(3629,57):
+      или       "std::unique_ptr<_Ty,std::default_delete<_Ty>> std::make_unique(_Types ...)"
+          C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(29,26):
+          "std::make_unique": недопустимый аргумент шаблон для "_Ty", ожидается тип
+  
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(28,27): error C2665: "AssignedRoute::AssignedRoute": ни одна перегруженная функция не может преобразовать все типы аргументов
+      C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\AssignedRoute.h(20,1):
+      может быть "AssignedRoute::AssignedRoute(AssignedRoute &&)"
+          C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(28,27):
+          "AssignedRoute::AssignedRoute(AssignedRoute &&)": невозможно преобразовать аргумент 1 из "Route" в "AssignedRoute &&"
+              C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(30,9):
+              Причина: невозможно преобразовать "Route" в "AssignedRoute"
+              C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(30,9):
+              Для выполнения данного преобразования нет доступного оператора преобразования, определенного пользователем, или вызов оператора невозможен
+      C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\AssignedRoute.h(20,1):
+      или       "AssignedRoute::AssignedRoute(const AssignedRoute &)"
+          C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(28,27):
+          "AssignedRoute::AssignedRoute(const AssignedRoute &)": невозможно преобразовать аргумент 1 из "Route" в "const AssignedRoute &"
+              C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(30,9):
+              Причина: невозможно преобразовать "Route" в "const AssignedRoute"
+              C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(30,9):
+              Для выполнения данного преобразования нет доступного оператора преобразования, определенного пользователем, или вызов оператора невозможен
+      C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(28,27):
+      при попытке сопоставить список аргументов "(Route)"
+  
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(33,14): error C2039: "showAssignment": не является членом "AssignedRoute".
+      C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\AssignedRoute.h(9,7):
+       см. объявление "AssignedRoute"
+  
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(69,17): error C2065: Vehicle: необъявленный идентификатор
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(69,10): error C2923: std::vector: "Vehicle" не является допустимым аргументом типа шаблон для параметра "_Ty"
+      C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(69,17):
+       см. объявление "Vehicle"
+  
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(69,10): error C2976: std::vector: слишком мало аргументов шаблон
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\vector(442,7):
+       см. объявление "std::vector"
+  
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(69,26): error C2133: vehicles: неизвестный размер
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(69,26): error C2512: std::vector: нет подходящего конструктора по умолчанию
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\vector(442,7):
+       см. объявление "std::vector"
+  
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(71,24): error C3861: Vehicle: идентификатор не найден
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(71,14): error C2663: "std::vector<_Ty,_Alloc>::push_back": нет перегруженной функции с допустимым преобразованием для указателя "this"
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\vector(936,23):
+      может быть "void std::vector<_Ty,_Alloc>::push_back(_Ty &&)"
+          C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(71,14):
+          void std::vector<_Ty,_Alloc>::push_back(_Ty &&): невозможно преобразовать указатель "this" из "std::vector" в "std::vector<_Ty,_Alloc> &"
+              C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(71,5):
+              Причина: невозможно преобразовать "std::vector" в "std::vector<_Ty,_Alloc>"
+              C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(71,5):
+              Для преобразования требуется второй оператор пользовательского преобразования или конструктор
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\vector(932,23):
+      или       "void std::vector<_Ty,_Alloc>::push_back(const _Ty &)"
+          C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(71,14):
+          void std::vector<_Ty,_Alloc>::push_back(const _Ty &): невозможно преобразовать указатель "this" из "std::vector" в "std::vector<_Ty,_Alloc> &"
+              C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(71,5):
+              Причина: невозможно преобразовать "std::vector" в "std::vector<_Ty,_Alloc>"
+              C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(71,5):
+              Для преобразования требуется второй оператор пользовательского преобразования или конструктор
+      C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(71,14):
+      при попытке сопоставить список аргументов "(<error type>)"
+  
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(72,24): error C3861: Vehicle: идентификатор не найден
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(72,14): error C2663: "std::vector<_Ty,_Alloc>::push_back": нет перегруженной функции с допустимым преобразованием для указателя "this"
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\vector(936,23):
+      может быть "void std::vector<_Ty,_Alloc>::push_back(_Ty &&)"
+          C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(72,14):
+          void std::vector<_Ty,_Alloc>::push_back(_Ty &&): невозможно преобразовать указатель "this" из "std::vector" в "std::vector<_Ty,_Alloc> &"
+              C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(72,5):
+              Причина: невозможно преобразовать "std::vector" в "std::vector<_Ty,_Alloc>"
+              C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(72,5):
+              Для преобразования требуется второй оператор пользовательского преобразования или конструктор
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\vector(932,23):
+      или       "void std::vector<_Ty,_Alloc>::push_back(const _Ty &)"
+          C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(72,14):
+          void std::vector<_Ty,_Alloc>::push_back(const _Ty &): невозможно преобразовать указатель "this" из "std::vector" в "std::vector<_Ty,_Alloc> &"
+              C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(72,5):
+              Причина: невозможно преобразовать "std::vector" в "std::vector<_Ty,_Alloc>"
+              C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(72,5):
+              Для преобразования требуется второй оператор пользовательского преобразования или конструктор
+      C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(72,14):
+      при попытке сопоставить список аргументов "(<error type>)"
+  
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(73,24): error C3861: Vehicle: идентификатор не найден
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(73,14): error C2663: "std::vector<_Ty,_Alloc>::push_back": нет перегруженной функции с допустимым преобразованием для указателя "this"
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\vector(936,23):
+      может быть "void std::vector<_Ty,_Alloc>::push_back(_Ty &&)"
+          C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(73,14):
+          void std::vector<_Ty,_Alloc>::push_back(_Ty &&): невозможно преобразовать указатель "this" из "std::vector" в "std::vector<_Ty,_Alloc> &"
+              C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(73,5):
+              Причина: невозможно преобразовать "std::vector" в "std::vector<_Ty,_Alloc>"
+              C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(73,5):
+              Для преобразования требуется второй оператор пользовательского преобразования или конструктор
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\vector(932,23):
+      или       "void std::vector<_Ty,_Alloc>::push_back(const _Ty &)"
+          C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(73,14):
+          void std::vector<_Ty,_Alloc>::push_back(const _Ty &): невозможно преобразовать указатель "this" из "std::vector" в "std::vector<_Ty,_Alloc> &"
+              C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(73,5):
+              Причина: невозможно преобразовать "std::vector" в "std::vector<_Ty,_Alloc>"
+              C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(73,5):
+              Для преобразования требуется второй оператор пользовательского преобразования или конструктор
+      C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(73,14):
+      при попытке сопоставить список аргументов "(<error type>)"
+  
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(75,24): error C2663: "std::vector<_Ty,_Alloc>::begin": нет перегруженной функции с допустимым преобразованием для указателя "this"
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\vector(1845,44):
+      может быть "std::_Vector_const_iterator<std::_Vector_val<conditional<std::_Is_simple_alloc_v<allocator_traits<_Alloc>::rebind_alloc<_Ty>>,std::_Simple_types<_Value_type>,std::_Vec_iter_types<_Ty,allocator_traits<allocator_traits<_Alloc>::rebind_alloc<_Ty>>::size_type,allocator_traits<allocator_traits<_Alloc>::rebind_alloc<_Ty>>::difference_type,allocator_traits<allocator_traits<_Alloc>::rebind_alloc<_Ty>>::pointer,allocator_traits<allocator_traits<_Alloc>::rebind_alloc<_Ty>>::const_pointer>>::type>> std::vector<_Ty,_Alloc>::begin(void) noexcept const"
+          C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(75,24):
+          std::_Vector_const_iterator<std::_Vector_val<conditional<std::_Is_simple_alloc_v<allocator_traits<_Alloc>::rebind_alloc<_Ty>>,std::_Simple_types<_Value_type>,std::_Vec_iter_types<_Ty,allocator_traits<allocator_traits<_Alloc>::rebind_alloc<_Ty>>::size_type,allocator_traits<allocator_traits<_Alloc>::rebind_alloc<_Ty>>::difference_type,allocator_traits<allocator_traits<_Alloc>::rebind_alloc<_Ty>>::pointer,allocator_traits<allocator_traits<_Alloc>::rebind_alloc<_Ty>>::const_pointer>>::type>> std::vector<_Ty,_Alloc>::begin(void) noexcept const: невозможно преобразовать указатель "this" из "std::vector" в "const std::vector<_Ty,_Alloc> &"
+              C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(75,15):
+              Причина: невозможно преобразовать "std::vector" в "const std::vector<_Ty,_Alloc>"
+              C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(75,15):
+              Для преобразования требуется второй оператор пользовательского преобразования или конструктор
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\vector(1840,38):
+      или       "std::_Vector_iterator<std::_Vector_val<conditional<std::_Is_simple_alloc_v<allocator_traits<_Alloc>::rebind_alloc<_Ty>>,std::_Simple_types<_Value_type>,std::_Vec_iter_types<_Ty,allocator_traits<allocator_traits<_Alloc>::rebind_alloc<_Ty>>::size_type,allocator_traits<allocator_traits<_Alloc>::rebind_alloc<_Ty>>::difference_type,allocator_traits<allocator_traits<_Alloc>::rebind_alloc<_Ty>>::pointer,allocator_traits<allocator_traits<_Alloc>::rebind_alloc<_Ty>>::const_pointer>>::type>> std::vector<_Ty,_Alloc>::begin(void) noexcept"
+          C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(75,24):
+          std::_Vector_iterator<std::_Vector_val<conditional<std::_Is_simple_alloc_v<allocator_traits<_Alloc>::rebind_alloc<_Ty>>,std::_Simple_types<_Value_type>,std::_Vec_iter_types<_Ty,allocator_traits<allocator_traits<_Alloc>::rebind_alloc<_Ty>>::size_type,allocator_traits<allocator_traits<_Alloc>::rebind_alloc<_Ty>>::difference_type,allocator_traits<allocator_traits<_Alloc>::rebind_alloc<_Ty>>::pointer,allocator_traits<allocator_traits<_Alloc>::rebind_alloc<_Ty>>::const_pointer>>::type>> std::vector<_Ty,_Alloc>::begin(void) noexcept: невозможно преобразовать указатель "this" из "std::vector" в "std::vector<_Ty,_Alloc> &"
+              C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(75,15):
+              Причина: невозможно преобразовать "std::vector" в "std::vector<_Ty,_Alloc>"
+              C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(75,15):
+              Для преобразования требуется второй оператор пользовательского преобразования или конструктор
+      C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(75,24):
+      при попытке сопоставить список аргументов "()"
+  
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(75,42): error C2663: "std::vector<_Ty,_Alloc>::end": нет перегруженной функции с допустимым преобразованием для указателя "this"
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\vector(1855,44):
+      может быть "std::_Vector_const_iterator<std::_Vector_val<conditional<std::_Is_simple_alloc_v<allocator_traits<_Alloc>::rebind_alloc<_Ty>>,std::_Simple_types<_Value_type>,std::_Vec_iter_types<_Ty,allocator_traits<allocator_traits<_Alloc>::rebind_alloc<_Ty>>::size_type,allocator_traits<allocator_traits<_Alloc>::rebind_alloc<_Ty>>::difference_type,allocator_traits<allocator_traits<_Alloc>::rebind_alloc<_Ty>>::pointer,allocator_traits<allocator_traits<_Alloc>::rebind_alloc<_Ty>>::const_pointer>>::type>> std::vector<_Ty,_Alloc>::end(void) noexcept const"
+          C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(75,42):
+          std::_Vector_const_iterator<std::_Vector_val<conditional<std::_Is_simple_alloc_v<allocator_traits<_Alloc>::rebind_alloc<_Ty>>,std::_Simple_types<_Value_type>,std::_Vec_iter_types<_Ty,allocator_traits<allocator_traits<_Alloc>::rebind_alloc<_Ty>>::size_type,allocator_traits<allocator_traits<_Alloc>::rebind_alloc<_Ty>>::difference_type,allocator_traits<allocator_traits<_Alloc>::rebind_alloc<_Ty>>::pointer,allocator_traits<allocator_traits<_Alloc>::rebind_alloc<_Ty>>::const_pointer>>::type>> std::vector<_Ty,_Alloc>::end(void) noexcept const: невозможно преобразовать указатель "this" из "std::vector" в "const std::vector<_Ty,_Alloc> &"
+              C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(75,33):
+              Причина: невозможно преобразовать "std::vector" в "const std::vector<_Ty,_Alloc>"
+              C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(75,33):
+              Для преобразования требуется второй оператор пользовательского преобразования или конструктор
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\vector(1850,38):
+      или       "std::_Vector_iterator<std::_Vector_val<conditional<std::_Is_simple_alloc_v<allocator_traits<_Alloc>::rebind_alloc<_Ty>>,std::_Simple_types<_Value_type>,std::_Vec_iter_types<_Ty,allocator_traits<allocator_traits<_Alloc>::rebind_alloc<_Ty>>::size_type,allocator_traits<allocator_traits<_Alloc>::rebind_alloc<_Ty>>::difference_type,allocator_traits<allocator_traits<_Alloc>::rebind_alloc<_Ty>>::pointer,allocator_traits<allocator_traits<_Alloc>::rebind_alloc<_Ty>>::const_pointer>>::type>> std::vector<_Ty,_Alloc>::end(void) noexcept"
+          C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(75,42):
+          std::_Vector_iterator<std::_Vector_val<conditional<std::_Is_simple_alloc_v<allocator_traits<_Alloc>::rebind_alloc<_Ty>>,std::_Simple_types<_Value_type>,std::_Vec_iter_types<_Ty,allocator_traits<allocator_traits<_Alloc>::rebind_alloc<_Ty>>::size_type,allocator_traits<allocator_traits<_Alloc>::rebind_alloc<_Ty>>::difference_type,allocator_traits<allocator_traits<_Alloc>::rebind_alloc<_Ty>>::pointer,allocator_traits<allocator_traits<_Alloc>::rebind_alloc<_Ty>>::const_pointer>>::type>> std::vector<_Ty,_Alloc>::end(void) noexcept: невозможно преобразовать указатель "this" из "std::vector" в "std::vector<_Ty,_Alloc> &"
+              C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(75,33):
+              Причина: невозможно преобразовать "std::vector" в "std::vector<_Ty,_Alloc>"
+              C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(75,33):
+              Для преобразования требуется второй оператор пользовательского преобразования или конструктор
+      C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(75,42):
+      при попытке сопоставить список аргументов "()"
+  
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(77,26): error C2663: "std::vector<_Ty,_Alloc>::_Unchecked_begin": нет перегруженной функции с допустимым преобразованием для указателя "this"
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\vector(1896,40):
+      может быть "const _Ty *std::vector<_Ty,_Alloc>::_Unchecked_begin(void) noexcept const"
+          C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(77,26):
+          const _Ty *std::vector<_Ty,_Alloc>::_Unchecked_begin(void) noexcept const: невозможно преобразовать указатель "this" из "std::vector" в "const std::vector<_Ty,_Alloc> &"
+              C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(77,26):
+              Причина: невозможно преобразовать "std::vector" в "const std::vector<_Ty,_Alloc>"
+              C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(77,26):
+              Для преобразования требуется второй оператор пользовательского преобразования или конструктор
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\vector(1892,34):
+      или       "_Ty *std::vector<_Ty,_Alloc>::_Unchecked_begin(void) noexcept"
+          C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(77,26):
+          _Ty *std::vector<_Ty,_Alloc>::_Unchecked_begin(void) noexcept: невозможно преобразовать указатель "this" из "std::vector" в "std::vector<_Ty,_Alloc> &"
+              C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(77,26):
+              Причина: невозможно преобразовать "std::vector" в "std::vector<_Ty,_Alloc>"
+              C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(77,26):
+              Для преобразования требуется второй оператор пользовательского преобразования или конструктор
+      C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(77,26):
+      при попытке сопоставить список аргументов "()"
+  
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(77,26): error C2663: "std::vector<_Ty,_Alloc>::_Unchecked_end": нет перегруженной функции с допустимым преобразованием для указателя "this"
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\vector(1904,40):
+      может быть "const _Ty *std::vector<_Ty,_Alloc>::_Unchecked_end(void) noexcept const"
+          C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(77,26):
+          const _Ty *std::vector<_Ty,_Alloc>::_Unchecked_end(void) noexcept const: невозможно преобразовать указатель "this" из "std::vector" в "const std::vector<_Ty,_Alloc> &"
+              C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(77,26):
+              Причина: невозможно преобразовать "std::vector" в "const std::vector<_Ty,_Alloc>"
+              C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(77,26):
+              Для преобразования требуется второй оператор пользовательского преобразования или конструктор
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\include\vector(1900,34):
+      или       "_Ty *std::vector<_Ty,_Alloc>::_Unchecked_end(void) noexcept"
+          C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(77,26):
+          _Ty *std::vector<_Ty,_Alloc>::_Unchecked_end(void) noexcept: невозможно преобразовать указатель "this" из "std::vector" в "std::vector<_Ty,_Alloc> &"
+              C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(77,26):
+              Причина: невозможно преобразовать "std::vector" в "std::vector<_Ty,_Alloc>"
+              C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(77,26):
+              Для преобразования требуется второй оператор пользовательского преобразования или конструктор
+      C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\OOPlabs4-9.cpp(77,26):
+      при попытке сопоставить список аргументов "()"
+  
+  Route.cpp
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\Route.cpp(4,8): error C2511: Route::Route(std::string): перегруженная функция-член не найдена в "Route"
+      C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\Route.h(6,7):
+       см. объявление "Route"
+  
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\Route.cpp(6,1): error C2550: Route::{ctor}: список инициализации конструктора должен использоваться только в месте определения конструктора
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\Route.cpp(9,13): error C2039: "showRoute": не является членом "Route".
+      C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\Route.h(6,7):
+       см. объявление "Route"
+  
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\Route.cpp(9,13): error C2270: showRoute: модификаторы недопустимы для функций, не являющихся членами
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\Route.cpp(11,12): error C2065: destination: необъявленный идентификатор
+  Truck.cpp
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\Truck.h(15,2): error C2014: команда препроцессора не должна начинаться с пробела
+  (компиляция исходного файла "Truck.cpp")
+  
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\Truck.cpp(4,1): error C2653: Truck: не является именем класса или пространства имен
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\Truck.cpp(4,8): error C4430: отсутствует спецификатор типа - предполагается int. Примечание. C++ не поддерживает int по умолчанию
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\Truck.cpp(6,1): error C2550: Truck: список инициализации конструктора должен использоваться только в месте определения конструктора
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\Truck.cpp(7,1): warning C4508: Truck: функция должна возвращать значение; предполагается возвращаемый тип "void"
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\Truck.cpp(9,6): error C2653: Truck: не является именем класса или пространства имен
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\Truck.cpp(9,13): error C2270: info: модификаторы недопустимы для функций, не являющихся членами
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\Truck.cpp(11,12): error C2065: name: необъявленный идентификатор
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\Truck.cpp(13,12): error C2065: maxSpeed: необъявленный идентификатор
+  Vehicle.cpp
+C:\Users\ericb\source\repos\OOPlabs4-9\OOPlabs4-9\Vehicle.cpp(2,10): error C1083: Не удается открыть файл включение: Vehicle.h: No such file or directory,
+  Создание кода...
