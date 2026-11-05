@@ -1,0 +1,75 @@
+# Создаем функцию
+def neuralNetwork(inp, weight):
+# рассчитываем прогноз
+     prediction = inp * weight
+     return prediction
+
+# Используем нейросеть
+
+# Создадим два предсказания
+
+out_1 = neuralNetwork(100, 0.1)
+out_2 = neuralNetwork(80, 0.3)
+
+# Выводим результат
+print(out_1)
+print(out_2)
+# запускаем и проверяем
+#-----------------------------------------
+
+
+
+# Создаем функцию
+def neuralNetwork(inp, weight):
+# рассчитываем прогноз
+     prediction = inp * weight
+     return prediction
+
+     inputs = [150,160,170,180,190]
+     weight = 0.2
+
+# цикл и вывод
+    for inp in inputs:
+        print(neuralNetwork)
+    
+# запускаем и проверяем
+#-----------------------------------------
+
+def neuralNetwork(inp, weight, bias):
+# рассчитываем прогноз
+     prediction = inp * weight + bias
+     return prediction
+
+     inp = 150
+     weight = 0.2
+     bias = 10
+     
+     result = neural_network(inp, weight, bias)
+     print(result)
+#-----------------------------------------
+
+		def neural_network(inputs, weights):
+    intermediate = []
+
+    for i in range(len(inputs)):
+        result = inputs[i] * weights[i]
+        intermediate.append(result)
+
+    prediction = sum(intermediate)
+
+    return prediction, intermediate
+
+
+inputs = [2, 3, 4]
+weights = [0.5, 0.2, 0.3]
+
+prediction, intermediate = neural_network(inputs, weights)
+
+print("Предсказание:", prediction)
+print("Промежуточные значения:", intermediate)
+
+
+
+
+
+
