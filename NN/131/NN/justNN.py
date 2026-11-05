@@ -34,3 +34,22 @@ weights = [
 ]
 inps = [50, 165, 45]
 print(neuralNetwork_m(inps, weights))
+
+def neuralNetwork_h(inps, weights):
+    prediction_h = [0]*len(weights[0])
+    for i in range(len(weights[0])):
+        for j in range(len(inps)):
+            prediction_h[i] += inps[j] * weights[0][i][j]
+    prediction_out = [0]*len(weights[1])
+    for i in range(len(weights[1])):
+        for j in range(len(prediction_h)):
+            prediction_out[i] += prediction_h[j] * weights[1][i][j]
+    return prediction_out
+
+weight_h = [[0.4, 0.1], [0.3, 0.2]]
+weight_out = [[0.4, 0.1], [0.3, 0.1]]
+weights = [weight_h, weight_out]
+inp = [23,45]
+
+print(neuralNetwork_h(inp, weights))
+
