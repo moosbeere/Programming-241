@@ -1,8 +1,5 @@
 import numpy as np
 
-from NN.error import get_error, prediction
-
-
 def neuralNetwork(inp, weight):
     return inp* weight
 
