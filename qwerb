@@ -1,0 +1,83 @@
+import io
+import os
+import zipfile
+import folium
+import pandas as pd
+import requests
+import urllib3
+
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+# Прямой адрес официального GTFS-архива СПб ГКУ «Организатор перевозок»
+URL = "https://transport.orgp.spb.ru/Portal/transport/internalapi/gtfs/feed.zip"
+LOCAL_ZIP = "feed.zip"
+
+headers = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+}
+
+print("Загрузка актуального GTFS-архива Санкт-Петербурга...")
+response = requests.get(URL, headers=headers, timeout=30, verify=False)
+response.raise_for_status()
+
+# Если сервер всё же вернул HTML-страницу, проверяем наличие скачанного вручную файла
+if zipfile.is_zipfile(io.BytesIO(response.content)):
+    zip_data = io.BytesIO(response.content)
+elif os.path.exists(LOCAL_ZIP) and zipfile.is_zipfile(LOCAL_ZIP):
+    print("Используется локальный файл feed.zip...")
+    zip_data = LOCAL_ZIP
+else:
+    raise RuntimeError(
+        "Сервер вернул HTML-заглушку. Откройте в браузере ссылку "
+        "https://transport.orgp.spb.ru/Portal/transport/internalapi/gtfs/feed.zip "
+        "и сохраните скачанный файл в папку D:\\file\\зольф\\итус\\ под именем feed.zip"
+    )
+
+# 2. Распаковка и чтение таблиц в DataFrame
+with zipfile.ZipFile(zip_data) as archive:
+    routes_df = pd.read_csv(archive.open("routes.txt"), dtype={"route_short_name": str})
+    trips_df = pd.read_csv(archive.open("trips.txt"))
+    stop_times_df = pd.read_csv(archive.open("stop_times.txt"))
+    stops_df = pd.read_csv(archive.open("stops.txt"))
+
+# 3. Фильтрация: автобусы (route_type == 3) и маршрут № 24
+TARGET_TYPE = 3
+TARGET_ROUTE = "24"
+
+buses_df = routes_df[routes_df["route_type"] == TARGET_TYPE].copy()
+selected_route = buses_df[buses_df["route_short_name"] == TARGET_ROUTE]
+route_id = selected_route["route_id"].iloc[0]
+
+# Выбираем первый рейс (в GTFS Санкт-Петербурга direction_id часто равен 0 для всех рейсов)
+route_trips = trips_df[trips_df["route_id"] == route_id]
+sample_trip_id = route_trips["trip_id"].iloc[0]
+
+trip_stops = stop_times_df[stop_times_df["trip_id"] == sample_trip_id].sort_values("stop_sequence")
+merged_df = pd.merge(trip_stops, stops_df, on="stop_id", how="left")
+merged_df = merged_df.dropna(subset=["stop_lat", "stop_lon"])
+
+final_df = merged_df[["stop_sequence", "stop_id", "stop_name", "stop_lat", "stop_lon"]].copy()
+final_df["route_number"] = TARGET_ROUTE
+
+# Вывод таблицы для Скриншота I
+print("\nПример обработанных данных (маршрут № 24):")
+print(final_df.head(15).to_string(index=False))
+
+# 4. Создание интерактивной карты Folium (для Скриншота II)
+center_lat = final_df["stop_lat"].mean()
+center_lon = final_df["stop_lon"].mean()
+city_map = folium.Map(location=[center_lat, center_lon], zoom_start=12, tiles="OpenStreetMap")
+
+coordinates = final_df[["stop_lat", "stop_lon"]].values.tolist()
+folium.PolyLine(locations=coordinates, color="blue", weight=4, opacity=0.7).add_to(city_map)
+
+for _, row in final_df.iterrows():
+    folium.Marker(
+        location=[row["stop_lat"], row["stop_lon"]],
+        popup=f"Остановка №{row['stop_sequence']}: {row['stop_name']} (ID: {row['stop_id']})",
+        tooltip=f"{row['stop_sequence']}. {row['stop_name']}",
+        icon=folium.Icon(color="blue", icon="bus", prefix="fa")
+    ).add_to(city_map)
+
+city_map.save("spb_bus_24_map.html")
+print("\nКарта успешно сохранена в файл spb_bus_24_map.html")
